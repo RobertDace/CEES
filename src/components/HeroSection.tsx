@@ -118,8 +118,8 @@ export default function HeroSection() {
                 {/* Central Community Visual Banner */}
                 <div className="relative h-64 w-full overflow-hidden border-2 border-slate-900 bg-slate-950 sm:h-72 dark:border-white rounded-none">
                   <Image
-                    src="/assets/asset_15_home.png"
-                    alt="Meet Up dan Buka Bersama Anggota CEES AREA Samarinda"
+                    src="/assets/activities/bukber_bungas_2024.jpg"
+                    alt="Meet Up dan Buka Bersama Akbar Anggota CEES AREA 2024 @Bungas Cafe Samarinda"
                     fill
                     sizes="(max-width: 768px) 100vw, 500px"
                     priority
@@ -130,10 +130,10 @@ export default function HeroSection() {
                   {/* Overlay Description Badge */}
                   <div className="absolute bottom-3 left-3 right-3 text-white">
                     <div className="inline-block border border-white bg-brand-blue px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase rounded-none shadow-[2px_2px_0px_0px_#000000]">
-                      GATHERING & MEET UP
+                      DOKUMENTASI BUKBER 2024
                     </div>
                     <p className="mt-1 font-display text-sm font-bold text-white uppercase drop-shadow-sm">
-                      Buka Bersama Lintas Divisi @Bungas Cafe Samarinda
+                      Buka Bersama Akbar & Meet Up @Bungas Cafe Samarinda
                     </p>
                   </div>
                 </div>

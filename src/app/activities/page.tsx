@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ACTIVITIES } from "@/data/community";
+import { ACTIVITIES, COMMUNITY_HIGHLIGHTS } from "@/data/community";
+import ActivityGalleryModal from "@/components/ActivityGalleryModal";
 import { Calendar, MapPin, ArrowUpRight, Flame, Handshake } from "lucide-react";
 
 export const metadata = {
@@ -85,12 +86,46 @@ export default function ActivitiesPage() {
                       <strong className="text-slate-900 dark:text-white">{activity.partner}</strong>
                     </div>
                   )}
+
+                  {/* Full Gallery Lightbox Bar */}
+                  {activity.gallery && activity.gallery.length > 0 && (
+                    <ActivityGalleryModal
+                      title={activity.title}
+                      subtitle={activity.subtitle}
+                      photos={activity.gallery}
+                    />
+                  )}
                 </div>
 
               </div>
             </div>
           ))}
         </div>
+
+        {/* Highlights Section */}
+        {COMMUNITY_HIGHLIGHTS.length > 0 && (
+          <div className="mt-16 border-2 border-slate-900 bg-white p-6 sm:p-8 shadow-[6px_6px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-slate-900 pb-4 dark:border-white">
+              <div>
+                <span className="border border-brand-blue bg-brand-blue/10 px-2.5 py-1 font-mono text-xs font-bold text-brand-blue dark:border-brand-cyan dark:text-brand-cyan">
+                  GALERI LENGKAP ({COMMUNITY_HIGHLIGHTS.length} FOTO)
+                </span>
+                <h3 className="mt-2 font-display text-2xl font-black uppercase text-slate-900 dark:text-white">
+                  Koleksi Highlight & Rekam Jejak Komunitas
+                </h3>
+                <p className="text-xs font-mono font-bold text-slate-600 dark:text-steel-400">
+                  Semua dokumentasi visual orisinal dari arsip kegiatan dan panggung kompetisi CEES AREA.
+                </p>
+              </div>
+            </div>
+
+            <ActivityGalleryModal
+              title="Koleksi Highlight CEES AREA"
+              subtitle="Arsip visual kegiatan & momen kebersamaan"
+              photos={COMMUNITY_HIGHLIGHTS}
+            />
+          </div>
+        )}
 
         {/* Future Pipeline Banner */}
         <div className="mt-16 border-2 border-slate-900 bg-slate-50 p-8 sm:p-12 text-center shadow-[8px_8px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface">

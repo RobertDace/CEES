@@ -4,6 +4,7 @@ import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 import DivisionCard from "@/components/DivisionCard";
 import FounderFeature from "@/components/FounderFeature";
+import LiveMemberRoster from "@/components/LiveMemberRoster";
 import { DIVISIONS, ACTIVITIES, COMMUNITY_INFO } from "@/data/community";
 import { ArrowUpRight, Flame, Trophy, MapPin, Calendar, Zap } from "lucide-react";
 
@@ -167,7 +168,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. High-Impact Call to Action Banner */}
+      {/* 6. Live Registered Members Roster Section */}
+      <section className="border-b-2 border-slate-900 bg-slate-50/50 py-16 dark:border-dark-border dark:bg-dark-base lg:py-24 transition-colors duration-200">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <LiveMemberRoster />
+        </div>
+      </section>
+
+      {/* 7. High-Impact Call to Action Banner */}
       <section className="relative overflow-hidden border-b-2 border-slate-900 bg-slate-100 py-16 dark:border-dark-border dark:bg-dark-void transition-colors duration-200">
         <div className="absolute inset-0 bg-industrial-grid opacity-25 pointer-events-none" />
         <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6">

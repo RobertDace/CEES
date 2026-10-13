@@ -1,5 +1,6 @@
 import React from "react";
 import JoinForm from "@/components/JoinForm";
+import LiveMemberRoster from "@/components/LiveMemberRoster";
 import { COMMUNITY_INFO } from "@/data/community";
 import { UserPlus, MessageCircle, FileText, ExternalLink, HelpCircle } from "lucide-react";
 
@@ -139,6 +140,11 @@ export default function JoinPage() {
 
           </div>
 
+        </div>
+
+        {/* Live Members Roster Section */}
+        <div className="mt-16">
+          <LiveMemberRoster />
         </div>
 
       </div>

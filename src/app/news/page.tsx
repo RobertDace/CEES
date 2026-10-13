@@ -14,7 +14,7 @@ interface ScrapedArticle {
 }
 
 export default function NewsPage() {
-  const [activeTab, setActiveTab] = useState<"live-feed" | "sandbox-frame">("live-feed");
+  const [activeTab, setActiveTab] = useState<"sandbox-frame" | "live-feed">("sandbox-frame");
   const [feedArticles, setFeedArticles] = useState<ScrapedArticle[]>([]);
   const [loadingFeed, setLoadingFeed] = useState<boolean>(true);
   const [selectedGameFilter, setSelectedGameFilter] = useState<string>("ALL");
@@ -28,8 +28,9 @@ export default function NewsPage() {
         const res = await fetch("/api/esports-feed");
         if (res.ok) {
           const data = await res.json();
-          if (data.articles && data.articles.length > 0) {
-            setFeedArticles(data.articles);
+          const list = data.articles || data.data || [];
+          if (list.length > 0) {
+            setFeedArticles(list);
           }
         }
       } catch (err) {
