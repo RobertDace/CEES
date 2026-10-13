@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #0F172A;
+    --brand-blue: #0030FF;
+  }
+
+  .dark {
+    --background: #060709;
+    --foreground: #F3F4F6;
+    --brand-blue: #0030FF;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Universal Neo-Brutalist Angular Architecture: Enforce Sharp 90-Degree Geometry */
+  *, ::before, ::after {
+    border-radius: 0px !important;
+  }
+
+  ::selection {
+    background: #0030FF;
+    color: #FFFFFF;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0A0C10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 0px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1E2536;
+  border: 1px solid #0030FF;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0030FF;
+}
+
+/* Dynamic Grid Backgrounds */
+.bg-industrial-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 48, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 48, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .bg-industrial-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 48, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 48, 255, 0.09) 1px, transparent 1px);
+}
+
+.bg-dot-matrix {
+  background-image: radial-gradient(rgba(0, 48, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-dot-matrix {
+  background-image: radial-gradient(rgba(0, 48, 255, 0.25) 1px, transparent 1px);
+}
+
+/* True Industrial Brutalism & Tactical Esports Styles */
+.brutal-btn,
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px !important;
+  border: 2px solid #0030FF;
+  background-color: #0030FF;
+  color: #FFFFFF;
+  font-family: var(--font-oswald), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 4px 0px 0px #0F172A;
+}
+
+.dark .brutal-btn,
+.dark .btn-primary {
+  border-color: #0030FF;
+  box-shadow: 4px 4px 0px 0px #FFFFFF;
+}
+
+.brutal-btn:hover,
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #0F172A;
+}
+
+.dark .brutal-btn:hover,
+.dark .btn-primary:hover {
+  box-shadow: 6px 6px 0px 0px #0030FF;
+}
+
+.brutal-btn:active,
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #0F172A;
+}
+
+.dark .brutal-btn:active,
+.dark .btn-primary:active {
+  box-shadow: 1px 1px 0px 0px #0030FF;
+}
+
+.brutal-btn-outline,
+.btn-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px !important;
+  border: 2px solid #0F172A;
+  background-color: #FFFFFF;
+  color: #0F172A;
+  font-family: var(--font-oswald), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 4px 0px 0px #0030FF;
+}
+
+.dark .brutal-btn-outline,
+.dark .btn-outline {
+  border-color: #FFFFFF;
+  background-color: #060709;
+  color: #FFFFFF;
+  box-shadow: 4px 4px 0px 0px #0030FF;
+}
+
+.brutal-btn-outline:hover,
+.btn-outline:hover {
+  background-color: #0030FF;
+  border-color: #0030FF;
+  color: #FFFFFF;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #0F172A;
+}
+
+.dark .brutal-btn-outline:hover,
+.dark .btn-outline:hover {
+  background-color: #0030FF;
+  border-color: #0030FF;
+  color: #FFFFFF;
+  box-shadow: 6px 6px 0px 0px #FFFFFF;
+}
+
+/* Brutalist Cards */
+.brutal-card {
+  border-radius: 0px !important;
+  border: 2px solid #0F172A;
+  background-color: #FFFFFF;
+  box-shadow: 6px 6px 0px 0px #0030FF;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .brutal-card {
+  border-color: #2E3A54;
+  background-color: #10131A;
+  box-shadow: 6px 6px 0px 0px #0030FF;
+}
+
+.brutal-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px 0px #0030FF;
+}
+
+/* Brutalist Badge Stamp */
+.brutal-badge {
+  border-radius: 0px !important;
+  border: 2px solid #0030FF;
+  background-color: #FFFFFF;
+  color: #0030FF;
+  box-shadow: 2px 2px 0px 0px #0030FF;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dark .brutal-badge {
+  background-color: #060709;
+  color: #00F0FF;
+  border-color: #0030FF;
+  box-shadow: 2px 2px 0px 0px #0030FF;
+}
+
+/* Light / Dark Surface Utility Classes */
+.surface-card {
+  border-radius: 0px !important;
+  border: 2px solid #0F172A;
+  background-color: #FFFFFF;
+  box-shadow: 4px 4px 0px 0px #0030FF;
+}
+
+.dark .surface-card {
+  border-color: #FFFFFF;
+  background-color: #10131A;
+  box-shadow: 4px 4px 0px 0px #0030FF;
+}
+
+/* Brand Accent Stripe */
+.brand-accent-bar {
+  background: linear-gradient(90deg, #0030FF 0%, #2D5BFF 50%, #00F0FF 100%);
+  height: 4px;
+}
