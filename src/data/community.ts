@@ -47,6 +47,28 @@ export interface NewsItem {
   featured?: boolean;
 }
 
+export interface MarketFeature {
+  id: string;
+  title: string;
+  category: string;
+  desc: string;
+  badge: string;
+}
+
+export interface MarketContent {
+  badge: string;
+  statusLabel: string;
+  estimatedLaunch: string;
+  headline: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  noticeText: string;
+  contactWhatsapp: string;
+  contactButtonText: string;
+  features: MarketFeature[];
+}
+
 import rawSiteContent from "./siteContent.json";
 
 const siteContent: any = rawSiteContent || {};
@@ -55,6 +77,7 @@ const overrideHome: any = siteContent.home || {};
 const overrideStaff: any[] = siteContent.staff || [];
 const overrideActivities: any[] = siteContent.activities || [];
 const overrideQuotes: any = siteContent.quotes || {};
+const overrideMarket: any = siteContent.market || {};
 
 export const QUOTES_DATA = {
   founderQuote:
@@ -387,3 +410,50 @@ export const NEWS_LIST: NewsItem[] = [
     featured: false,
   },
 ];
+
+export const MARKET_DATA: MarketContent = {
+  badge: overrideMarket.badge || "OFFICIAL STORE // COMING SOON",
+  statusLabel: overrideMarket.statusLabel || "FASE 1: PRODUKSI & KURASI",
+  estimatedLaunch: overrideMarket.estimatedLaunch || "Kuartal 3 - 2026",
+  headline: overrideMarket.headline || "COMING SOON",
+  title: overrideMarket.title || "CEES AREA MARKET",
+  subtitle:
+    overrideMarket.subtitle ||
+    "Merchandise resmi CEES GANK, apparel kompetitif, gaming gear, dan layanan store komunitas segera hadir.",
+  description:
+    overrideMarket.description ||
+    "Kami sedang meracik lini merchandise eksklusif dan platform store terpercaya khusus gamers Samarinda dan Kalimantan Timur. Dari jersey resmi bertuliskan nickname impianmu hingga streetwear khas Invictus Maneo.",
+  noticeText:
+    overrideMarket.noticeText ||
+    "Pemberitahuan: Seluruh member terverifikasi CEES GANK berhak mendapatkan potongan harga khusus pada masa peluncuran perdana nanti.",
+  contactWhatsapp: overrideMarket.contactWhatsapp || "http://wa.me/6285705035765",
+  contactButtonText:
+    overrideMarket.contactButtonText || "Tanya Merchandise / Kemitraan Vendor",
+  features:
+    overrideMarket.features && Array.isArray(overrideMarket.features)
+      ? overrideMarket.features
+      : [
+          {
+            id: "item-1",
+            title: "Official Pro Team Jersey",
+            category: "JERSEY DIVISI",
+            desc: "Jersey dry-fit grade kompetisi resmi divisi PUBGM, MLBB, dan Roblox dengan custom nickname & nomor punggung.",
+            badge: "Tahap Sampel Kain",
+          },
+          {
+            id: "item-2",
+            title: "Invictus Maneo Streetwear",
+            category: "APPAREL & MERCH",
+            desc: "T-shirt oversize, zipper hoodie, dan snapback bertema Invictus Maneo untuk outfit mabar maupun daily hangout.",
+            badge: "Proses Desain Visual",
+          },
+          {
+            id: "item-3",
+            title: "Community Store & Game Top-Up",
+            category: "SERVICES & VOUCHER",
+            desc: "Layanan top-up diamond MLBB, UC PUBG Mobile, Robux, serta tiket turnamen komunitas yang cepat dan terpercaya.",
+            badge: "Integrasi Sistem",
+          },
+        ],
+};
+

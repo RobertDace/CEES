@@ -24,10 +24,13 @@ import {
   Eye,
   RefreshCw,
   Terminal,
+  ShoppingBag,
+  Sparkles,
+  Tag,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
-type TabType = "home" | "quotes" | "staff" | "activities" | "members";
+type TabType = "home" | "quotes" | "staff" | "activities" | "members" | "market";
 
 export default function AdminToolsPage() {
   const router = useRouter();
@@ -94,6 +97,43 @@ export default function AdminToolsPage() {
   const [staffList, setStaffList] = useState<any[]>([]);
   const [activitiesList, setActivitiesList] = useState<any[]>([]);
   const [liveMembers, setLiveMembers] = useState<any[]>([]);
+  const [market, setMarket] = useState<any>({
+    badge: "OFFICIAL STORE // COMING SOON",
+    statusLabel: "FASE 1: PRODUKSI & KURASI",
+    estimatedLaunch: "Kuartal 3 - 2026",
+    headline: "COMING SOON",
+    title: "CEES AREA MARKET",
+    subtitle: "Official Merchandise & Community Store CEES GANK Samarinda",
+    description:
+      "Kami sedang meracik lini merchandise eksklusif dan platform store terpercaya khusus gamers Samarinda dan Kalimantan Timur. Dari jersey resmi bertuliskan nickname impianmu hingga streetwear khas Invictus Maneo.",
+    noticeText:
+      "Pemberitahuan: Seluruh member terverifikasi CEES GANK berhak mendapatkan potongan harga khusus pada masa peluncuran perdana nanti.",
+    contactWhatsapp: "http://wa.me/6285705035765",
+    contactButtonText: "Tanya Merchandise / Kemitraan Vendor",
+    features: [
+      {
+        id: "item-1",
+        title: "Official Pro Team Jersey",
+        category: "JERSEY DIVISI",
+        desc: "Jersey dry-fit grade kompetisi resmi divisi PUBGM, MLBB, dan Roblox dengan custom nickname & nomor punggung.",
+        badge: "Tahap Sampel Kain",
+      },
+      {
+        id: "item-2",
+        title: "Invictus Maneo Streetwear",
+        category: "APPAREL & MERCH",
+        desc: "T-shirt oversize, zipper hoodie, dan snapback bertema Invictus Maneo untuk outfit mabar maupun daily hangout.",
+        badge: "Proses Desain Visual",
+      },
+      {
+        id: "item-3",
+        title: "Community Store & Game Top-Up",
+        category: "SERVICES & VOUCHER",
+        desc: "Layanan top-up diamond MLBB, UC PUBG Mobile, Robux, serta tiket turnamen komunitas yang cepat dan terpercaya.",
+        badge: "Integrasi Sistem",
+      },
+    ],
+  });
 
   // 1. Fetch content from /api/admin/content
   useEffect(() => {
@@ -108,6 +148,7 @@ export default function AdminToolsPage() {
           if (json.data.quotes) setQuotes(json.data.quotes);
           if (json.data.staff) setStaffList(json.data.staff);
           if (json.data.activities) setActivitiesList(json.data.activities);
+          if (json.data.market) setMarket(json.data.market);
         }
       } catch (err) {
         console.error("Gagal memuat konten situs:", err);
@@ -144,6 +185,7 @@ export default function AdminToolsPage() {
         quotes,
         staff: staffList,
         activities: activitiesList,
+        market,
       };
 
       const res = await fetch("/api/admin/content", {
@@ -319,6 +361,34 @@ export default function AdminToolsPage() {
     setQuotes({ ...quotes, communityQuotes: updated });
   };
 
+  // Market helpers
+  const handleAddMarketFeature = () => {
+    const newFeature = {
+      id: "item-" + Date.now(),
+      title: "Nama Produk / Layanan Baru",
+      category: "KATEGORI PRODUK",
+      desc: "Deskripsi material, rincian keunggulan, atau varian produk merchandise.",
+      badge: "Segera Hadir",
+    };
+    setMarket({
+      ...market,
+      features: [...(market.features || []), newFeature],
+    });
+  };
+
+  const handleUpdateMarketFeature = (index: number, field: string, value: string) => {
+    const updated = [...(market.features || [])];
+    updated[index] = { ...updated[index], [field]: value };
+    setMarket({ ...market, features: updated });
+  };
+
+  const handleRemoveMarketFeature = (index: number) => {
+    if (confirm("Hapus item teaser produk ini?")) {
+      const updated = (market.features || []).filter((_: any, i: number) => i !== index);
+      setMarket({ ...market, features: updated });
+    }
+  };
+
   // Loading state
   if (authLoading) {
     return (
@@ -452,7 +522,8 @@ export default function AdminToolsPage() {
             { id: "quotes", label: "02. Quotes & Visi", icon: Quote },
             { id: "staff", label: `03. Pengurus & Foto (${staffList.length})`, icon: Users },
             { id: "activities", label: `04. Events & Galeri (${activitiesList.length})`, icon: Calendar },
-            { id: "members", label: `05. Member Join (${liveMembers.length})`, icon: ShieldCheck },
+            { id: "market", label: `05. Market Store (${(market.features || []).length})`, icon: ShoppingBag },
+            { id: "members", label: `06. Member Join (${liveMembers.length})`, icon: ShieldCheck },
           ].map((t) => {
             const Icon = t.icon;
             const active = activeTab === t.id;
@@ -1202,7 +1273,317 @@ export default function AdminToolsPage() {
         )}
 
         {/* ============================================================== */}
-        {/* TAB 5: MEMBER VERIFICATION */}
+        {/* TAB 5: MARKET & MERCHANDISE */}
+        {/* ============================================================== */}
+        {activeTab === "market" && (
+          <div className="mt-6 space-y-6">
+            {/* 1. Header Banner */}
+            <div className="border-2 border-slate-900 bg-white p-6 shadow-[6px_6px_0px_0px_#0030FF] dark:border-white dark:bg-dark-base">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+                <div>
+                  <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase text-brand-blue dark:text-brand-cyan">
+                    <ShoppingBag className="h-4 w-4" />
+                    <span>MANAJEMEN TOKO & MERCHANDISE (COMING SOON)</span>
+                  </div>
+                  <h3 className="mt-1 font-display text-2xl font-black uppercase text-slate-900 dark:text-white">
+                    Editor Halaman Market
+                  </h3>
+                  <p className="mt-1 text-xs text-slate-500 dark:text-steel-400">
+                    Atur teks pengumuman Coming Soon, estimasi peluncuran, benefit member, dan daftar teaser produk yang akan rilis di halaman <strong>/market</strong>.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Link
+                    href="/market"
+                    target="_blank"
+                    className="flex items-center gap-1.5 border-2 border-slate-900 bg-brand-cyan px-4 py-2 font-mono text-xs font-bold uppercase text-slate-900 shadow-[3px_3px_0px_0px_#0030FF] transition-all hover:bg-white dark:border-white"
+                  >
+                    <span>Buka Halaman Market</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Headline & Status Settings */}
+            <div className="border-2 border-slate-900 bg-white p-6 shadow-[6px_6px_0px_0px_#0030FF] dark:border-white dark:bg-dark-base space-y-6">
+              <h4 className="font-display text-lg font-bold uppercase text-slate-900 dark:text-white border-b-2 border-slate-900 pb-2 dark:border-white">
+                1. Pengaturan Header & Banner Coming Soon
+              </h4>
+
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                  <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                    Badge / Kicker Atas
+                  </label>
+                  <input
+                    type="text"
+                    value={market.badge || ""}
+                    onChange={(e) => setMarket({ ...market, badge: e.target.value })}
+                    placeholder="OFFICIAL STORE // COMING SOON"
+                    className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-mono text-xs font-bold text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                  />
+                  <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                    Badge kecil di bagian paling atas halaman.
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                    Status Fase Rilis
+                  </label>
+                  <input
+                    type="text"
+                    value={market.statusLabel || ""}
+                    onChange={(e) => setMarket({ ...market, statusLabel: e.target.value })}
+                    placeholder="FASE 1: PRODUKSI & KURASI"
+                    className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-mono text-xs font-bold text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                  />
+                  <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                    Indikator progress persiapan merchandise.
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                    Estimasi Waktu Peluncuran
+                  </label>
+                  <input
+                    type="text"
+                    value={market.estimatedLaunch || ""}
+                    onChange={(e) => setMarket({ ...market, estimatedLaunch: e.target.value })}
+                    placeholder="Kuartal 3 - 2026"
+                    className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-mono text-xs font-bold text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                  />
+                  <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                    Target waktu pembukaan toko resmi.
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                    Teks Headline Banner
+                  </label>
+                  <input
+                    type="text"
+                    value={market.headline || ""}
+                    onChange={(e) => setMarket({ ...market, headline: e.target.value })}
+                    placeholder="COMING SOON"
+                    className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-display text-base font-bold text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                  />
+                  <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                    Teks sorotan utama (default: COMING SOON).
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                    Judul Utama Halaman
+                  </label>
+                  <input
+                    type="text"
+                    value={market.title || ""}
+                    onChange={(e) => setMarket({ ...market, title: e.target.value })}
+                    placeholder="CEES AREA MARKET"
+                    className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-display text-lg font-black text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                  />
+                  <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                    Judul besar H1 halaman.
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                    Subjudul / Tagline Toko
+                  </label>
+                  <input
+                    type="text"
+                    value={market.subtitle || ""}
+                    onChange={(e) => setMarket({ ...market, subtitle: e.target.value })}
+                    placeholder="Merchandise resmi CEES GANK, apparel kompetitif, gaming gear..."
+                    className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-mono text-xs font-bold text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                  />
+                  <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                    Ringkasan singkat di bawah judul halaman.
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                  Deskripsi Narasi Lengkap Coming Soon
+                </label>
+                <textarea
+                  rows={4}
+                  value={market.description || ""}
+                  onChange={(e) => setMarket({ ...market, description: e.target.value })}
+                  className="mt-1.5 w-full border-2 border-slate-900 p-3 text-xs leading-relaxed text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                />
+                <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                  Paragraf penjelasan yang menguraikan produk apa saja yang sedang dipersiapkan.
+                </span>
+              </div>
+            </div>
+
+            {/* 3. Notice Member & WhatsApp Action */}
+            <div className="border-2 border-slate-900 bg-white p-6 shadow-[6px_6px_0px_0px_#0030FF] dark:border-white dark:bg-dark-base space-y-6">
+              <h4 className="font-display text-lg font-bold uppercase text-slate-900 dark:text-white border-b-2 border-slate-900 pb-2 dark:border-white">
+                2. Banner Pengumuman & Kontak Pre-Order
+              </h4>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                    Teks Banner Previlese / Diskon Member
+                  </label>
+                  <input
+                    type="text"
+                    value={market.noticeText || ""}
+                    onChange={(e) => setMarket({ ...market, noticeText: e.target.value })}
+                    placeholder="Pemberitahuan: Seluruh member terverifikasi CEES GANK berhak mendapatkan potongan harga..."
+                    className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-mono text-xs font-bold text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                  />
+                  <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                    Pesan yang tampil di banner biru bawah sebagai ajakan daftar member baru.
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div>
+                    <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                      Link / URL WhatsApp Admin (Pre-Order)
+                    </label>
+                    <input
+                      type="text"
+                      value={market.contactWhatsapp || ""}
+                      onChange={(e) => setMarket({ ...market, contactWhatsapp: e.target.value })}
+                      placeholder="http://wa.me/6285705035765"
+                      className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-mono text-xs text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                    />
+                    <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                      Tujuan saat pengunjung menekan tombol tanya merchandise / pre-order.
+                    </span>
+                  </div>
+
+                  <div>
+                    <label className="block font-mono text-xs font-bold uppercase text-slate-700 dark:text-steel-300">
+                      Label Teks Tombol Kontak
+                    </label>
+                    <input
+                      type="text"
+                      value={market.contactButtonText || ""}
+                      onChange={(e) => setMarket({ ...market, contactButtonText: e.target.value })}
+                      placeholder="Tanya Merchandise / Kemitraan Vendor"
+                      className="mt-1.5 w-full border-2 border-slate-900 p-2.5 font-mono text-xs font-bold text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+                    />
+                    <span className="mt-1 block font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                      Teks tombol WhatsApp pada banner kanan.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Products Teaser List */}
+            <div className="border-2 border-slate-900 bg-white p-6 shadow-[6px_6px_0px_0px_#0030FF] dark:border-white dark:bg-dark-base space-y-6">
+              <div className="flex flex-col justify-between gap-4 border-b-2 border-slate-900 pb-3 dark:border-white sm:flex-row sm:items-center">
+                <div>
+                  <h4 className="font-display text-lg font-bold uppercase text-slate-900 dark:text-white">
+                    3. Daftar Rencana Produk & Layanan ({market.features?.length || 0})
+                  </h4>
+                  <p className="mt-1 text-xs text-slate-500 dark:text-steel-400">
+                    Kartu preview barang atau kategori yang akan tersedia di toko resmi.
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleAddMarketFeature}
+                  className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-4 py-2 text-xs font-bold text-slate-900 hover:bg-white"
+                >
+                  <Plus className="h-4 w-4" />
+                  <span>Tambah Rencana Produk</span>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                {(market.features || []).map((feat: any, idx: number) => (
+                  <div
+                    key={feat.id || idx}
+                    className="border-2 border-slate-900 bg-slate-50 p-5 shadow-[4px_4px_0px_0px_#0030FF] dark:border-white dark:bg-dark-surface space-y-4"
+                  >
+                    <div className="flex items-center justify-between border-b-2 border-slate-900 pb-2 dark:border-white">
+                      <span className="font-mono text-xs font-bold text-brand-blue dark:text-brand-cyan">
+                        ITEM #{String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <button
+                        onClick={() => handleRemoveMarketFeature(idx)}
+                        className="flex items-center gap-1 font-mono text-xs font-bold text-red-600 hover:underline dark:text-red-400"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                        <span>HAPUS</span>
+                      </button>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div>
+                        <label className="block font-mono text-[10px] font-bold uppercase text-slate-600 dark:text-steel-400">
+                          Nama / Judul Produk
+                        </label>
+                        <input
+                          type="text"
+                          value={feat.title || ""}
+                          onChange={(e) => handleUpdateMarketFeature(idx, "title", e.target.value)}
+                          className="mt-1 w-full border-2 border-slate-900 p-2 font-display text-base font-bold text-slate-900 dark:border-white dark:bg-dark-base dark:text-white"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block font-mono text-[10px] font-bold uppercase text-slate-600 dark:text-steel-400">
+                            Kategori / Tag
+                          </label>
+                          <input
+                            type="text"
+                            value={feat.category || ""}
+                            onChange={(e) => handleUpdateMarketFeature(idx, "category", e.target.value)}
+                            className="mt-1 w-full border-2 border-slate-900 p-2 font-mono text-xs text-slate-900 dark:border-white dark:bg-dark-base dark:text-white"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-mono text-[10px] font-bold uppercase text-slate-600 dark:text-steel-400">
+                            Status Badge
+                          </label>
+                          <input
+                            type="text"
+                            value={feat.badge || ""}
+                            onChange={(e) => handleUpdateMarketFeature(idx, "badge", e.target.value)}
+                            className="mt-1 w-full border-2 border-slate-900 p-2 font-mono text-xs text-slate-900 dark:border-white dark:bg-dark-base dark:text-white"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block font-mono text-[10px] font-bold uppercase text-slate-600 dark:text-steel-400">
+                          Deskripsi Produk / Rincian
+                        </label>
+                        <textarea
+                          rows={3}
+                          value={feat.desc || ""}
+                          onChange={(e) => handleUpdateMarketFeature(idx, "desc", e.target.value)}
+                          className="mt-1 w-full border-2 border-slate-900 p-2 text-xs leading-relaxed text-slate-900 dark:border-white dark:bg-dark-base dark:text-steel-200"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ============================================================== */}
+        {/* TAB 6: MEMBER VERIFICATION */}
         {/* ============================================================== */}
         {activeTab === "members" && (
           <div className="mt-6 space-y-6">

@@ -15,7 +15,8 @@ const NAV_LINKS = [
   { name: "About Us", href: "/about", code: "02" },
   { name: "Our Activity", href: "/activities", code: "03" },
   { name: "E-Sport Flash", href: "/news", code: "04" },
-  { name: "Let's Join Us!", href: "/join", code: "05" },
+  { name: "Market", href: "/market", code: "05" },
+  { name: "Let's Join Us!", href: "/join", code: "06" },
 ];
 
 export default function Navbar() {
@@ -72,20 +73,20 @@ export default function Navbar() {
       </div>
 
       {/* Main bar */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8">
-        <div className="relative flex items-center">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="relative flex shrink-0 items-center">
           <Link
             href="/"
             onClick={handleLogoClick}
-            className="group flex items-center gap-3 select-none"
+            className="group flex items-center gap-2.5 sm:gap-3 select-none"
             aria-label="CEES AREA — Beranda (Klik 3x untuk Akses Admin)"
           >
             <BrandLogo width={120} height={42} priority className="h-8 w-auto max-h-9 sm:h-9" />
             <div className="flex flex-col leading-none">
-              <span className="font-display text-xl font-bold tracking-wide text-slate-900 transition-colors group-hover:text-brand-blue dark:text-white dark:group-hover:text-brand-cyan">
+              <span className="font-display text-lg sm:text-xl font-bold tracking-wide text-slate-900 transition-colors group-hover:text-brand-blue dark:text-white dark:group-hover:text-brand-cyan whitespace-nowrap">
                 CEES AREA
               </span>
-              <span className="mt-1 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-steel-400">
+              <span className="mt-1 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-steel-400 hidden sm:block whitespace-nowrap">
                 {COMMUNITY_INFO.tagline}
               </span>
             </div>
@@ -99,7 +100,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop navigation */}
-        <nav aria-label="Navigasi utama" className="hidden items-stretch md:flex">
+        <nav aria-label="Navigasi utama" className="hidden items-stretch lg:flex lg:gap-0.5 xl:gap-1.5">
           {NAV_LINKS.map((link) => {
             const active = isActive(link.href);
             return (
@@ -107,17 +108,17 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`group relative flex items-baseline gap-1.5 px-3 py-2 font-display text-[15px] font-semibold uppercase tracking-wide transition-colors ${
+                className={`group relative flex items-baseline gap-1 px-2 py-2 font-display text-[13px] xl:px-3 xl:text-[14px] 2xl:text-[15px] font-semibold uppercase tracking-wide transition-colors whitespace-nowrap ${
                   active
                     ? "text-brand-blue dark:text-brand-cyan"
                     : "text-slate-800 hover:text-brand-blue dark:text-steel-200 dark:hover:text-white"
                 }`}
               >
-                <span className="font-mono text-[9px] font-bold text-slate-400 dark:text-steel-500">{link.code}</span>
-                <span>{link.name}</span>
+                <span className="font-mono text-[9px] font-bold text-slate-400 dark:text-steel-500 shrink-0">{link.code}</span>
+                <span className="whitespace-nowrap">{link.name}</span>
                 <span
                   aria-hidden
-                  className={`absolute inset-x-3 bottom-0 h-[3px] bg-brand-blue transition-transform duration-150 origin-left dark:bg-brand-cyan ${
+                  className={`absolute inset-x-2 xl:inset-x-3 bottom-0 h-[3px] bg-brand-blue transition-transform duration-150 origin-left dark:bg-brand-cyan ${
                     active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
@@ -127,7 +128,7 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop Right Action Area */}
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden shrink-0 items-center gap-2.5 xl:gap-3 lg:flex">
           <ThemeToggle />
           {user ? (
             <>
@@ -144,7 +145,7 @@ export default function Navbar() {
               {/* Dynamic Corner Button: Admin Tools */}
               <Link
                 href="/admin"
-                className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-4 py-2 text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white"
+                className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-3.5 py-2 text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
                 title="Akses CMS & Editor Halaman Web"
               >
                 <Sliders className="h-4 w-4" />
@@ -154,7 +155,7 @@ export default function Navbar() {
             </>
           ) : (
             /* Default Corner Button: Join Member */
-            <Link href="/join" className="brutal-btn px-4 py-2 text-xs">
+            <Link href="/join" className="brutal-btn px-4 py-2 text-xs whitespace-nowrap">
               <span>Join Member</span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
@@ -162,7 +163,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -178,7 +179,7 @@ export default function Navbar() {
 
       {/* Mobile sheet */}
       {mobileMenuOpen && (
-        <div className="border-t-2 border-slate-900 bg-white dark:border-white dark:bg-dark-base md:hidden">
+        <div className="border-t-2 border-slate-900 bg-white dark:border-white dark:bg-dark-base lg:hidden">
           <nav aria-label="Navigasi mobile" className="flex flex-col">
             {NAV_LINKS.map((link) => {
               const active = isActive(link.href);
@@ -193,7 +194,7 @@ export default function Navbar() {
                 >
                   <span className="flex items-baseline gap-3">
                     <span className={`font-mono text-xs ${active ? "text-white/70" : "text-slate-400"}`}>{link.code}</span>
-                    {link.name}
+                    <span className="whitespace-nowrap">{link.name}</span>
                   </span>
                   <ArrowUpRight className="h-5 w-5" />
                 </Link>

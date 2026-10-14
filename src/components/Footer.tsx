@@ -125,6 +125,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/market" className="hover:text-brand-blue dark:hover:text-brand-cyan transition-colors">
+                  Market & Official Merch
+                </Link>
+              </li>
+              <li>
                 <Link href="/join" className="text-brand-blue dark:text-brand-cyan font-bold hover:underline">
                   Pendaftaran Member Baru
                 </Link>
