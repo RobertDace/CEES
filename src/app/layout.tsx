@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Oswald, Inter } from "next/font/google";
+import { Oswald, Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -11,9 +11,18 @@ const oswald = Oswald({
   variable: "--font-oswald",
 });
 
-const inter = Inter({
+// Body grotesk with more street character than Inter; same neutral role.
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-body",
+});
+
+// Previously referenced in tailwind.config but never loaded -> mono fell back to browser default.
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "800"],
+  variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
@@ -53,24 +62,38 @@ export const metadata: Metadata = {
   },
 };
 
+// Runs before paint: light is the default, dark only if the visitor chose it explicitly.
+const themeInitScript = `(function(){try{var t=localStorage.getItem('cees_theme');if(t==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${oswald.variable} ${inter.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-dark-void dark:text-steel-100 antialiased selection:bg-brand-blue selection:text-white transition-colors duration-200">
+    <html
+      lang="id"
+      className={`${oswald.variable} ${archivo.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-dark-void dark:text-steel-100 antialiased selection:bg-brand-blue selection:text-white">
         <ThemeProvider>
-          {/* Background Grid Pattern */}
-          <div className="fixed inset-0 pointer-events-none z-0 bg-industrial-grid opacity-30 dark:opacity-40" />
-          
-          {/* Ambient Brand Glow */}
-          <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-brand-blue/10 dark:bg-brand-blue/20 blur-[130px] pointer-events-none z-0" />
+          <a href="#main-content" className="skip-link">
+            Langsung ke konten
+          </a>
+
+          {/* Paper texture: hard grid + grain instead of soft glow blobs */}
+          <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-industrial-grid opacity-60 dark:opacity-50" />
+          <div aria-hidden className="grain-overlay" />
 
           <div className="relative z-10 flex min-h-screen flex-col">
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
             <Footer />
           </div>
         </ThemeProvider>

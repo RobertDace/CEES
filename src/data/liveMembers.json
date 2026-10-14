@@ -1,34 +1,18 @@
 [
   {
-    "gameId": "171745064 (Goldlaner Standart)",
-    "playerType": "Keduanya",
-    "discordTag": "alfrbrt",
     "id": "4DSatC8lZYhvO9Z5bmyP",
-    "gameNickname": "2OB1T.",
-    "submittedAtIso": "2026-10-13T09:30:51.551Z",
-    "whatsapp": "082232813197",
-    "timestamp": "13 Okt 2026, 17.30 WITA",
     "motivation": "pengen bantai bantai",
-    "city": "Samarinda",
-    "verified": true,
-    "division": "MLBB",
-    "fullName": "Alfian Robit Nadifi Masyhudi",
-    "status": "MEMBER BARU"
-  },
-  {
-    "id": "EuKLbFQkR7s0UT2qRBvM",
-    "status": "MEMBER BARU",
-    "submittedAtIso": "2026-10-13T08:55:36.831Z",
-    "motivation": "pingin cari cewe",
-    "whatsapp": "082232813197",
-    "city": "Samarinda",
-    "timestamp": "13 Okt 2026, 16.55 WITA",
-    "gameNickname": "2OB1T",
-    "playerType": "Keduanya",
-    "division": "MLBB",
-    "fullName": "Alfian Robit Nadifi Masyhudi",
+    "gameNickname": "2OB1T.",
     "gameId": "171745064 (Goldlaner Standart)",
     "verified": true,
-    "discordTag": "alfrbrt"
+    "playerType": "Keduanya",
+    "submittedAtIso": "2026-10-13T09:30:51.551Z",
+    "status": "MEMBER BARU",
+    "discordTag": "alfrbrt",
+    "division": "MLBB",
+    "timestamp": "13 Okt 2026, 17.30 WITA",
+    "city": "Samarinda",
+    "fullName": "Alfian Robit Nadifi Masyhudi",
+    "whatsapp": "082232813197"
   }
 ]

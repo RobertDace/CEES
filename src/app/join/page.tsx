@@ -13,7 +13,7 @@ export default function JoinPage() {
   return (
     <div className="py-12 lg:py-20 transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Title */}
         <div className="border-b-2 border-slate-900 pb-8 dark:border-white">
           <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-brand-blue dark:bg-dark-surface dark:text-brand-cyan">
@@ -45,7 +45,7 @@ export default function JoinPage() {
 
         {/* Two Column Layout: Form & Backup Links */}
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-12">
-          
+
           {/* Main Interactive Form */}
           <div className="lg:col-span-8">
             <JoinForm />
@@ -53,7 +53,7 @@ export default function JoinPage() {
 
           {/* Right Sidebar: Official External Links & FAQ */}
           <div className="space-y-6 lg:col-span-4">
-            
+
             {/* Direct Admin WhatsApp Card */}
             <div className="border-2 border-slate-900 bg-white p-6 shadow-[6px_6px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface">
               <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -89,7 +89,7 @@ export default function JoinPage() {
               <p className="mt-2 text-xs leading-relaxed text-slate-700 dark:text-steel-300">
                 Jika kamu lebih nyaman mengisi formulir bawaan Google Form atau ingin memeriksa rekapitulasi data pendaftar:
               </p>
-              
+
               <div className="mt-4 space-y-2.5">
                 <a
                   href={COMMUNITY_INFO.socials.googleForm}
@@ -119,7 +119,7 @@ export default function JoinPage() {
                 <HelpCircle className="h-4 w-4" />
                 <span>Pertanyaan yang Sering Diajukan</span>
               </div>
-              
+
               <div className="mt-4 space-y-4 font-mono text-xs">
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white uppercase">Apakah ada biaya pendaftaran?</h4>

@@ -76,7 +76,7 @@ export const FOUNDER_DATA: StaffMember = {
   nickname: "Zaden / Basten",
   role: "Founder & Community Lead",
   division: "Eksekutif & Divisi PUBGM",
-  image: "/assets/staff/zidan.png",
+  image: "/assets/staff/zaden_nata.png",
   bio: "Mantan atlet E-Sport lokal dari divisi PUBGM yang bertekad membangun dan memajukan ekosistem esports di Kota Samarinda dan Kalimantan Timur. Mengawali komunitas ini dari perkumpulan mabar sederhana hingga bertumbuh menjadi wadah resmi bagi lebih dari 90 anggota aktif lintas divisi kompetitif.",
   isFounder: true,
 };

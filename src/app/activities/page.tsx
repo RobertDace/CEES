@@ -14,7 +14,7 @@ export default function ActivitiesPage() {
   return (
     <div className="py-12 lg:py-20 transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Title */}
         <div className="border-b-2 border-slate-900 pb-8 dark:border-white">
           <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-brand-blue dark:bg-dark-surface dark:text-brand-cyan">
@@ -37,7 +37,7 @@ export default function ActivitiesPage() {
               className="border-2 border-slate-900 bg-white p-6 sm:p-8 shadow-[6px_6px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5"
             >
               <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-                
+
                 {/* Event Visual */}
                 <div className="lg:col-span-5">
                   <div className="relative aspect-video w-full overflow-hidden border-2 border-slate-900 bg-slate-950 sm:aspect-[4/3] rounded-none dark:border-white shadow-[4px_4px_0px_0px_#0F172A] dark:shadow-[4px_4px_0px_0px_#FFFFFF]">

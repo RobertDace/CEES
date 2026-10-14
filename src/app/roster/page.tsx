@@ -27,7 +27,7 @@ export default function RosterPage() {
   return (
     <div className="py-12 lg:py-20 transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Title */}
         <div className="border-b-2 border-slate-900 pb-8 dark:border-white">
           <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-brand-blue dark:bg-dark-surface dark:text-brand-cyan">
@@ -52,11 +52,10 @@ export default function RosterPage() {
             <button
               key={cat.value}
               onClick={() => setSelectedFilter(cat.value)}
-              className={`rounded-none border-2 px-3.5 py-1.5 font-display text-xs font-bold tracking-wider uppercase transition-all ${
-                selectedFilter === cat.value
+              className={`rounded-none border-2 px-3.5 py-1.5 font-display text-xs font-bold tracking-wider uppercase transition-all ${selectedFilter === cat.value
                   ? "border-brand-blue bg-brand-blue text-white shadow-[2px_2px_0px_0px_#0F172A] dark:shadow-[2px_2px_0px_0px_#FFFFFF]"
                   : "border-slate-900 bg-white text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-surface dark:text-white dark:hover:bg-dark-base"
-              }`}
+                }`}
             >
               {cat.label}
             </button>
@@ -68,11 +67,10 @@ export default function RosterPage() {
           {filteredStaff.map((staff: StaffMember) => (
             <div
               key={staff.id}
-              className={`group relative flex flex-col justify-between border-2 border-slate-900 bg-white shadow-[6px_6px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0px_0px_#0030FF] ${
-                staff.isFounder
+              className={`group relative flex flex-col justify-between border-2 border-slate-900 bg-white shadow-[6px_6px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0px_0px_#0030FF] ${staff.isFounder
                   ? "ring-2 ring-brand-blue"
                   : ""
-              }`}
+                }`}
             >
               <div>
                 {/* Photo Frame */}
@@ -83,7 +81,7 @@ export default function RosterPage() {
                     fill
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                  
+
                   {/* Badge Overlay */}
                   <div className="absolute top-3 right-3">
                     {staff.isFounder ? (

@@ -64,7 +64,7 @@ export default function NewsPage() {
   return (
     <div className="py-12 lg:py-20 transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Title */}
         <div className="border-b-2 border-slate-900 pb-8 dark:border-white">
           <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-brand-blue dark:bg-dark-surface dark:text-brand-cyan">
@@ -82,11 +82,10 @@ export default function NewsPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <button
               onClick={() => setActiveTab("live-feed")}
-              className={`flex items-center space-x-2 border-2 px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${
-                activeTab === "live-feed"
+              className={`flex items-center space-x-2 border-2 px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${activeTab === "live-feed"
                   ? "border-brand-blue bg-brand-blue text-white shadow-[4px_4px_0px_0px_#0F172A] dark:shadow-[4px_4px_0px_0px_#FFFFFF]"
                   : "border-slate-900 bg-white text-slate-900 shadow-[3px_3px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-surface dark:text-white dark:hover:bg-dark-base"
-              }`}
+                }`}
             >
               <Layers className="h-4 w-4" />
               <span>Katalog Berita Esports.ID & CEES</span>
@@ -94,11 +93,10 @@ export default function NewsPage() {
 
             <button
               onClick={() => setActiveTab("sandbox-frame")}
-              className={`flex items-center space-x-2 border-2 px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${
-                activeTab === "sandbox-frame"
+              className={`flex items-center space-x-2 border-2 px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${activeTab === "sandbox-frame"
                   ? "border-brand-blue bg-brand-blue text-white shadow-[4px_4px_0px_0px_#0F172A] dark:shadow-[4px_4px_0px_0px_#FFFFFF]"
                   : "border-slate-900 bg-white text-slate-900 shadow-[3px_3px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-surface dark:text-white dark:hover:bg-dark-base"
-              }`}
+                }`}
             >
               <Globe className="h-4 w-4" />
               <span>Portal Ter-Sandbox (esports.id Live)</span>
@@ -109,7 +107,7 @@ export default function NewsPage() {
         {/* TAB 1: Live Feed from esports.id + CEES Updates */}
         {activeTab === "live-feed" && (
           <div className="mt-10 space-y-12">
-            
+
             {/* Category Filter Chips */}
             <div className="flex flex-wrap items-center gap-2 border-b-2 border-slate-900 pb-6 dark:border-white">
               <div className="flex items-center space-x-1.5 text-xs font-mono font-bold text-slate-900 dark:text-white mr-2">
@@ -120,11 +118,10 @@ export default function NewsPage() {
                 <button
                   key={gf.value}
                   onClick={() => setSelectedGameFilter(gf.value)}
-                  className={`rounded-none border-2 px-3.5 py-1.5 font-display text-xs font-bold tracking-wider uppercase transition-all ${
-                    selectedGameFilter === gf.value
+                  className={`rounded-none border-2 px-3.5 py-1.5 font-display text-xs font-bold tracking-wider uppercase transition-all ${selectedGameFilter === gf.value
                       ? "border-brand-blue bg-brand-blue text-white shadow-[2px_2px_0px_0px_#0F172A] dark:shadow-[2px_2px_0px_0px_#FFFFFF]"
                       : "border-slate-900 bg-white text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-surface dark:text-white"
-                  }`}
+                    }`}
                 >
                   {gf.label}
                 </button>
@@ -269,7 +266,7 @@ export default function NewsPage() {
         {/* TAB 2: Embedded Interactive Sandbox Frame */}
         {activeTab === "sandbox-frame" && (
           <div className="mt-8 space-y-4">
-            
+
             {/* Browser Sandbox Chrome Toolbar */}
             <div className="flex flex-wrap items-center justify-between gap-3 border-2 border-slate-900 bg-slate-100 p-3.5 shadow-[4px_4px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface">
               <div className="flex items-center space-x-2">

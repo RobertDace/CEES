@@ -36,7 +36,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-body)", "sans-serif"],
         display: ["var(--font-oswald)", "sans-serif"],
         mono: ["var(--font-jetbrains)", "monospace"],
       },

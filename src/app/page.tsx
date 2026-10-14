@@ -18,7 +18,7 @@ export default function HomePage() {
       <section className="border-b-2 border-slate-900 bg-white py-12 transition-colors duration-200 dark:border-dark-border dark:bg-dark-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            
+
             <div className="border-2 border-slate-900 bg-slate-50 p-6 shadow-[4px_4px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-base">
               <div className="flex items-center space-x-2 text-brand-blue font-bold text-xs uppercase tracking-wider dark:text-brand-cyan">
                 <Flame className="h-4 w-4" />
@@ -65,7 +65,7 @@ export default function HomePage() {
       {/* 3. Game Divisions Section */}
       <section id="divisions" className="relative border-b-2 border-slate-900 bg-slate-50/50 py-16 transition-colors duration-200 dark:border-dark-border dark:bg-dark-base lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
+
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div>
               <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:bg-dark-surface dark:text-brand-cyan">
@@ -104,7 +104,7 @@ export default function HomePage() {
       {/* 5. Activities Teaser Section */}
       <section className="border-b-2 border-slate-900 bg-white py-16 transition-colors duration-200 dark:border-dark-border dark:bg-dark-surface lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
+
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div>
               <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:bg-dark-base dark:text-brand-cyan">

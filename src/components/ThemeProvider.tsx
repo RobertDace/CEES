@@ -11,39 +11,25 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: "dark",
+  theme: "light",
   toggleTheme: () => {},
   setTheme: () => {},
 });
 
+const applyTheme = (t: Theme) => {
+  document.documentElement.classList.toggle("dark", t === "dark");
+};
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+  // Light is the default. Dark only applies when the visitor explicitly picked it.
+  const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
-    // Check stored preference or system preference
-    const stored = localStorage.getItem("cees_theme") as Theme | null;
-    if (stored === "light" || stored === "dark") {
-      setThemeState(stored);
-      applyTheme(stored);
-    } else {
-      // Default to dark mode for authentic esports experience, or check media query
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const initial = prefersDark ? "dark" : "dark"; // Defaulting to dark as standard
-      setThemeState(initial);
-      applyTheme(initial);
-    }
-    setMounted(true);
+    const stored = localStorage.getItem("cees_theme");
+    const initial: Theme = stored === "dark" ? "dark" : "light";
+    setThemeState(initial);
+    applyTheme(initial);
   }, []);
-
-  const applyTheme = (t: Theme) => {
-    const root = document.documentElement;
-    if (t === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-  };
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
@@ -52,11 +38,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // Avoid hydration mismatch by rendering children with consistent theme context
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
       {children}

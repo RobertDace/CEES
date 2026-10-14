@@ -151,11 +151,10 @@ export default function ActivityGalleryModal({
                   key={idx}
                   type="button"
                   onClick={() => setCurrentIndex(idx)}
-                  className={`relative h-14 w-14 flex-shrink-0 overflow-hidden border-2 transition-all ${
-                    idx === currentIndex
+                  className={`relative h-14 w-14 flex-shrink-0 overflow-hidden border-2 transition-all ${idx === currentIndex
                       ? "border-brand-cyan scale-110 shadow-[0_0_12px_#00F0FF]"
                       : "border-slate-700 opacity-60 hover:opacity-100"
-                  }`}
+                    }`}
                 >
                   <Image
                     src={p}

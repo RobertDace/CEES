@@ -1,179 +1,135 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Flame, Shield, Trophy, Users, Crosshair, ChevronRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { COMMUNITY_INFO } from "@/data/community";
+
+const STATS = [
+  { value: `${COMMUNITY_INFO.totalMembers}+`, label: "Member aktif" },
+  { value: "03", label: "Divisi game" },
+  { value: "S1", label: "Turnamen offline" },
+  { value: "2024", label: "Tahun berdiri" },
+];
+
+const TAPE_ITEMS = [
+  "PUBG Mobile",
+  "Mobile Legends",
+  "Roblox",
+  "Invictus Maneo",
+  "Samarinda — Kaltim",
+  "CEES GANK",
+];
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden border-b-2 border-slate-900 bg-slate-50/50 pt-10 pb-16 transition-colors duration-200 dark:border-dark-border dark:bg-dark-base lg:pt-16 lg:pb-24">
-      {/* Decorative Brand Grid Background */}
-      <div className="absolute top-0 right-0 h-full w-1/3 bg-dot-matrix opacity-25 pointer-events-none" />
-      <div className="absolute -top-24 left-1/4 h-96 w-96 bg-brand-blue/15 blur-[120px] pointer-events-none" />
+    <>
+      <section className="relative overflow-hidden border-b-2 border-slate-900 bg-white dark:border-white dark:bg-dark-base">
+        <div className="mx-auto max-w-7xl px-4 pt-10 pb-14 sm:px-6 lg:px-8 lg:pt-16 lg:pb-20">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
+            {/* Left: statement */}
+            <div className="lg:col-span-7">
+              <span className="sticker -rotate-2">Komunitas E-Sport · Samarinda, Kaltim</span>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          
-          {/* Left Column: Headline & Bio */}
-          <div className="space-y-6 lg:col-span-7">
-            {/* Regional Brutalist Stamp */}
-            <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-brand-blue dark:bg-dark-surface dark:text-brand-cyan">
-              <Flame className="h-4 w-4 text-brand-blue dark:text-brand-cyan" />
-              <span className="tracking-wider uppercase">Komunitas E-Sport Resmi Samarinda, Kalimantan Timur</span>
-            </div>
-
-            <div className="space-y-2">
-              <h1 className="font-display text-4xl font-black tracking-tight text-slate-900 uppercase sm:text-6xl lg:text-7xl dark:text-white">
-                WELCOME TO <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-cyan">
-                  OUR AREA.
+              <h1 className="display-xl mt-8 text-[clamp(3.4rem,10vw,8.5rem)] text-slate-900 dark:text-white">
+                <span className="block">Welcome</span>
+                <span className="block">
+                  to <span className="text-outline">our</span>
+                </span>
+                <span className="block">
+                  <span className="mark-block">Area.</span>
                 </span>
               </h1>
-              <p className="font-mono text-xs font-bold tracking-wider text-brand-blue uppercase dark:text-brand-cyan">
-                SEMBOYAN: &quot;{COMMUNITY_INFO.tagline}&quot; — {COMMUNITY_INFO.taglineMeaning}
+
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg dark:text-steel-200">
+                Komunitas e-sport asal Samarinda yang dibangun dari tongkrongan mabar. Sekarang
+                jadi rumah buat pemain <strong className="font-semibold text-slate-900 dark:text-white">PUBG Mobile</strong>,{" "}
+                <strong className="font-semibold text-slate-900 dark:text-white">Mobile Legends</strong>, dan{" "}
+                <strong className="font-semibold text-slate-900 dark:text-white">Roblox</strong> se-Kalimantan Timur.
               </p>
-            </div>
 
-            <p className="max-w-xl text-base leading-relaxed text-slate-800 sm:text-lg dark:text-steel-200">
-              Komunitas E-Sport terdepan asal Samarinda, Kalimantan Timur. Dibangun dari semangat kekeluargaan yang solid dan mental bertanding yang tangguh di divisi <strong className="font-bold text-slate-900 dark:text-white">PUBG Mobile</strong>, <strong className="font-bold text-slate-900 dark:text-white">Mobile Legends</strong>, dan <strong className="font-bold text-slate-900 dark:text-white">Roblox</strong>.
-            </p>
+              <p className="mt-4 font-mono text-xs font-bold uppercase tracking-[0.14em] text-brand-blue dark:text-brand-cyan">
+                &ldquo;{COMMUNITY_INFO.tagline}&rdquo; — {COMMUNITY_INFO.taglineMeaning}
+              </p>
 
-            {/* Brutalist Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link
-                href="/join"
-                className="brutal-btn inline-flex items-center space-x-2 px-7 py-4 text-sm font-bold tracking-wider rounded-none"
-              >
-                <span>DAFTAR MEMBER BARU</span>
-                <ArrowUpRight className="h-5 w-5" />
-              </Link>
-
-              <Link
-                href="/about"
-                className="brutal-btn-outline inline-flex items-center space-x-2 px-7 py-4 text-sm font-bold tracking-wider rounded-none"
-              >
-                <span>PROFIL LENGKAP KAMI</span>
-                <ChevronRight className="h-5 w-5 text-brand-blue dark:text-brand-cyan" />
-              </Link>
-            </div>
-
-            {/* Brutalist Metrics Grid */}
-            <div className="grid grid-cols-2 gap-3 border-t-2 border-slate-900 pt-6 dark:border-dark-border sm:grid-cols-4">
-              <div className="border-2 border-slate-900 bg-white p-3.5 shadow-[4px_4px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface transition-transform hover:-translate-y-0.5">
-                <div className="flex items-center space-x-1.5 text-brand-blue dark:text-brand-cyan">
-                  <Users className="h-4 w-4" />
-                  <span className="font-display text-2xl font-bold text-slate-900 dark:text-white">90+</span>
-                </div>
-                <p className="font-mono text-[11px] font-bold uppercase text-slate-600 dark:text-steel-400">Anggota Aktif</p>
-              </div>
-
-              <div className="border-2 border-slate-900 bg-white p-3.5 shadow-[4px_4px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface transition-transform hover:-translate-y-0.5">
-                <div className="flex items-center space-x-1.5 text-brand-blue dark:text-brand-cyan">
-                  <Crosshair className="h-4 w-4" />
-                  <span className="font-display text-2xl font-bold text-slate-900 dark:text-white">3</span>
-                </div>
-                <p className="font-mono text-[11px] font-bold uppercase text-slate-600 dark:text-steel-400">Divisi Game</p>
-              </div>
-
-              <div className="border-2 border-slate-900 bg-white p-3.5 shadow-[4px_4px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface transition-transform hover:-translate-y-0.5">
-                <div className="flex items-center space-x-1.5 text-amber-500">
-                  <Trophy className="h-4 w-4" />
-                  <span className="font-display text-2xl font-bold text-slate-900 dark:text-white">S1</span>
-                </div>
-                <p className="font-mono text-[11px] font-bold uppercase text-slate-600 dark:text-steel-400">Turnamen Offline</p>
-              </div>
-
-              <div className="border-2 border-slate-900 bg-white p-3.5 shadow-[4px_4px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface transition-transform hover:-translate-y-0.5">
-                <div className="flex items-center space-x-1.5 text-brand-blue dark:text-white">
-                  <Shield className="h-4 w-4 text-brand-blue dark:text-brand-cyan" />
-                  <span className="font-display text-2xl font-bold text-slate-900 dark:text-white">2024</span>
-                </div>
-                <p className="font-mono text-[11px] font-bold uppercase text-slate-600 dark:text-steel-400">Tahun Berdiri</p>
+              <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-5">
+                <Link href="/join" className="brutal-btn px-7 py-4 text-sm">
+                  <span>Daftar member baru</span>
+                  <ArrowUpRight className="h-5 w-5" />
+                </Link>
+                <Link href="/about" className="link-arrow text-slate-900 dark:text-white">
+                  <span>Kenalan dulu</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Authentic Esports Brutalist Showcase Card */}
-          <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              
-              {/* Brutalist Outer Frame */}
-              <div className="relative border-2 border-slate-900 bg-white p-5 shadow-[8px_8px_0px_0px_#0030FF] dark:border-white dark:bg-dark-surface rounded-none">
-                
-                {/* Header Tag */}
-                <div className="mb-4 flex items-center justify-between border-b-2 border-slate-900 pb-3 text-xs dark:border-white">
-                  <div className="flex items-center space-x-2">
-                    <span className="h-2.5 w-2.5 bg-emerald-500 animate-pulse"></span>
-                    <span className="font-mono font-bold text-slate-900 dark:text-white tracking-wider uppercase">
-                      CEES AREA SAMARINDA
-                    </span>
-                  </div>
-                  <span className="border border-brand-blue bg-brand-blue px-2.5 py-0.5 text-[11px] font-bold text-white uppercase rounded-none shadow-[2px_2px_0px_0px_#000000]">
-                    TERVERIFIKASI
-                  </span>
+            {/* Right: zine-style photo */}
+            <div className="relative lg:col-span-5 lg:pt-6">
+              <div aria-hidden className="bg-hatch absolute -right-3 top-10 bottom-6 left-10 hidden opacity-25 sm:block" />
+
+              <figure className="relative border-2 border-slate-900 bg-white shadow-[10px_10px_0_0_#0F172A] dark:border-white dark:bg-dark-surface dark:shadow-[10px_10px_0_0_#0030FF]">
+                <div className="flex items-center justify-between border-b-2 border-slate-900 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-900 dark:border-white dark:text-white">
+                  <span>Arsip / 2024</span>
+                  <span className="text-slate-400 dark:text-steel-500">IMG_0412</span>
                 </div>
 
-                {/* Central Community Visual Banner */}
-                <div className="relative h-64 w-full overflow-hidden border-2 border-slate-900 bg-slate-950 sm:h-72 dark:border-white rounded-none">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-slate-900 sm:aspect-[5/5]">
                   <Image
                     src="/assets/activities/bukber_bungas_2024.jpg"
-                    alt="Meet Up dan Buka Bersama Akbar Anggota CEES AREA 2024 @Bungas Cafe Samarinda"
+                    alt="Meet up dan buka bersama anggota CEES AREA 2024 di Bungas Cafe Samarinda"
                     fill
-                    sizes="(max-width: 768px) 100vw, 500px"
+                    sizes="(max-width: 1024px) 100vw, 480px"
                     priority
-                    className="object-cover object-center transition-transform duration-500 hover:scale-105"
+                    className="object-cover object-center grayscale-[35%] contrast-[1.08] transition-[filter,transform] duration-500 hover:scale-[1.03] hover:grayscale-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
-                  
-                  {/* Overlay Description Badge */}
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <div className="inline-block border border-white bg-brand-blue px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase rounded-none shadow-[2px_2px_0px_0px_#000000]">
-                      DOKUMENTASI BUKBER 2024
-                    </div>
-                    <p className="mt-1 font-display text-sm font-bold text-white uppercase drop-shadow-sm">
-                      Buka Bersama Akbar & Meet Up @Bungas Cafe Samarinda
+                </div>
+
+                <figcaption className="grid grid-cols-[1fr_auto] items-end gap-4 border-t-2 border-slate-900 px-3 py-3 dark:border-white">
+                  <div>
+                    <p className="font-display text-lg font-bold uppercase leading-tight text-slate-900 dark:text-white">
+                      Bukber &amp; meet up
                     </p>
+                    <p className="font-mono text-[11px] text-slate-500 dark:text-steel-400">Bungas Cafe, Samarinda</p>
                   </div>
-                </div>
+                  <p className="font-mono text-[11px] font-bold uppercase text-brand-blue dark:text-brand-cyan">
+                    {COMMUNITY_INFO.memberTerm}
+                  </p>
+                </figcaption>
+              </figure>
 
-                {/* Information Footer */}
-                <div className="mt-4 flex items-center justify-between border-t-2 border-slate-900 pt-3 text-xs dark:border-white font-mono">
-                  <div>
-                    <span className="text-slate-600 dark:text-steel-400">SEBUTAN:</span>{" "}
-                    <strong className="font-bold text-slate-900 dark:text-white">CEES GANK</strong>
-                  </div>
-                  <div>
-                    <span className="text-slate-600 dark:text-steel-400">MOTTO:</span>{" "}
-                    <strong className="font-bold text-brand-blue dark:text-brand-cyan">INVICTUS MANEO</strong>
-                  </div>
-                </div>
-
-                {/* Division Badges */}
-                <div className="mt-3 flex items-center gap-2 border-t border-slate-200 pt-3 dark:border-dark-border">
-                  <span className="border border-slate-900 bg-slate-100 px-2 py-1 font-mono text-[10px] font-bold text-slate-900 uppercase dark:border-white dark:bg-dark-base dark:text-white rounded-none">
-                    PUBG MOBILE
-                  </span>
-                  <span className="border border-slate-900 bg-slate-100 px-2 py-1 font-mono text-[10px] font-bold text-slate-900 uppercase dark:border-white dark:bg-dark-base dark:text-white rounded-none">
-                    MOBILE LEGENDS
-                  </span>
-                  <span className="border border-slate-900 bg-slate-100 px-2 py-1 font-mono text-[10px] font-bold text-slate-900 uppercase dark:border-white dark:bg-dark-base dark:text-white rounded-none">
-                    ROBLOX
-                  </span>
-                </div>
-              </div>
-
-              {/* Floating Brutalist Badge */}
-              <div className="absolute -bottom-4 -left-4 hidden border-2 border-slate-900 bg-white px-4 py-2 font-mono text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] sm:flex sm:items-center sm:gap-2 dark:border-white dark:bg-dark-void dark:text-white rounded-none">
-                <span className="h-2 w-2 bg-brand-blue dark:bg-brand-cyan animate-ping" />
-                <span>WADAH RESMI GAMERS SAMARINDA</span>
-              </div>
+              <span className="sticker sticker-blue absolute -left-3 -top-3 rotate-[-6deg] sm:-left-6">
+                Est. 04.10.2024
+              </span>
             </div>
           </div>
 
+          {/* Stats strip */}
+          <dl className="ruled-grid mt-14 grid-cols-2 bg-white dark:bg-dark-base sm:grid-cols-4">
+            {STATS.map((s) => (
+              <div key={s.label} className="px-4 py-5 sm:px-6">
+                <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-steel-400">
+                  {s.label}
+                </dt>
+                <dd className="mt-1 font-display text-4xl font-bold tabular-nums text-slate-900 sm:text-5xl dark:text-white">
+                  {s.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Marquee tape */}
+      <div className="tape" aria-hidden>
+        <div className="tape-track py-2.5 font-display text-lg font-bold uppercase tracking-wide">
+          {[...TAPE_ITEMS, ...TAPE_ITEMS, ...TAPE_ITEMS, ...TAPE_ITEMS].map((item, i) => (
+            <span key={i} className="flex items-center whitespace-nowrap">
+              <span className="px-6">{item}</span>
+              <span className="text-brand-cyan">///</span>
+            </span>
+          ))}
         </div>
       </div>
-    </section>
+    </>
   );
 }

@@ -37,9 +37,8 @@ export function BrandLogo({
         width={width}
         height={height}
         priority={priority}
-        className={`h-full w-auto max-h-full max-w-full object-contain transition-opacity duration-200 ${
-          isLight ? "block" : "hidden"
-        }`}
+        className={`h-full w-auto max-h-full max-w-full object-contain transition-opacity duration-200 ${isLight ? "block" : "hidden"
+          }`}
       />
       {/* Dark mode logo (White) */}
       <Image
@@ -48,9 +47,8 @@ export function BrandLogo({
         width={width}
         height={height}
         priority={priority}
-        className={`h-full w-auto max-h-full max-w-full object-contain transition-opacity duration-200 ${
-          !isLight ? "block" : "hidden"
-        }`}
+        className={`h-full w-auto max-h-full max-w-full object-contain transition-opacity duration-200 ${!isLight ? "block" : "hidden"
+          }`}
       />
     </div>
   );

@@ -2,7 +2,18 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { COMMUNITY_INFO } from "@/data/community";
-import { Shield, Target, Award, CheckCircle2 } from "lucide-react";
+import {
+  Shield,
+  Target,
+  Award,
+  CheckCircle2,
+  MapPin,
+  ArrowUpRight,
+  Calendar,
+  Globe,
+  HeartHandshake,
+  Users,
+} from "lucide-react";
 
 export const metadata = {
   title: "About Us | CEES AREA - Sejarah, Visi, Misi & Filosofi",
@@ -13,7 +24,7 @@ export default function AboutPage() {
   return (
     <div className="py-12 lg:py-20 transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Title */}
         <div className="border-b-2 border-slate-900 pb-8 dark:border-white">
           <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-brand-blue dark:bg-dark-surface dark:text-brand-cyan">
@@ -30,7 +41,7 @@ export default function AboutPage() {
 
         {/* 1. Core Identity Narrative */}
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-12">
-          
+
           <div className="space-y-6 lg:col-span-7">
             <h2 className="font-display text-2xl font-black text-slate-900 uppercase sm:text-3xl dark:text-white">
               CEES GANK itu Komunitas Apa?
@@ -56,9 +67,10 @@ export default function AboutPage() {
                 {COMMUNITY_INFO.coverage.map((city) => (
                   <span
                     key={city}
-                    className="border-2 border-slate-900 bg-white px-3 py-1 text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-base dark:text-white"
+                    className="inline-flex items-center gap-1.5 border-2 border-slate-900 bg-white px-3 py-1 text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-base dark:text-white"
                   >
-                    📍 {city}
+                    <MapPin className="h-3.5 w-3.5 shrink-0 text-brand-blue dark:text-brand-cyan" />
+                    <span>{city}</span>
                   </span>
                 ))}
               </div>
@@ -87,8 +99,9 @@ export default function AboutPage() {
         {/* 2. Sejarah Detail */}
         <div className="mt-16 border-t-2 border-slate-900 pt-12 dark:border-white">
           <div className="border-2 border-slate-900 bg-slate-50 p-6 sm:p-10 shadow-[6px_6px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface">
-            <div className="inline-block border-2 border-brand-blue bg-brand-blue px-3 py-0.5 text-xs font-mono font-bold text-white uppercase shadow-[2px_2px_0px_0px_#000000] rounded-none mb-4">
-              CHRONOLOGY 2024 - 2025
+            <div className="inline-flex items-center gap-1.5 border-2 border-brand-blue bg-brand-blue px-3 py-0.5 text-xs font-mono font-bold text-white uppercase shadow-[2px_2px_0px_0px_#000000] rounded-none mb-4">
+              <Calendar className="h-3.5 w-3.5" />
+              <span>CHRONOLOGY 2024 - 2025</span>
             </div>
             <h3 className="font-display text-2xl font-black text-slate-900 uppercase sm:text-3xl dark:text-white">
               Sejarah Perjalanan Kami
@@ -109,7 +122,7 @@ export default function AboutPage() {
 
         {/* 3. Visi & Misi */}
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          
+
           {/* VISI */}
           <div className="border-2 border-slate-900 bg-white p-6 shadow-[6px_6px_0px_0px_#0030FF] rounded-none dark:border-white dark:bg-dark-surface">
             <div className="flex items-center space-x-2 text-brand-blue dark:text-brand-cyan">
@@ -155,9 +168,12 @@ export default function AboutPage() {
             3 Pilar Tujuan Utama Organisasi
           </h3>
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-            
+
             <div className="border-l-4 border-brand-blue pl-4">
-              <span className="text-xs font-mono font-bold text-brand-blue dark:text-brand-cyan">PILAR 01</span>
+              <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-brand-blue dark:text-brand-cyan">
+                <Globe className="h-3.5 w-3.5 shrink-0" />
+                <span>PILAR 01</span>
+              </div>
               <h4 className="mt-1 font-display text-base font-bold text-slate-900 uppercase dark:text-white">Ruang Lingkup Luas</h4>
               <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-steel-300">
                 Memperluas ruang lingkup komunitas agar tidak hanya berfokus pada aktivitas bermain game bersama, tetapi juga mampu bertindak sebagai penyelenggara turnamen dan pelopor kegiatan sosial.
@@ -165,7 +181,10 @@ export default function AboutPage() {
             </div>
 
             <div className="border-l-4 border-brand-blue pl-4">
-              <span className="text-xs font-mono font-bold text-brand-blue dark:text-brand-cyan">PILAR 02</span>
+              <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-brand-blue dark:text-brand-cyan">
+                <HeartHandshake className="h-3.5 w-3.5 shrink-0" />
+                <span>PILAR 02</span>
+              </div>
               <h4 className="mt-1 font-display text-base font-bold text-slate-900 uppercase dark:text-white">Aksi Sosial Rutin</h4>
               <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-steel-300">
                 Menjadikan organisasi sebagai wadah utama untuk menggerakkan berbagai kegiatan sosial secara rutin (seperti bakti sosial, penggalangan dana, dan aksi relawan peduli sesama).
@@ -173,7 +192,10 @@ export default function AboutPage() {
             </div>
 
             <div className="border-l-4 border-brand-blue pl-4">
-              <span className="text-xs font-mono font-bold text-brand-blue dark:text-brand-cyan">PILAR 03</span>
+              <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-brand-blue dark:text-brand-cyan">
+                <Users className="h-3.5 w-3.5 shrink-0" />
+                <span>PILAR 03</span>
+              </div>
               <h4 className="mt-1 font-display text-base font-bold text-slate-900 uppercase dark:text-white">Karakter & Integritas</h4>
               <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-steel-300">
                 Membentuk karakter anggota dan tata kelola organisasi yang visioner, komunikatif, adil, penuh tanggung jawab, serta memiliki empati sosial yang tinggi.
@@ -195,9 +217,10 @@ export default function AboutPage() {
           </div>
           <Link
             href="/roster"
-            className="brutal-btn px-6 py-3.5 text-xs font-bold whitespace-nowrap rounded-none"
+            className="brutal-btn flex items-center gap-2 px-6 py-3.5 text-xs font-bold whitespace-nowrap rounded-none"
           >
-            LIHAT STRUKTUR PENGURUS →
+            <span>LIHAT STRUKTUR PENGURUS</span>
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
 

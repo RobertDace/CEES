@@ -109,7 +109,7 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
 
   return (
     <div className="relative border-2 border-slate-900 bg-white p-6 shadow-[8px_8px_0px_0px_#0030FF] sm:p-10 dark:border-white dark:bg-dark-surface rounded-none">
-      
+
       {/* Header Bar */}
       <div className="mb-8 flex flex-wrap items-center justify-between border-b-2 border-slate-900 pb-4 text-xs dark:border-white gap-2">
         <div className="flex items-center space-x-2">
@@ -131,7 +131,7 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
 
       {!submitted ? (
         <form onSubmit={handleSubmit} className="space-y-6">
-          
+
           {/* Row 1: Nama & Domisili */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
@@ -143,9 +143,8 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
                 placeholder="Contoh: Zidan Nata"
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                className={`mt-2 w-full border-2 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:outline-none dark:bg-dark-base dark:text-white dark:placeholder-steel-500 ${
-                  errors.fullName ? "border-red-500" : "border-slate-900 focus:bg-white dark:border-white"
-                }`}
+                className={`mt-2 w-full border-2 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:outline-none dark:bg-dark-base dark:text-white dark:placeholder-steel-500 ${errors.fullName ? "border-red-500" : "border-slate-900 focus:bg-white dark:border-white"
+                  }`}
               />
               {errors.fullName && (
                 <p className="mt-1 font-mono text-xs font-bold text-red-500">{errors.fullName}</p>
@@ -179,11 +178,10 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
                     key={div.id}
                     type="button"
                     onClick={() => setFormData({ ...formData, division: div.id })}
-                    className={`flex flex-col items-start p-3.5 text-left border-2 transition-all rounded-none ${
-                      isSelected
+                    className={`flex flex-col items-start p-3.5 text-left border-2 transition-all rounded-none ${isSelected
                         ? "border-brand-blue bg-brand-blue text-white shadow-[4px_4px_0px_0px_#0F172A] dark:shadow-[4px_4px_0px_0px_#FFFFFF]"
                         : "border-slate-900 bg-slate-50 text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] hover:bg-white dark:border-white dark:bg-dark-base dark:text-white"
-                    }`}
+                      }`}
                   >
                     <div className="flex w-full items-center justify-between">
                       <span className="font-display text-sm font-black uppercase">{div.name}</span>
@@ -209,9 +207,8 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
                 placeholder="Contoh: Basten#01"
                 value={formData.gameNickname}
                 onChange={(e) => setFormData({ ...formData, gameNickname: e.target.value })}
-                className={`mt-2 w-full border-2 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:outline-none dark:bg-dark-base dark:text-white dark:placeholder-steel-500 ${
-                  errors.gameNickname ? "border-red-500" : "border-slate-900 focus:bg-white dark:border-white"
-                }`}
+                className={`mt-2 w-full border-2 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:outline-none dark:bg-dark-base dark:text-white dark:placeholder-steel-500 ${errors.gameNickname ? "border-red-500" : "border-slate-900 focus:bg-white dark:border-white"
+                  }`}
               />
               {errors.gameNickname && (
                 <p className="mt-1 font-mono text-xs font-bold text-red-500">{errors.gameNickname}</p>
@@ -243,9 +240,8 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
                 placeholder="Contoh: 081234567890"
                 value={formData.whatsapp}
                 onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                className={`mt-2 w-full border-2 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:outline-none dark:bg-dark-base dark:text-white dark:placeholder-steel-500 ${
-                  errors.whatsapp ? "border-red-500" : "border-slate-900 focus:bg-white dark:border-white"
-                }`}
+                className={`mt-2 w-full border-2 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:outline-none dark:bg-dark-base dark:text-white dark:placeholder-steel-500 ${errors.whatsapp ? "border-red-500" : "border-slate-900 focus:bg-white dark:border-white"
+                  }`}
               />
               {errors.whatsapp && (
                 <p className="mt-1 font-mono text-xs font-bold text-red-500">{errors.whatsapp}</p>
@@ -323,9 +319,8 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`brutal-btn flex w-full items-center justify-center space-x-2 py-4 text-base font-bold tracking-wider rounded-none ${
-                isSubmitting ? "opacity-75 cursor-wait" : ""
-              }`}
+              className={`brutal-btn flex w-full items-center justify-center space-x-2 py-4 text-base font-bold tracking-wider rounded-none ${isSubmitting ? "opacity-75 cursor-wait" : ""
+                }`}
             >
               {isSubmitting ? (
                 <>
