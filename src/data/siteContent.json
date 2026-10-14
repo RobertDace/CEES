@@ -1,0 +1,163 @@
+{
+  "community": {
+    "name": "CEES AREA",
+    "memberTerm": "CEES GANK",
+    "tagline": "INVICTUS MANEO",
+    "taglineMeaning": "Tetap Tak Terkalahkan",
+    "establishedDate": "4 Oktober 2024",
+    "headquarters": "Samarinda, Kalimantan Timur",
+    "coverage": ["Samarinda", "Kutai Kartanegara", "Kutai Timur", "Sangatta", "Berau", "Pulau Jawa"],
+    "totalMembers": 90,
+    "sponsor": {
+      "name": "PAWPAW Samarinda",
+      "logo": "/assets/asset_15_home.png",
+      "instagram": "https://www.instagram.com/pawpaw.samarinda"
+    },
+    "socials": {
+      "instagram": "http://instagram.com/cees.area",
+      "tiktok": "http://tiktok.com/ceesgankk",
+      "whatsapp": "http://wa.me/6285705035765",
+      "googleForm": "https://docs.google.com/forms/d/e/1FAIpQLSc0OiivSQJnHYvdjbOkFJaACJATiBTOyAsEbkIRnW1b295qLw/viewform",
+      "spreadsheet": "https://docs.google.com/spreadsheets/d/1y_8vLOX82RlxyZ3bjzxgp-lrEa1h4LjDVYUXDzVWGCE/edit?usp=sharing"
+    }
+  },
+  "home": {
+    "filosofiTitle": "\"INVICTUS MANEO\"",
+    "filosofiText": "Diambil dari bahasa Latin yang bermakna \"Tetap Tak Terkalahkan\". Sebuah ikrar mentalitas bahwa apapun hasil di dalam game, semangat persaudaraan dan daya juang CEES GANK tidak akan pernah padam.",
+    "regionalTitle": "SAMARINDA & KALTIM",
+    "regionalText": "Berpusat di ibukota Kalimantan Timur dengan anggota aktif tersebar di Kutai Kartanegara, Kutai Timur, Sangatta, Berau, hingga perwakilan di pulau Jawa.",
+    "solidaritasTitle": "LEBIH DARI SEKADAR MABAR",
+    "solidaritasText": "Tidak hanya bertanding di turnamen dan scrim, kami rutin mengadakan agenda silaturahmi buka bersama, gathering pantai, dan turnamen offline untuk memajukan komunitas lokal."
+  },
+  "quotes": {
+    "founderQuote": "Saya mantan atlet PUBGM lokal yang pengin e-sport Samarinda punya wadah sendiri. Awalnya cuma grup kecil yang sering main bareng. Sekarang kami berdiri bareng.",
+    "founderHighlight": "berdiri bareng",
+    "founderVision": "Membangun ekosistem e-sport yang sehat dan berkelanjutan, jadi tempat menyalurkan hobi dan bakat, dan membawa nama Samarinda serta Kalimantan Timur ke level nasional.",
+    "founderTrackRecord": "Menggelar Offline Tournament S1 di Mall Robinson Samarinda bareng PAWPAW Samarinda, dua bulan setelah komunitas dideklarasikan.",
+    "communityQuotes": [
+      {
+        "id": "q1",
+        "quote": "Bukan sekadar klan mabar biasa, ini rumah bagi talenta kompetitif Samarinda.",
+        "author": "CEES GANK Community"
+      },
+      {
+        "id": "q2",
+        "quote": "Apapun hasil di dalam turnamen dan scrim, persaudaraan kami tetap tak terkalahkan.",
+        "author": "Invictus Maneo Spirit"
+      }
+    ]
+  },
+  "staff": [
+    {
+      "id": "zidan-nata-almadani",
+      "name": "Zidan Nata Almadani",
+      "nickname": "Zaden / Basten",
+      "role": "Founder & Community Lead",
+      "division": "Eksekutif & Divisi PUBGM",
+      "image": "/assets/staff/zaden_nata.png",
+      "bio": "Mantan atlet E-Sport lokal dari divisi PUBGM yang bertekad membangun dan memajukan ekosistem esports di Kota Samarinda dan Kalimantan Timur. Mengawali komunitas ini dari perkumpulan mabar sederhana hingga bertumbuh menjadi wadah resmi bagi lebih dari 90 anggota aktif lintas divisi kompetitif.",
+      "isFounder": true
+    },
+    {
+      "id": "najmi-alvin-zuhair",
+      "name": "Najmi Alvin Zuhair",
+      "nickname": "Najmi",
+      "role": "Lead of Digital Media Community",
+      "division": "Media & Branding",
+      "image": "/assets/staff/najmi.png",
+      "bio": "Penanggung jawab publikasi digital, branding visual, dan manajemen konten media sosial Instagram serta TikTok resmi CEES AREA.",
+      "isFounder": false
+    },
+    {
+      "id": "resky-nanda",
+      "name": "Resky Nanda",
+      "nickname": "Resky",
+      "role": "Administrator",
+      "division": "Divisi PUBGM",
+      "image": "/assets/staff/resky.png",
+      "bio": "Mengelola jadwal scrim kompetitif, turnamen internal, dan koordinasi roster PUBG Mobile CEES AREA.",
+      "isFounder": false
+    },
+    {
+      "id": "feroz-bagus-rianto",
+      "name": "Feroz Bagus Rianto",
+      "nickname": "Feroz",
+      "role": "Administrator",
+      "division": "Divisi PUBGM",
+      "image": "/assets/staff/feroz.png",
+      "bio": "Membina pembentukan skema turnamen fast scrim dan membangun koneksi dengan komunitas tim PUBG Mobile tingkat kota dan provinsi.",
+      "isFounder": false
+    },
+    {
+      "id": "ridho-apriyadi",
+      "name": "Ridho Apriyadi",
+      "nickname": "Ridho",
+      "role": "Administrator",
+      "division": "Divisi MLBB",
+      "image": "/assets/staff/ridho.png",
+      "bio": "Memimpin pembentukan dan operasional divisi Mobile Legends: Bang Bang yang diresmikan sejak Februari 2025 untuk mengasah rank dan turnamen tier lokal.",
+      "isFounder": false
+    },
+    {
+      "id": "m-renold-romansa",
+      "name": "M. Renold Romansa",
+      "nickname": "Renold",
+      "role": "Administrator",
+      "division": "Divisi Roblox",
+      "image": "/assets/staff/renold.png",
+      "bio": "Mengkoordinasi sesi hangout santai dan multiplayer interaktif di divisi Roblox sebagai sarana refreshing dan keakraban seluruh anggota.",
+      "isFounder": false
+    }
+  ],
+  "activities": [
+    {
+      "id": "offtour-s1",
+      "title": "OFFLINE TOURNAMENT S1",
+      "subtitle": "BY CEES GANK X PAWPAW SAMARINDA",
+      "date": "13 - 14 Desember 2024",
+      "location": "Mall Robinson, Samarinda",
+      "partner": "PAWPAW Samarinda",
+      "description": "Turnamen offline perdana yang diselenggarakan oleh CEES AREA dengan peserta tim dari hampir seluruh Kabupaten dan Kota di Kalimantan Timur. Membuktikan kapasitas CEES AREA sebagai organizer kompetisi profesional dalam dua bulan pertama pendirian.",
+      "image": "/assets/activities/tourney_s1.png",
+      "gallery": [
+        "/assets/gallery/tourney_s1/tourney_s1_01.jpg",
+        "/assets/gallery/tourney_s1/tourney_s1_02.jpg",
+        "/assets/gallery/tourney_s1/tourney_s1_03.jpg",
+        "/assets/gallery/tourney_s1/tourney_s1_04.jpg"
+      ],
+      "tag": "TURNAMEN",
+      "status": "SELESAI"
+    },
+    {
+      "id": "bukber-akbar",
+      "title": "BUKA BERSAMA & MEET UP",
+      "subtitle": "Silaturahmi Ramadhan Lintas Divisi @Bungas Cafe & Resto",
+      "date": "April 2025",
+      "location": "Bungas Cafe & Resto, Samarinda",
+      "description": "Momen kebersamaan akbar seluruh anggota berbagai divisi game (PUBG Mobile, MLBB, dan Roblox) yang berdomisili di Samarinda dan sekitarnya untuk mempererat silaturahmi serta evaluasi komunitas.",
+      "image": "/assets/activities/bukber.png",
+      "gallery": [
+        "/assets/gallery/bukber/bukber_01.jpg",
+        "/assets/gallery/bukber/bukber_02.jpg"
+      ],
+      "tag": "BUKBER",
+      "status": "SELESAI"
+    },
+    {
+      "id": "gathering-2026",
+      "title": "FAMILY GATHERING",
+      "subtitle": "2 Days Seaside Escape & Team Bonding BY CEES GANK X PAWPAW",
+      "date": "6 - 7 April 2026",
+      "location": "Villa Pantai, Samboja",
+      "partner": "PAWPAW Samarinda",
+      "description": "Kegiatan menginap 2 hari di villa pantai Samboja dengan rangkaian team building games, sharing session, bakar-bakar, dan mabar offline untuk memperkuat rasa kekeluargaan para member.",
+      "image": "/assets/activities/gathering.png",
+      "gallery": [
+        "/assets/gallery/gathering/gathering_01.jpg",
+        "/assets/gallery/gathering/gathering_02.jpg"
+      ],
+      "tag": "GATHERING",
+      "status": "SELESAI"
+    }
+  ]
+}

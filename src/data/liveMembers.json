@@ -1,18 +1,34 @@
 [
   {
-    "id": "4DSatC8lZYhvO9Z5bmyP",
-    "motivation": "pengen bantai bantai",
-    "gameNickname": "2OB1T.",
-    "gameId": "171745064 (Goldlaner Standart)",
-    "verified": true,
-    "playerType": "Keduanya",
-    "submittedAtIso": "2026-10-13T09:30:51.551Z",
+    "whatsapp": "081241413665",
+    "city": "Balikpapan",
     "status": "MEMBER BARU",
-    "discordTag": "alfrbrt",
+    "submittedAtIso": "2026-10-14T05:53:01.411Z",
+    "fullName": "Muhammad Wahyu",
+    "motivation": "SAYANG SOALNYA",
+    "gameId": "422422522",
+    "discordTag": "w4yy27",
+    "timestamp": "14 Okt 2026, 13.53 WITA",
+    "verified": true,
+    "gameNickname": "Wayy",
     "division": "MLBB",
-    "timestamp": "13 Okt 2026, 17.30 WITA",
+    "playerType": "Santai Mabar",
+    "id": "0BRZTZ2ql5cGdkhDfu7U"
+  },
+  {
+    "playerType": "Keduanya",
+    "division": "MLBB",
+    "gameNickname": "2OB1T.",
     "city": "Samarinda",
+    "whatsapp": "082232813197",
+    "status": "MEMBER BARU",
     "fullName": "Alfian Robit Nadifi Masyhudi",
-    "whatsapp": "082232813197"
+    "timestamp": "13 Okt 2026, 17.30 WITA",
+    "gameId": "171745064 (Goldlaner Standart)",
+    "submittedAtIso": "2026-10-13T09:30:51.551Z",
+    "motivation": "pengen bantai bantai",
+    "id": "4DSatC8lZYhvO9Z5bmyP",
+    "verified": true,
+    "discordTag": "alfrbrt"
   }
 ]

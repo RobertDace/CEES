@@ -1,5 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
+import { getAuth, Auth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,7 +12,7 @@ const firebaseConfig = {
 };
 
 /**
- * Validasi apakah kredensial Firebase Firestore sudah dikonfigurasikan di .env.local
+ * Validasi apakah kredensial Firebase sudah dikonfigurasikan di .env.local
  */
 export const isFirebaseConfigured = Boolean(
   process.env.NEXT_PUBLIC_FIREBASE_API_KEY &&
@@ -20,14 +21,17 @@ export const isFirebaseConfigured = Boolean(
 );
 
 let db: Firestore | null = null;
+let auth: Auth | null = null;
 
 if (isFirebaseConfigured) {
   try {
     const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
     db = getFirestore(app);
+    auth = getAuth(app);
   } catch (err) {
-    console.error("Gagal menginisialisasi Firebase Firestore:", err);
+    console.error("Gagal menginisialisasi Firebase Firestore / Auth:", err);
   }
 }
 
-export { db };
+export { db, auth };
+

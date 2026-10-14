@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { FOUNDER_DATA } from "@/data/community";
+import { FOUNDER_DATA, QUOTES_DATA } from "@/data/community";
 
 export default function FounderFeature() {
   return (
@@ -52,9 +52,7 @@ export default function FounderFeature() {
                 &ldquo;
               </span>
               <p className="relative pt-10 font-display text-2xl font-medium uppercase leading-[1.15] text-slate-900 sm:text-[2.1rem] dark:text-white">
-                Saya mantan atlet PUBGM lokal yang pengin e-sport Samarinda punya wadah sendiri. Awalnya
-                cuma grup kecil yang sering main bareng. Sekarang kami{" "}
-                <span className="mark-block">berdiri bareng</span>.
+                {QUOTES_DATA.founderQuote}
               </p>
             </blockquote>
             <p className="mt-5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-steel-400">
@@ -67,8 +65,7 @@ export default function FounderFeature() {
                   Visi
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-slate-700 dark:text-steel-300">
-                  Membangun ekosistem e-sport yang sehat dan berkelanjutan, jadi tempat menyalurkan hobi dan bakat, dan
-                  membawa nama Samarinda serta Kalimantan Timur ke level nasional.
+                  {QUOTES_DATA.founderVision}
                 </p>
               </div>
               <div className="border-t-2 border-slate-900 py-6 sm:border-l-2 sm:border-t-0 sm:pl-8 dark:border-white">
@@ -76,8 +73,7 @@ export default function FounderFeature() {
                   Rekam jejak
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-slate-700 dark:text-steel-300">
-                  Menggelar Offline Tournament S1 di Mall Robinson Samarinda bareng PAWPAW Samarinda, dua bulan setelah
-                  komunitas dideklarasikan.
+                  {QUOTES_DATA.founderTrackRecord}
                 </p>
               </div>
             </div>

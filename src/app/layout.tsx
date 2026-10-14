@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { AuthProvider } from "@/context/AuthContext";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -81,21 +82,23 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-dark-void dark:text-steel-100 antialiased selection:bg-brand-blue selection:text-white">
         <ThemeProvider>
-          <a href="#main-content" className="skip-link">
-            Langsung ke konten
-          </a>
+          <AuthProvider>
+            <a href="#main-content" className="skip-link">
+              Langsung ke konten
+            </a>
 
-          {/* Paper texture: hard grid + grain instead of soft glow blobs */}
-          <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-industrial-grid opacity-60 dark:opacity-50" />
-          <div aria-hidden className="grain-overlay" />
+            {/* Paper texture: hard grid + grain instead of soft glow blobs */}
+            <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-industrial-grid opacity-60 dark:opacity-50" />
+            <div aria-hidden className="grain-overlay" />
 
-          <div className="relative z-10 flex min-h-screen flex-col">
-            <Navbar />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
+            <div className="relative z-10 flex min-h-screen flex-col">
+              <Navbar />
+              <main id="main-content" className="flex-1">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

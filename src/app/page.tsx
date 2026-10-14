@@ -5,7 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import DivisionCard from "@/components/DivisionCard";
 import FounderFeature from "@/components/FounderFeature";
 import LiveMemberRoster from "@/components/LiveMemberRoster";
-import { DIVISIONS, ACTIVITIES, COMMUNITY_INFO } from "@/data/community";
+import { DIVISIONS, ACTIVITIES, COMMUNITY_INFO, HOME_SECTIONS } from "@/data/community";
 import { ArrowUpRight, Flame, Trophy, MapPin, Calendar, Zap } from "lucide-react";
 
 export default function HomePage() {
@@ -25,10 +25,10 @@ export default function HomePage() {
                 <span>FILOSOFI KAMI</span>
               </div>
               <h3 className="mt-2 font-display text-2xl font-black text-slate-900 uppercase dark:text-white">
-                &quot;INVICTUS MANEO&quot;
+                {HOME_SECTIONS.filosofiTitle}
               </h3>
               <p className="mt-2 text-xs leading-relaxed text-slate-700 dark:text-steel-300">
-                Diambil dari bahasa Latin yang bermakna <em>&quot;Tetap Tak Terkalahkan&quot;</em>. Sebuah ikrar mentalitas bahwa apapun hasil di dalam game, semangat persaudaraan dan daya juang CEES GANK tidak akan pernah padam.
+                {HOME_SECTIONS.filosofiText}
               </p>
             </div>
 
@@ -38,10 +38,10 @@ export default function HomePage() {
                 <span>AKAR REGIONAL</span>
               </div>
               <h3 className="mt-2 font-display text-2xl font-black text-slate-900 uppercase dark:text-white">
-                SAMARINDA & KALTIM
+                {HOME_SECTIONS.regionalTitle}
               </h3>
               <p className="mt-2 text-xs leading-relaxed text-slate-700 dark:text-steel-300">
-                Berpusat di ibukota Kalimantan Timur dengan anggota aktif tersebar di Kutai Kartanegara, Kutai Timur, Sangatta, Berau, hingga perwakilan di pulau Jawa.
+                {HOME_SECTIONS.regionalText}
               </p>
             </div>
 
@@ -51,10 +51,10 @@ export default function HomePage() {
                 <span>SOLIDARITAS KOMUNITAS</span>
               </div>
               <h3 className="mt-2 font-display text-2xl font-black text-slate-900 uppercase dark:text-white">
-                LEBIH DARI SEKADAR MABAR
+                {HOME_SECTIONS.solidaritasTitle}
               </h3>
               <p className="mt-2 text-xs leading-relaxed text-slate-700 dark:text-steel-300">
-                Tidak hanya bertanding di turnamen dan scrim, kami rutin mengadakan agenda silaturahmi buka bersama, gathering pantai, dan turnamen offline untuk memajukan komunitas lokal.
+                {HOME_SECTIONS.solidaritasText}
               </p>
             </div>
 

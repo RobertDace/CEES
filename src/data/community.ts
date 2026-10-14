@@ -47,30 +47,77 @@ export interface NewsItem {
   featured?: boolean;
 }
 
+import rawSiteContent from "./siteContent.json";
+
+const siteContent: any = rawSiteContent || {};
+const overrideCommunity: any = siteContent.community || {};
+const overrideHome: any = siteContent.home || {};
+const overrideStaff: any[] = siteContent.staff || [];
+const overrideActivities: any[] = siteContent.activities || [];
+const overrideQuotes: any = siteContent.quotes || {};
+
+export const QUOTES_DATA = {
+  founderQuote:
+    overrideQuotes.founderQuote ||
+    "Saya mantan atlet PUBGM lokal yang pengin e-sport Samarinda punya wadah sendiri. Awalnya cuma grup kecil yang sering main bareng. Sekarang kami berdiri bareng.",
+  founderHighlight: overrideQuotes.founderHighlight || "berdiri bareng",
+  founderVision:
+    overrideQuotes.founderVision ||
+    "Membangun ekosistem e-sport yang sehat dan berkelanjutan, jadi tempat menyalurkan hobi dan bakat, dan membawa nama Samarinda serta Kalimantan Timur ke level nasional.",
+  founderTrackRecord:
+    overrideQuotes.founderTrackRecord ||
+    "Menggelar Offline Tournament S1 di Mall Robinson Samarinda bareng PAWPAW Samarinda, dua bulan setelah komunitas dideklarasikan.",
+  communityQuotes: overrideQuotes.communityQuotes || [],
+};
+
+export const HOME_SECTIONS = {
+  filosofiTitle: overrideHome.filosofiTitle || '"INVICTUS MANEO"',
+  filosofiText:
+    overrideHome.filosofiText ||
+    'Diambil dari bahasa Latin yang bermakna "Tetap Tak Terkalahkan". Sebuah ikrar mentalitas bahwa apapun hasil di dalam game, semangat persaudaraan dan daya juang CEES GANK tidak akan pernah padam.',
+  regionalTitle: overrideHome.regionalTitle || "SAMARINDA & KALTIM",
+  regionalText:
+    overrideHome.regionalText ||
+    "Berpusat di ibukota Kalimantan Timur dengan anggota aktif tersebar di Kutai Kartanegara, Kutai Timur, Sangatta, Berau, hingga perwakilan di pulau Jawa.",
+  solidaritasTitle: overrideHome.solidaritasTitle || "LEBIH DARI SEKADAR MABAR",
+  solidaritasText:
+    overrideHome.solidaritasText ||
+    "Tidak hanya bertanding di turnamen dan scrim, kami rutin mengadakan agenda silaturahmi buka bersama, gathering pantai, dan turnamen offline untuk memajukan komunitas lokal.",
+};
+
 export const COMMUNITY_INFO = {
-  name: "CEES AREA",
-  memberTerm: "CEES GANK",
-  tagline: "INVICTUS MANEO",
-  taglineMeaning: "Tetap Tak Terkalahkan",
-  establishedDate: "4 Oktober 2024",
-  headquarters: "Samarinda, Kalimantan Timur",
-  coverage: ["Samarinda", "Kutai Kartanegara", "Kutai Timur", "Sangatta", "Berau", "Pulau Jawa"],
-  totalMembers: 90,
-  sponsor: {
+  name: overrideCommunity.name || "CEES AREA",
+  memberTerm: overrideCommunity.memberTerm || "CEES GANK",
+  tagline: overrideCommunity.tagline || "INVICTUS MANEO",
+  taglineMeaning: overrideCommunity.taglineMeaning || "Tetap Tak Terkalahkan",
+  establishedDate: overrideCommunity.establishedDate || "4 Oktober 2024",
+  headquarters: overrideCommunity.headquarters || "Samarinda, Kalimantan Timur",
+  coverage: ((overrideCommunity.coverage as string[]) || [
+    "Samarinda",
+    "Kutai Kartanegara",
+    "Kutai Timur",
+    "Sangatta",
+    "Berau",
+    "Pulau Jawa",
+  ]) as string[],
+  totalMembers: overrideCommunity.totalMembers || 90,
+  sponsor: overrideCommunity.sponsor || {
     name: "PAWPAW Samarinda",
     logo: "/assets/asset_15_home.png",
     instagram: "https://www.instagram.com/pawpaw.samarinda",
   },
   socials: {
-    instagram: "http://instagram.com/cees.area",
-    tiktok: "http://tiktok.com/ceesgankk",
-    whatsapp: "http://wa.me/6285705035765",
-    googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSc0OiivSQJnHYvdjbOkFJaACJATiBTOyAsEbkIRnW1b295qLw/viewform",
-    spreadsheet: "https://docs.google.com/spreadsheets/d/1y_8vLOX82RlxyZ3bjzxgp-lrEa1h4LjDVYUXDzVWGCE/edit?usp=sharing",
+    instagram: overrideCommunity.socials?.instagram || "http://instagram.com/cees.area",
+    tiktok: overrideCommunity.socials?.tiktok || "http://tiktok.com/ceesgankk",
+    whatsapp: overrideCommunity.socials?.whatsapp || "http://wa.me/6285705035765",
+    googleForm: overrideCommunity.socials?.googleForm || "https://docs.google.com/forms/d/e/1FAIpQLSc0OiivSQJnHYvdjbOkFJaACJATiBTOyAsEbkIRnW1b295qLw/viewform",
+    spreadsheet: overrideCommunity.socials?.spreadsheet || "https://docs.google.com/spreadsheets/d/1y_8vLOX82RlxyZ3bjzxgp-lrEa1h4LjDVYUXDzVWGCE/edit?usp=sharing",
   },
 };
 
-export const FOUNDER_DATA: StaffMember = {
+const defaultFounderCandidate = overrideStaff.find((s: any) => s.isFounder);
+
+export const FOUNDER_DATA: StaffMember = defaultFounderCandidate || {
   id: "zidan-nata-almadani",
   name: "Zidan Nata Almadani",
   nickname: "Zaden / Basten",
@@ -81,7 +128,7 @@ export const FOUNDER_DATA: StaffMember = {
   isFounder: true,
 };
 
-export const STAFF_MEMBERS: StaffMember[] = [
+const DEFAULT_STAFF_MEMBERS: StaffMember[] = [
   FOUNDER_DATA,
   {
     id: "najmi-alvin-zuhair",
@@ -124,6 +171,9 @@ export const STAFF_MEMBERS: StaffMember[] = [
     bio: "Mengkoordinasi sesi hangout santai dan multiplayer interaktif di divisi Roblox sebagai sarana refreshing dan keakraban seluruh anggota.",
   },
 ];
+
+export const STAFF_MEMBERS: StaffMember[] =
+  overrideStaff && overrideStaff.length > 0 ? overrideStaff : DEFAULT_STAFF_MEMBERS;
 
 export const DIVISIONS: GameDivision[] = [
   {
@@ -179,7 +229,7 @@ export const DIVISIONS: GameDivision[] = [
   },
 ];
 
-export const ACTIVITIES: ActivityEvent[] = [
+const DEFAULT_ACTIVITIES: ActivityEvent[] = [
   {
     id: "offtour-s1",
     title: "OFFLINE TOURNAMENT S1",
@@ -262,6 +312,17 @@ export const ACTIVITIES: ActivityEvent[] = [
     status: "SELESAI",
   },
 ];
+
+export const ACTIVITIES: ActivityEvent[] =
+  overrideActivities && overrideActivities.length > 0
+    ? overrideActivities.map((act: any) => {
+        const defaultMatch = DEFAULT_ACTIVITIES.find((d) => d.id === act.id);
+        return {
+          ...act,
+          gallery: act.gallery || defaultMatch?.gallery || [],
+        };
+      })
+    : DEFAULT_ACTIVITIES;
 
 export const COMMUNITY_HIGHLIGHTS: string[] = [
   "/assets/gallery/highlights/highlights_01.png",
