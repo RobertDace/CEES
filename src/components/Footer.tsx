@@ -190,6 +190,14 @@ export default function Footer() {
             <span className="text-brand-blue dark:text-brand-blue-light font-bold">INVICTUS MANEO</span>
             <span>•</span>
             <span>Kota Samarinda, Kalimantan Timur</span>
+            <span>•</span>
+            <Link
+              href="/login"
+              className="font-mono text-[10px] font-bold text-slate-400 opacity-60 transition-all hover:text-brand-blue hover:opacity-100 dark:text-steel-500 dark:hover:text-brand-cyan"
+              title="Terminal Akses Staf Pengurus CEES AREA"
+            >
+              [STAFF HQ]
+            </Link>
           </div>
         </div>
       </div>

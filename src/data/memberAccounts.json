@@ -1,0 +1,22 @@
+[
+  {
+    "id": "acc_1792034405101",
+    "memberId": "mem_1792034404906",
+    "gameNickname": "2OB1T",
+    "email": null,
+    "passwordHash": "35bc57a5811dc7c0ab572d0feb171bacb666b6f7f00f1ddc3116ad8114e853b3c77608575e2e90a6478ffc19492b9fced32c775bc51c06ce8bb772592d08cd47",
+    "salt": "32b257a1ee97bae423d35af283cfaaf1",
+    "createdAt": "2026-10-15T03:20:05.101Z",
+    "updatedAt": "2026-10-15T03:20:05.101Z"
+  },
+  {
+    "id": "acc_1792035528546",
+    "memberId": "47IKpvPjxRyt7BqQFql2",
+    "gameNickname": "dummy",
+    "email": null,
+    "passwordHash": "f980b9d6405da6c027650815628ac62ba9e136ea5e27647825bcd1bac82c2232f08155977fe201b095bc7f3d2d2be8d872aef02e00abb64056a7f12ec140d9c9",
+    "salt": "04c064c81ed65800a80a358523b720a1",
+    "createdAt": "2026-10-15T03:38:48.546Z",
+    "updatedAt": "2026-10-15T03:38:48.546Z"
+  }
+]

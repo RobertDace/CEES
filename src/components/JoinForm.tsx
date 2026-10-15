@@ -1,8 +1,25 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowUpRight, CheckCircle2, MessageSquare, Sparkles, Loader2, Database, AlertCircle } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  CheckCircle2,
+  MessageSquare,
+  Sparkles,
+  Loader2,
+  Database,
+  AlertCircle,
+  Lock,
+  Eye,
+  EyeOff,
+  CreditCard,
+  Gamepad2,
+  ShieldCheck,
+} from "lucide-react";
 import { COMMUNITY_INFO, DIVISIONS } from "@/data/community";
+import { useAuth } from "@/context/AuthContext";
 
 interface FormData {
   fullName: string;
@@ -11,12 +28,15 @@ interface FormData {
   division: string;
   city: string;
   whatsapp: string;
+  password: string;
   discordTag: string;
   playerType: "Kompetitif" | "Santai Mabar" | "Keduanya";
   motivation: string;
 }
 
 export default function JoinForm({ defaultDivision = "pubgm" }: { defaultDivision?: string }) {
+  const { setActiveSession } = useAuth();
+
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     gameNickname: "",
@@ -24,15 +44,18 @@ export default function JoinForm({ defaultDivision = "pubgm" }: { defaultDivisio
     division: defaultDivision,
     city: "Samarinda",
     whatsapp: "",
+    password: "",
     discordTag: "",
     playerType: "Kompetitif",
     motivation: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [registeredTimestamp, setRegisteredTimestamp] = useState<string | null>(null);
+  const [createdMemberCode, setCreatedMemberCode] = useState<string>("CEES-MEMBER");
   const [submissionDestination, setSubmissionDestination] = useState<string>("local_live_store");
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
@@ -45,6 +68,12 @@ export default function JoinForm({ defaultDivision = "pubgm" }: { defaultDivisio
       newErrors.whatsapp = "Nomor WhatsApp aktif wajib diisi";
     } else if (!/^[0-9+-\s]{8,16}$/.test(formData.whatsapp.trim())) {
       newErrors.whatsapp = "Format nomor WhatsApp tidak valid";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Kata sandi / PIN akun wajib diisi";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Kata sandi minimal 6 karakter demi keamanan akun";
     }
 
     setErrors(newErrors);
@@ -64,7 +93,7 @@ export default function JoinForm({ defaultDivision = "pubgm" }: { defaultDivisio
 - *Discord Tag*: ${formData.discordTag || "-"}
 - *Motivasi*: ${formData.motivation || "-"}
 
-Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk bergabung. Terima kasih! #InvictusManeo`;
+Data saya telah tersimpan di sistem dan akun saya telah aktif. Mohon verifikasi pendaftaran saya untuk bergabung di grup dan discord. Terima kasih! #InvictusManeo`;
 
     return encodeURIComponent(text);
   };
@@ -88,6 +117,16 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
         throw new Error(data.error || "Gagal menyimpan formulir pendaftaran.");
       }
 
+      // Otomatis aktifkan sesi login di browser
+      if (data.user) {
+        setActiveSession(data.user);
+      }
+
+      const generatedCode = data.record?.id
+        ? `CEES-${String(data.record.id).slice(-6).toUpperCase()}`
+        : "CEES-MEMBER";
+
+      setCreatedMemberCode(generatedCode);
       setRegisteredTimestamp(data.record?.timestamp || new Date().toLocaleTimeString("id-ID"));
       setSubmissionDestination(data.destination || "local_live_store");
       setSubmitted(true);
@@ -98,7 +137,10 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
       }
     } catch (err: unknown) {
       console.error("Submission error:", err);
-      const errorMessage = err instanceof Error ? err.message : "Terjadi kendala koneksi ke database. Anda tetap dapat melanjutkan konfirmasi langsung via WhatsApp.";
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Terjadi kendala koneksi ke database. Anda tetap dapat melanjutkan konfirmasi langsung via WhatsApp.";
       setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
@@ -229,7 +271,7 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
             </div>
           </div>
 
-          {/* Row 4: WhatsApp & Discord */}
+          {/* Row 4: WhatsApp & Kata Sandi Baru */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <label className="block font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-steel-200">
@@ -249,6 +291,45 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
             </div>
 
             <div>
+              <div className="flex items-center justify-between">
+                <label className="block font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-steel-200">
+                  Kata Sandi / PIN Akun Baru <span className="text-red-500">*</span>
+                </label>
+                <span className="font-mono text-[10px] text-slate-500 dark:text-steel-400">Min. 6 Karakter</span>
+              </div>
+              <div className="relative mt-2">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
+                  <Lock className="h-4 w-4 text-slate-400" />
+                </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Buat password login..."
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  className={`w-full border-2 bg-slate-50 py-3 pr-11 pl-10 text-sm font-mono text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:outline-none dark:bg-dark-base dark:text-white dark:placeholder-steel-500 ${errors.password ? "border-red-500" : "border-slate-900 focus:bg-white dark:border-white"
+                    }`}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-700 dark:hover:text-white"
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+              {errors.password ? (
+                <p className="mt-1 font-mono text-xs font-bold text-red-500">{errors.password}</p>
+              ) : (
+                <p className="mt-1 font-mono text-[11px] text-slate-500 dark:text-steel-400">
+                  *Untuk login otomatis ke Kartu Digital, forum, dan market.
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Row 5: Discord & Player Style */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
               <label className="block font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-steel-200">
                 Discord Username / Tag (Opsional)
               </label>
@@ -260,26 +341,25 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
                 className="mt-2 w-full border-2 border-slate-900 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-[3px_3px_0px_0px_#0030FF] rounded-none focus:bg-white focus:outline-none dark:border-white dark:bg-dark-base dark:text-white dark:placeholder-steel-500"
               />
             </div>
-          </div>
 
-          {/* Row 5: Player Style */}
-          <div>
-            <label className="block font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-steel-200 mb-2">
-              Tipe Player
-            </label>
-            <div className="flex flex-wrap gap-4">
-              {(["Kompetitif", "Santai Mabar", "Keduanya"] as const).map((type) => (
-                <label key={type} className="flex items-center space-x-2 text-sm font-bold text-slate-900 dark:text-steel-200 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="playerType"
-                    checked={formData.playerType === type}
-                    onChange={() => setFormData({ ...formData, playerType: type })}
-                    className="accent-brand-blue h-4 w-4"
-                  />
-                  <span>{type}</span>
-                </label>
-              ))}
+            <div>
+              <label className="block font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-steel-200 mb-2">
+                Tipe Player
+              </label>
+              <div className="flex flex-wrap gap-4 pt-1.5">
+                {(["Kompetitif", "Santai Mabar", "Keduanya"] as const).map((type) => (
+                  <label key={type} className="flex items-center space-x-2 text-sm font-bold text-slate-900 dark:text-steel-200 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="playerType"
+                      checked={formData.playerType === type}
+                      onChange={() => setFormData({ ...formData, playerType: type })}
+                      className="accent-brand-blue h-4 w-4"
+                    />
+                    <span>{type}</span>
+                  </label>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -325,17 +405,17 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
               {isSubmitting ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  <span>MENYIMPAN DATA KE DATABASE...</span>
+                  <span>MEMBUAT AKUN & MENYIMPAN DATA...</span>
                 </>
               ) : (
                 <>
-                  <span>KIRIM PENDAFTARAN & SIMPAN DATA</span>
-                  <ArrowUpRight className="h-5 w-5" />
+                  <span>DAFTAR SEKARANG & AKTIFKAN AKUN MEMBER</span>
+                  <ArrowRight className="h-5 w-5" />
                 </>
               )}
             </button>
             <p className="mt-3 text-center font-mono text-xs text-slate-600 dark:text-steel-400">
-              Data yang kamu kirimkan akan otomatis dicatat ke database resmi CEES AREA dan siap diverifikasi oleh Administrator.
+              *Setelah menekan tombol daftar, akunmu akan langsung aktif, otomatis login, dan Kartu Anggota Digital siap digunakan.
             </p>
           </div>
 
@@ -350,60 +430,70 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
           <div className="space-y-3">
             <div className="inline-flex flex-wrap items-center justify-center gap-2">
               <span className="inline-flex items-center space-x-1.5 border border-slate-900 bg-emerald-100 px-3 py-1 font-mono text-xs font-bold text-emerald-800 dark:border-white dark:bg-emerald-950 dark:text-emerald-300 rounded-none">
-                <Database className="h-3.5 w-3.5" />
-                <span>LIVE DATABASE: DATA TERCATAT</span>
+                <ShieldCheck className="h-3.5 w-3.5" />
+                <span>AKUN & KARTU MEMBER: AKTIF</span>
               </span>
-              {submissionDestination === "firebase_firestore" ? (
-                <span className="inline-flex items-center space-x-1.5 border border-slate-900 bg-emerald-100 px-3 py-1 font-mono text-xs font-bold text-emerald-800 dark:border-white dark:bg-emerald-950 dark:text-emerald-300 rounded-none">
-                  <span>CLOUD FIRESTORE: TERHUBUNG</span>
-                </span>
-              ) : (
-                <span className="inline-flex items-center space-x-1.5 border border-slate-900 bg-blue-100 px-3 py-1 font-mono text-[11px] font-bold text-brand-blue dark:border-white dark:bg-dark-base dark:text-brand-cyan rounded-none">
-                  <span>SISTEM PENDAFTARAN AKTIF</span>
-                </span>
-              )}
+              <span className="inline-flex items-center space-x-1.5 border border-slate-900 bg-cyan-100 px-3 py-1 font-mono text-xs font-bold text-brand-blue dark:border-white dark:bg-dark-base dark:text-brand-cyan rounded-none">
+                <Database className="h-3.5 w-3.5" />
+                <span>SESI LOGIN: OTOMATIS AKTIF</span>
+              </span>
             </div>
             <h3 className="font-display text-3xl font-black text-slate-900 uppercase dark:text-white">
               PENDAFTARAN BERHASIL!
             </h3>
             <p className="mx-auto max-w-md text-sm text-slate-700 dark:text-steel-300">
-              Terima kasih, <strong className="text-slate-900 dark:text-white">{formData.fullName}</strong> ({formData.gameNickname}). Data kamu telah tersimpan ke sistem pada{" "}
-              <span className="font-mono font-bold text-brand-blue dark:text-brand-cyan">{registeredTimestamp || "Hari ini"}</span> dan langsung tampil di daftar anggota live di bawah.
+              Selamat datang di keluarga besar CEES GANK, <strong className="text-slate-900 dark:text-white">{formData.fullName}</strong> ({formData.gameNickname})! Akunmu telah dibuat dan otomatis masuk ke sistem.
             </p>
           </div>
 
           {/* Submission Summary Card */}
-          <div className="mx-auto max-w-md border-2 border-slate-900 bg-slate-50 p-4 text-left font-mono text-xs text-slate-800 dark:border-white dark:bg-dark-base dark:text-steel-200 shadow-[4px_4px_0px_0px_#0030FF] rounded-none space-y-1.5">
-            <div className="flex justify-between border-b border-slate-200 pb-1 dark:border-dark-border">
-              <span className="text-slate-500 dark:text-steel-400">DIVISI:</span>
+          <div className="mx-auto max-w-md border-2 border-slate-900 bg-slate-50 p-5 text-left font-mono text-xs text-slate-800 dark:border-white dark:bg-dark-base dark:text-steel-200 shadow-[6px_6px_0px_0px_#0030FF] rounded-none space-y-2">
+            <div className="flex justify-between border-b border-slate-200 pb-1.5 dark:border-dark-border">
+              <span className="text-slate-500 dark:text-steel-400">ID KARTU ANGGOTA:</span>
+              <strong className="text-brand-blue dark:text-brand-cyan">{createdMemberCode}</strong>
+            </div>
+            <div className="flex justify-between border-b border-slate-200 pb-1.5 dark:border-dark-border">
+              <span className="text-slate-500 dark:text-steel-400">NICKNAME IN-GAME:</span>
+              <strong className="uppercase">{formData.gameNickname}</strong>
+            </div>
+            <div className="flex justify-between border-b border-slate-200 pb-1.5 dark:border-dark-border">
+              <span className="text-slate-500 dark:text-steel-400">DIVISI GAME:</span>
               <strong className="text-brand-blue dark:text-brand-cyan">{formData.division.toUpperCase()}</strong>
             </div>
-            <div className="flex justify-between border-b border-slate-200 pb-1 dark:border-dark-border">
-              <span className="text-slate-500 dark:text-steel-400">TIPE PLAYER:</span>
-              <strong>{formData.playerType}</strong>
-            </div>
-            <div className="flex justify-between border-b border-slate-200 pb-1 dark:border-dark-border">
+            <div className="flex justify-between border-b border-slate-200 pb-1.5 dark:border-dark-border">
               <span className="text-slate-500 dark:text-steel-400">DOMISILI:</span>
               <strong>{formData.city}</strong>
             </div>
             <div className="flex justify-between">
-              <span className="text-slate-500 dark:text-steel-400">WHATSAPP:</span>
-              <strong>{formData.whatsapp}</strong>
+              <span className="text-slate-500 dark:text-steel-400">STATUS AKUN:</span>
+              <strong className="text-emerald-600 dark:text-emerald-400">LOGIN AKTIF (SIAP DIGUNAKAN)</strong>
             </div>
           </div>
 
           {/* Action Hub */}
           <div className="mx-auto max-w-md space-y-3">
+            {/* Primary Action: Direct Access to Digital Member ID Card */}
+            <Link
+              href="/member"
+              className="flex w-full items-center justify-center space-x-2 border-2 border-slate-900 bg-brand-cyan py-4 font-display text-base font-black text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] rounded-none hover:bg-white transition-all uppercase tracking-wider dark:border-white"
+            >
+              <CreditCard className="h-5 w-5" />
+              <span>LIHAT KARTU MEMBER DIGITAL SAYA</span>
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+
+            {/* Secondary Action: Confirm to WhatsApp */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="flex w-full items-center justify-center space-x-2 border-2 border-slate-900 bg-emerald-600 py-4 font-display text-base font-bold text-white shadow-[4px_4px_0px_0px_#0F172A] rounded-none hover:bg-emerald-500 transition-colors uppercase tracking-wider dark:border-white dark:shadow-[4px_4px_0px_0px_#FFFFFF]"
+              className="flex w-full items-center justify-center space-x-2 border-2 border-slate-900 bg-emerald-600 py-3 font-display text-xs font-bold text-white shadow-[3px_3px_0px_0px_#0F172A] rounded-none hover:bg-emerald-500 transition-colors uppercase tracking-wider dark:border-white dark:shadow-[3px_3px_0px_0px_#FFFFFF]"
             >
-              <MessageSquare className="h-5 w-5" />
+              <MessageSquare className="h-4 w-4" />
               <span>KONFIRMASI KE WHATSAPP ADMIN</span>
             </a>
 
+            {/* Register another */}
             <button
               onClick={() => {
                 setSubmitted(false);
@@ -414,12 +504,13 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
                   division: defaultDivision,
                   city: "Samarinda",
                   whatsapp: "",
+                  password: "",
                   discordTag: "",
                   playerType: "Kompetitif",
                   motivation: "",
                 });
               }}
-              className="brutal-btn-outline flex w-full items-center justify-center space-x-2 py-3 text-xs font-bold rounded-none"
+              className="brutal-btn-outline flex w-full items-center justify-center space-x-2 py-2.5 text-xs font-bold rounded-none"
             >
               <span>DAFTARKAN ANGGOTA LAIN</span>
               <ArrowUpRight className="h-4 w-4" />
@@ -430,7 +521,7 @@ Data saya telah tersimpan di sistem. Mohon verifikasi pendaftaran saya untuk ber
           <div className="border-2 border-slate-900 bg-slate-50 p-4 text-left font-mono text-xs text-slate-700 dark:border-white dark:bg-dark-base dark:text-steel-400 rounded-none shadow-[3px_3px_0px_0px_#0030FF]">
             <span className="font-bold text-slate-900 dark:text-white uppercase">LANGKAH SELANJUTNYA:</span>
             <p className="mt-1">
-              Administrator CEES AREA akan memverifikasi nomor WhatsApp dan akun game kamu, kemudian mengundangmu masuk ke grup koordinasi serta Discord resmi komunitas.
+              Kamu bisa langsung menggunakan <strong>Kartu Member Digital</strong> di atas sebagai identitas keanggotaan. Administrator juga akan menghubungimu via WhatsApp untuk memberikan link Discord resmi CEES GANK.
             </p>
           </div>
         </div>

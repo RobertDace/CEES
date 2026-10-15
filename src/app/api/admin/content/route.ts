@@ -59,10 +59,40 @@ export async function POST(req: NextRequest) {
     }
 
     const currentContent = readSiteContent() || {};
+
+    // Deteksi nama operator pengubah
+    const tokenCookie = req.cookies.get("cees_admin_token")?.value;
+    let detectedOperator = payload.operatorName || payload.operator;
+    if (!detectedOperator && tokenCookie) {
+      try {
+        const decoded = JSON.parse(Buffer.from(tokenCookie, "base64").toString("utf-8"));
+        detectedOperator = decoded.displayName;
+      } catch (e) {
+        // ignore error
+      }
+    }
+    const operator = detectedOperator || "Admin Operator";
+
+    // Catat ke Audit Trail
+    const auditLog = Array.isArray(currentContent.auditLog) ? [...currentContent.auditLog] : [];
+    const changedFields = Object.keys(payload).filter(
+      (k) => !["operatorName", "operator", "lastUpdated", "lastUpdatedBy", "auditLog"].includes(k)
+    );
+
+    auditLog.unshift({
+      id: `audit_${Date.now()}`,
+      operator,
+      action: "UPDATE_CMS_CONTENT",
+      fields: changedFields,
+      timestamp: new Date().toISOString(),
+    });
+
     const updatedContent = {
       ...currentContent,
       ...payload,
       lastUpdated: new Date().toISOString(),
+      lastUpdatedBy: operator,
+      auditLog: auditLog.slice(0, 30), // simpan 30 histori perubahan terakhir
     };
 
     const saved = writeSiteContent(updatedContent);

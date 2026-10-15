@@ -8,9 +8,11 @@ import {
   addDoc,
   doc,
   deleteDoc,
+  updateDoc,
   query,
   orderBy,
 } from "firebase/firestore";
+import { hashPassword, signSessionToken } from "@/lib/security";
 
 export interface RegistrationPayload {
   fullName: string;
@@ -19,6 +21,7 @@ export interface RegistrationPayload {
   division: string;
   city: string;
   whatsapp: string;
+  password?: string;
   discordTag?: string;
   playerType: string;
   motivation?: string;
@@ -26,6 +29,7 @@ export interface RegistrationPayload {
 }
 
 const membersFilePath = path.join(process.cwd(), "src", "data", "liveMembers.json");
+const accountsFilePath = path.join(process.cwd(), "src", "data", "memberAccounts.json");
 
 function readMembers(): any[] {
   try {
@@ -47,10 +51,60 @@ function saveMembers(members: any[]) {
   }
 }
 
+function readAccounts(): any[] {
+  try {
+    if (fs.existsSync(accountsFilePath)) {
+      return JSON.parse(fs.readFileSync(accountsFilePath, "utf-8"));
+    }
+  } catch (err) {
+    console.error("Gagal membaca file memberAccounts.json:", err);
+  }
+  return [];
+}
+
+function saveAccounts(accounts: any[]) {
+  try {
+    fs.writeFileSync(accountsFilePath, JSON.stringify(accounts, null, 2), "utf-8");
+  } catch (err) {
+    console.error("Gagal menyimpan ke memberAccounts.json:", err);
+  }
+}
+
+/**
+ * Filter anti-duplikasi: memastikan setiap anggota hanya muncul tepat 1 kali
+ * berdasarkan ID unik, Nickname unik, atau nomor WhatsApp unik.
+ */
+function deduplicateMembers(list: any[]): any[] {
+  if (!Array.isArray(list)) return [];
+  const seenIds = new Set<string>();
+  const seenNicks = new Set<string>();
+  const seenPhones = new Set<string>();
+  const result: any[] = [];
+
+  for (const item of list) {
+    if (!item) continue;
+    const cleanNick = (item.gameNickname || "").trim().toLowerCase();
+    const cleanPhone = (item.whatsapp || "").replace(/[^0-9]/g, "");
+    const id = item.id;
+
+    if (id && seenIds.has(id)) continue;
+    if (cleanNick && seenNicks.has(cleanNick)) continue;
+    if (cleanPhone && cleanPhone.length > 8 && seenPhones.has(cleanPhone)) continue;
+
+    if (id) seenIds.add(id);
+    if (cleanNick) seenNicks.add(cleanNick);
+    if (cleanPhone && cleanPhone.length > 8) seenPhones.add(cleanPhone);
+
+    result.push(item);
+  }
+
+  return result;
+}
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-// GET: Return live registered members list (Firestore with local fallback)
+// GET: Return live registered members list (Firestore with local fallback & strict deduplication)
 export async function GET() {
   // Cek Firestore terlebih dahulu jika kredensial sudah dikonfigurasikan
   if (isFirebaseConfigured && db) {
@@ -61,27 +115,9 @@ export async function GET() {
         ...(docSnap.data() as any),
         id: docSnap.id,
       }));
-      let finalMembers = firestoreMembers;
 
-      // Jika Firestore masih kosong tapi di lokal sudah ada data (seperti saat baru pertama konek),
-      // otomatis migrasikan data lokal ke Firestore agar langsung muncul di Firebase Console!
-      if (firestoreMembers.length === 0) {
-        const localMembers = readMembers();
-        if (localMembers.length > 0) {
-          try {
-            for (const lm of localMembers) {
-              await addDoc(collection(db, "members"), lm);
-            }
-            const reSnap = await getDocs(q);
-            finalMembers = reSnap.docs.map((docSnap) => ({
-              ...(docSnap.data() as any),
-              id: docSnap.id,
-            }));
-          } catch (migErr) {
-            console.warn("Auto-migrasi ke Firestore gagal:", migErr);
-          }
-        }
-      }
+      // Bersihkan duplikasi secara otomatis
+      const finalMembers = deduplicateMembers(firestoreMembers);
 
       // Simpan ke local cache sebagai backup
       saveMembers(finalMembers);
@@ -89,7 +125,7 @@ export async function GET() {
       return NextResponse.json(
         {
           success: true,
-          totalCount: finalMembers.length + 90,
+          totalCount: finalMembers.length,
           liveCount: finalMembers.length,
           members: finalMembers,
           source: "firebase_firestore",
@@ -109,8 +145,9 @@ export async function GET() {
   }
 
   // Fallback: Membaca dari data lokal
-  const members = readMembers();
-  const totalCount = members.length + 90;
+  const rawMembers = readMembers();
+  const members = deduplicateMembers(rawMembers);
+  const totalCount = members.length;
 
   return NextResponse.json(
     {
@@ -131,7 +168,7 @@ export async function GET() {
   );
 }
 
-// POST: Register new member (Firestore + Local fallback)
+// POST: Register new member (Firestore + Local fallback + Auto Account & Login)
 export async function POST(req: NextRequest) {
   try {
     const body: RegistrationPayload = await req.json();
@@ -144,7 +181,39 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. Format waktu WITA (Samarinda, Kaltim)
+    const cleanPassword = (body.password || "").trim();
+    if (!cleanPassword) {
+      return NextResponse.json(
+        { success: false, error: "Kata sandi / PIN akun wajib diisi." },
+        { status: 400 }
+      );
+    }
+
+    if (cleanPassword.length < 6) {
+      return NextResponse.json(
+        { success: false, error: "Kata sandi minimal 6 karakter demi keamanan akun kamu." },
+        { status: 400 }
+      );
+    }
+
+    const cleanNick = body.gameNickname.trim();
+    const accounts = readAccounts();
+
+    // 2. Cek apakah Nickname sudah memiliki akun terdaftar
+    const existingAcc = accounts.find(
+      (a: any) => a.gameNickname && a.gameNickname.toLowerCase() === cleanNick.toLowerCase()
+    );
+    if (existingAcc) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Nickname '${cleanNick}' sudah terdaftar. Jika ini adalah kamu, silakan langsung masuk di Portal Member.`,
+        },
+        { status: 409 }
+      );
+    }
+
+    // 3. Format waktu WITA (Samarinda, Kaltim)
     const now = new Date();
     const formattedTimestamp =
       new Intl.DateTimeFormat("id-ID", {
@@ -158,7 +227,7 @@ export async function POST(req: NextRequest) {
     const newRecord: any = {
       id: `mem-${Date.now().toString(36)}`,
       fullName: body.fullName.trim(),
-      gameNickname: body.gameNickname.trim(),
+      gameNickname: cleanNick,
       gameId: body.gameId?.trim() || "-",
       division: normalizedDivision,
       city: body.city?.trim() || "Samarinda",
@@ -168,13 +237,14 @@ export async function POST(req: NextRequest) {
       motivation: body.motivation?.trim() || "-",
       timestamp: formattedTimestamp,
       submittedAtIso: now.toISOString(),
-      status: "MEMBER BARU",
-      verified: true,
+      status: "MENUNGGU WA",
+      verified: false,
+      avatarUrl: "/assets/default_avatar.jpg",
     };
 
     let destination = "local_live_store";
 
-    // 3. Simpan ke Firebase Firestore jika dikonfigurasi
+    // 4. Simpan ke Firebase Firestore jika dikonfigurasi
     if (isFirebaseConfigured && db) {
       try {
         const docRef = await addDoc(collection(db, "members"), newRecord);
@@ -185,18 +255,66 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 4. Selalu simpan ke local store agar sinkron
+    // 5. Simpan ke local liveMembers store
     const members = readMembers();
     members.unshift(newRecord);
     saveMembers(members);
 
-    return NextResponse.json({
+    // 6. Buat Akun Terenkripsi Scrypt di memberAccounts.json
+    const { hash, salt } = hashPassword(cleanPassword);
+    const newAccount = {
+      id: `acc_${Date.now()}`,
+      memberId: newRecord.id,
+      gameNickname: newRecord.gameNickname,
+      email: null,
+      passwordHash: hash,
+      salt,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    accounts.push(newAccount);
+    saveAccounts(accounts);
+
+    // 7. Terbitkan Sesi Login Otomatis
+    const nowMs = Date.now();
+    const session = {
+      uid: newAccount.id,
+      memberId: newRecord.id,
+      role: "member" as const,
+      displayName: newRecord.gameNickname,
+      gameNickname: newRecord.gameNickname,
+      division: newRecord.division || "ALL",
+      email: null,
+      avatarUrl: newRecord.avatarUrl || "/assets/default_avatar.jpg",
+      verified: Boolean(newRecord.verified),
+      authType: "nickname" as const,
+      authenticatedAt: new Date().toISOString(),
+      expiresAt: new Date(nowMs + 7 * 24 * 60 * 60 * 1000).toISOString(),
+    };
+
+    const token = signSessionToken(session);
+
+    const response = NextResponse.json({
       success: true,
-      message: "Selamat! Pendaftaran berhasil dan nama kamu telah terdaftar di database live CEES AREA.",
+      message: "Selamat! Pendaftaran berhasil dan akun member kamu telah aktif.",
       record: newRecord,
-      totalMembers: members.length + 90,
+      user: session,
+      token,
+      totalMembers: members.length,
       destination,
     });
+
+    response.cookies.set({
+      name: "cees_member_token",
+      value: token,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60,
+    });
+
+    return response;
   } catch (error) {
     console.error("Error pada endpoint pendaftaran /api/join:", error);
     return NextResponse.json(
@@ -206,16 +324,71 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// DELETE: Remove member or reset list (Protected with admin PIN: cees2026)
+// PATCH: Toggle verify status member (Protected with admin cookie / PIN)
+export async function PATCH(req: NextRequest) {
+  try {
+    const adminToken = req.cookies.get("cees_admin_token")?.value;
+    const { searchParams } = new URL(req.url);
+    const pin = searchParams.get("pin");
+
+    if (!adminToken && pin !== "cees2026" && pin !== process.env.ADMIN_SECRET) {
+      return NextResponse.json(
+        { success: false, error: "Akses ditolak: Otoritas admin diperlukan." },
+        { status: 401 }
+      );
+    }
+
+    const body = await req.json();
+    const { id, verified } = body;
+
+    const members = readMembers();
+    const idx = members.findIndex((m: any) => m.id === id);
+
+    if (idx === -1) {
+      return NextResponse.json({ success: false, error: "Member tidak ditemukan." }, { status: 404 });
+    }
+
+    const nextVerified = verified !== undefined ? Boolean(verified) : !members[idx].verified;
+    members[idx].verified = nextVerified;
+    members[idx].status = nextVerified ? "VERIFIED" : "MENUNGGU WA";
+    members[idx].updatedAt = new Date().toISOString();
+
+    saveMembers(members);
+
+    if (isFirebaseConfigured && db) {
+      try {
+        await updateDoc(doc(db, "members", id), {
+          verified: nextVerified,
+          status: members[idx].status,
+          updatedAt: members[idx].updatedAt,
+        });
+      } catch (fsErr) {
+        console.warn("Gagal update Firestore verification:", fsErr);
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: `Status verifikasi ${members[idx].gameNickname} berhasil diperbarui!`,
+      member: members[idx],
+    });
+  } catch (err) {
+    console.error("Error pada PATCH /api/join:", err);
+    return NextResponse.json({ success: false, error: "Gagal memproses verifikasi." }, { status: 500 });
+  }
+}
+
+// DELETE: Remove member or reset list (Protected with admin PIN: cees2026 or admin token)
 export async function DELETE(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
     const pin = searchParams.get("pin");
+    const adminToken = req.cookies.get("cees_admin_token")?.value;
 
-    if (pin !== "cees2026" && pin !== process.env.ADMIN_SECRET) {
+    if (!adminToken && pin !== "cees2026" && pin !== process.env.ADMIN_SECRET) {
       return NextResponse.json(
-        { success: false, error: "Akses ditolak: PIN Admin salah." },
+        { success: false, error: "Akses ditolak: PIN Admin salah atau sesi admin tidak ditemukan." },
         { status: 401 }
       );
     }
@@ -245,7 +418,7 @@ export async function DELETE(req: NextRequest) {
         success: true,
         message: "Semua data pendaftar berhasil dihapus.",
         remainingCount: 0,
-        totalCount: 90,
+        totalCount: 0,
       });
     }
 
@@ -258,7 +431,7 @@ export async function DELETE(req: NextRequest) {
       success: true,
       message: `Data member ID ${id} berhasil dihapus.`,
       remainingCount: members.length,
-      totalCount: members.length + 90,
+      totalCount: members.length,
     });
   } catch (err) {
     console.error("Error pada DELETE /api/join:", err);

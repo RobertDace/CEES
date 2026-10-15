@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ArrowUpRight, ShieldCheck, Sliders } from "lucide-react";
+import { Menu, X, ArrowUpRight, ShieldCheck, Sliders, Gamepad2, User, LogIn } from "lucide-react";
 import { COMMUNITY_INFO } from "@/data/community";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -50,6 +50,22 @@ export default function Navbar() {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
+
+  // Global Shortcut: Ctrl + Shift + A atau Ctrl + Alt + L untuk membuka Terminal Login Staf
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "A" || e.key === "a")) {
+        e.preventDefault();
+        router.push("/login");
+      }
+      if ((e.ctrlKey || e.metaKey) && e.altKey && (e.key === "L" || e.key === "l")) {
+        e.preventDefault();
+        router.push("/login");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [router]);
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href));
 
@@ -131,34 +147,71 @@ export default function Navbar() {
         <div className="hidden shrink-0 items-center gap-2.5 xl:gap-3 lg:flex">
           <ThemeToggle />
           {user ? (
-            <>
-              {/* Operator Active Session Tag */}
+            user.role === "admin" ? (
+              <>
+                {/* Operator Active Session Tag */}
+                <Link
+                  href="/login"
+                  className="flex items-center gap-1.5 border-2 border-slate-900 bg-slate-100 px-2.5 py-2 font-mono text-xs font-bold text-slate-800 transition-colors hover:bg-slate-900 hover:text-white dark:border-white dark:bg-dark-surface dark:text-steel-200 dark:hover:bg-white dark:hover:text-slate-900"
+                  title="Sesi Pengurus: Buka Terminal / Logout"
+                >
+                  <ShieldCheck className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                  <span className="max-w-[85px] truncate uppercase">{user.displayName || "ADMIN"}</span>
+                </Link>
+
+                {/* Dynamic Corner Button: Admin Tools */}
+                <Link
+                  href="/admin"
+                  className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-3.5 py-2 text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
+                  title="Akses CMS & Editor Halaman Web"
+                >
+                  <Sliders className="h-4 w-4" />
+                  <span>Admin Tools</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </>
+            ) : (
+              <>
+                {/* Member Active Session Tag */}
+                <Link
+                  href="/member"
+                  className="flex items-center gap-1.5 border-2 border-slate-900 bg-brand-cyan/20 px-2.5 py-2 font-mono text-xs font-bold text-slate-800 transition-colors hover:bg-brand-cyan hover:text-slate-900 dark:border-white dark:bg-dark-surface dark:text-steel-200 dark:hover:bg-brand-cyan dark:hover:text-slate-900"
+                  title="Kartu Member & Profil"
+                >
+                  <Gamepad2 className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                  <span className="max-w-[95px] truncate uppercase">{user.gameNickname || user.displayName}</span>
+                </Link>
+
+                {/* Member Hub Corner Button */}
+                <Link
+                  href="/member"
+                  className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-3.5 py-2 text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
+                  title="Kartu Tanda Anggota & Profil"
+                >
+                  <User className="h-4 w-4" />
+                  <span>Kartu Member</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </>
+            )
+          ) : (
+            <div className="flex items-center gap-2">
+              {/* Tombol Sign In */}
               <Link
                 href="/login"
-                className="flex items-center gap-1.5 border-2 border-slate-900 bg-slate-100 px-2.5 py-2 font-mono text-xs font-bold text-slate-800 transition-colors hover:bg-slate-900 hover:text-white dark:border-white dark:bg-dark-surface dark:text-steel-200 dark:hover:bg-white dark:hover:text-slate-900"
-                title="Sesi Pengurus: Buka Terminal / Logout"
+                className="flex items-center gap-1.5 border-2 border-slate-900 bg-white px-3 py-2 font-display text-xs font-bold uppercase tracking-wider text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0 transition-all dark:border-white dark:bg-dark-surface dark:text-white dark:shadow-[2px_2px_0px_0px_#FFFFFF] dark:hover:bg-dark-void whitespace-nowrap"
+                title="Masuk ke Portal Member atau Staf"
               >
-                <ShieldCheck className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
-                <span className="max-w-[85px] truncate uppercase">{user.displayName || "ADMIN"}</span>
+                <LogIn className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                <span>Sign In</span>
               </Link>
 
-              {/* Dynamic Corner Button: Admin Tools */}
-              <Link
-                href="/admin"
-                className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-3.5 py-2 text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
-                title="Akses CMS & Editor Halaman Web"
-              >
-                <Sliders className="h-4 w-4" />
-                <span>Admin Tools</span>
-                <ArrowUpRight className="h-3.5 w-3.5" />
+              {/* Default Corner Button: Join Member */}
+              <Link href="/join" className="brutal-btn px-4 py-2 text-xs whitespace-nowrap">
+                <span>Join Member</span>
+                <ArrowUpRight className="h-4 w-4" />
               </Link>
-            </>
-          ) : (
-            /* Default Corner Button: Join Member */
-            <Link href="/join" className="brutal-btn px-4 py-2 text-xs whitespace-nowrap">
-              <span>Join Member</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </div>
           )}
         </div>
 
@@ -207,33 +260,48 @@ export default function Navbar() {
             {user ? (
               <div className="space-y-2">
                 <Link
-                  href="/admin"
+                  href={user.role === "admin" ? "/admin" : "/member"}
                   className="flex items-center justify-between border-2 border-slate-900 bg-brand-cyan p-3 font-display text-sm font-bold uppercase text-slate-900 shadow-[3px_3px_0px_0px_#0030FF] dark:border-white dark:bg-brand-cyan dark:text-slate-900"
                 >
                   <span className="flex items-center gap-2">
-                    <Sliders className="h-4 w-4" />
-                    <span>BUKA ADMIN TOOLS</span>
+                    {user.role === "admin" ? <Sliders className="h-4 w-4" /> : <Gamepad2 className="h-4 w-4" />}
+                    <span>{user.role === "admin" ? "BUKA ADMIN TOOLS" : "BUKA KARTU MEMBER"}</span>
                   </span>
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
                 <div className="flex items-center justify-between font-mono text-[11px] font-bold uppercase text-slate-700 dark:text-steel-300 px-1">
                   <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
-                    <span>SESI: {user.displayName}</span>
+                    {user.role === "admin" ? (
+                      <ShieldCheck className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                    ) : (
+                      <Gamepad2 className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                    )}
+                    <span>
+                      {user.role === "admin" ? "ADMIN" : "MEMBER"}: {user.gameNickname || user.displayName}
+                    </span>
                   </span>
                   <Link href="/login" className="text-brand-blue underline dark:text-brand-cyan">
-                    [ TERMINAL / LOGOUT ]
+                    [ LOGOUT ]
                   </Link>
                 </div>
               </div>
             ) : (
-              <Link
-                href="/join"
-                className="brutal-btn flex items-center justify-center gap-2 py-3 text-sm"
-              >
-                <span>JOIN MEMBER SEKARANG</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              <div className="space-y-2">
+                <Link
+                  href="/login"
+                  className="flex items-center justify-center gap-2 border-2 border-slate-900 bg-white py-3 text-sm font-display font-bold uppercase tracking-wider text-slate-900 shadow-[3px_3px_0px_0px_#000000] hover:bg-slate-100 dark:border-white dark:bg-dark-surface dark:text-white dark:shadow-[3px_3px_0px_0px_#FFFFFF]"
+                >
+                  <LogIn className="h-4 w-4 text-brand-blue dark:text-brand-cyan" />
+                  <span>SIGN IN / MASUK PORTAL</span>
+                </Link>
+                <Link
+                  href="/join"
+                  className="brutal-btn flex items-center justify-center gap-2 py-3 text-sm"
+                >
+                  <span>JOIN MEMBER SEKARANG</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
             )}
           </div>
 

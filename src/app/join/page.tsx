@@ -1,8 +1,9 @@
 import React from "react";
+import Link from "next/link";
 import JoinForm from "@/components/JoinForm";
 import LiveMemberRoster from "@/components/LiveMemberRoster";
 import { COMMUNITY_INFO } from "@/data/community";
-import { UserPlus, MessageCircle, FileText, ExternalLink, HelpCircle } from "lucide-react";
+import { UserPlus, MessageCircle, FileText, ExternalLink, HelpCircle, ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Let's Join Us! | CEES AREA - Pendaftaran Member Baru",
@@ -26,6 +27,30 @@ export default function JoinPage() {
           <p className="mt-2 text-sm font-bold text-brand-blue dark:text-brand-cyan">
             Jadilah bagian dari keluarga besar CEES GANK Samarinda. Terbuka untuk pemain kompetitif maupun penikmat mabar santai.
           </p>
+        </div>
+ 
+        {/* Already a Member Banner */}
+        <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-2 border-slate-900 bg-brand-cyan/20 p-4 shadow-[4px_4px_0px_0px_#0030FF] dark:border-white dark:bg-dark-surface">
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center border-2 border-slate-900 bg-brand-cyan font-bold text-slate-900 dark:border-white">
+              ★
+            </span>
+            <div>
+              <p className="font-display text-sm font-black uppercase text-slate-900 dark:text-white">
+                Sudah Pernah Mendaftar Sebagai Member?
+              </p>
+              <p className="font-sans text-xs text-slate-600 dark:text-steel-300">
+                Kamu tidak perlu mengisi formulir ini lagi. Silakan masuk ke Portal Member untuk melihat Kartu Anggota dan profilmu.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/login"
+            className="brutal-btn inline-flex items-center gap-2 border-2 border-slate-900 bg-brand-blue px-4 py-2 text-xs font-bold text-white shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-900 whitespace-nowrap"
+          >
+            <span>Sign In Sekarang</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </div>
 
         {/* Intro Guidance Card */}
