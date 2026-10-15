@@ -7,7 +7,7 @@ import {
   getAllMembers,
 } from "@/lib/memberHelper";
 import { db, isFirebaseConfigured } from "@/lib/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, setDoc } from "firebase/firestore";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -217,7 +217,7 @@ export async function PUT(req: NextRequest) {
     // Perbarui juga ke Firestore jika terkonfigurasi
     if (isFirebaseConfigured && db && member.id) {
       try {
-        await updateDoc(doc(db, "members", member.id), updatePayload);
+        await setDoc(doc(db, "members", member.id), updatePayload, { merge: true });
       } catch (fsErr) {
         console.warn("Gagal update profil member ke Firestore:", fsErr);
       }

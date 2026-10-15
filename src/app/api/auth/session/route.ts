@@ -59,7 +59,12 @@ export async function POST(req: NextRequest) {
       gameNickname: user.gameNickname || user.displayName || "Member CEES",
       division: user.division || "ALL",
       email: user.email || null,
-      avatarUrl: user.avatarUrl || "/assets/default_avatar.jpg",
+      avatarUrl:
+        user.avatarUrl &&
+        !user.avatarUrl.startsWith("data:") &&
+        user.avatarUrl.length < 255
+          ? user.avatarUrl
+          : "/assets/default_avatar.jpg",
       verified: Boolean(user.verified),
       authType: user.authType || "nickname",
       authenticatedAt: user.authenticatedAt || new Date().toISOString(),

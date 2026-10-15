@@ -4,10 +4,14 @@ import path from "path";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
-// Ensure upload directory exists
+// Ensure upload directory exists safely
 function ensureUploadsDir() {
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
+  try {
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir, { recursive: true });
+    }
+  } catch (e) {
+    // Ignore read-only filesystem errors on Vercel
   }
 }
 
@@ -15,7 +19,6 @@ export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   try {
-    ensureUploadsDir();
 
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
@@ -59,9 +62,20 @@ export async function POST(req: NextRequest) {
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    fs.writeFileSync(destination, buffer);
+    const mime = file.type || "image/jpeg";
+    let publicUrl = `data:${mime};base64,${buffer.toString("base64")}`;
 
-    const publicUrl = `/uploads/${filename}`;
+    // Coba simpan file jika bukan lingkungan Vercel read-only
+    const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+    if (!isVercel) {
+      try {
+        ensureUploadsDir();
+        fs.writeFileSync(destination, buffer);
+        publicUrl = `/uploads/${filename}`;
+      } catch (fsErr) {
+        console.warn("Filesystem read-only, fallback ke Data URI:", fsErr);
+      }
+    }
 
     return NextResponse.json({
       success: true,

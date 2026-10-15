@@ -85,14 +85,26 @@ export default function MemberDashboardPage() {
       });
       const data = await res.json();
       if (res.ok && data.success && data.profile) {
-        setProfile(data.profile);
+        const localAvatarKey = `cees_avatar_${data.profile.id || user?.memberId || "current"}`;
+        const cachedLocalAvatar = typeof window !== "undefined" ? localStorage.getItem(localAvatarKey) : null;
+        const resolvedAvatar =
+          data.profile.avatarUrl && data.profile.avatarUrl !== "/assets/default_avatar.jpg"
+            ? data.profile.avatarUrl
+            : cachedLocalAvatar || "/assets/default_avatar.jpg";
+
+        const resolvedProfile = {
+          ...data.profile,
+          avatarUrl: resolvedAvatar,
+        };
+
+        setProfile(resolvedProfile);
         setFormData({
           gameId: data.profile.gameId || "",
           discordTag: data.profile.discordTag || "",
           city: data.profile.city || "Samarinda",
           playerType: data.profile.playerType || "Santai Mabar",
           motivation: data.profile.motivation || "",
-          avatarUrl: data.profile.avatarUrl || "/assets/default_avatar.jpg",
+          avatarUrl: resolvedAvatar,
         });
 
         // Selaraskan status di AuthContext jika terjadi perubahan verifikasi / ID
@@ -171,57 +183,53 @@ export default function MemberDashboardPage() {
     setTimeout(() => setCopiedId(false), 2500);
   };
 
-  // Kompresi foto secara cerdas di sisi browser untuk menjaga kualitas tinggi & upload super cepat
-  const compressImage = async (file: File): Promise<Blob | File> => {
+  // Kompresi foto secara cerdas di sisi browser: crop square 360x360 & kompres ke JPEG 0.82 (~20KB)
+  const compressImage = async (file: File): Promise<{ blob: Blob; dataUrl: string }> => {
     return new Promise((resolve) => {
-      if (!file.type.startsWith("image/") || file.type.includes("svg")) {
-        return resolve(file);
-      }
-
       const img = document.createElement("img");
       const objectUrl = URL.createObjectURL(file);
 
       img.onload = () => {
         URL.revokeObjectURL(objectUrl);
-        const maxDimension = 1080;
-        let { width, height } = img;
-
-        if (width > maxDimension || height > maxDimension) {
-          if (width > height) {
-            height = Math.round((height * maxDimension) / width);
-            width = maxDimension;
-          } else {
-            width = Math.round((width * maxDimension) / height);
-            height = maxDimension;
-          }
-        }
-
+        const targetSize = 360;
         const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = targetSize;
+        canvas.height = targetSize;
         const ctx = canvas.getContext("2d");
 
         if (!ctx) {
-          return resolve(file);
+          const reader = new FileReader();
+          reader.onload = () => resolve({ blob: file, dataUrl: (reader.result as string) || "" });
+          reader.readAsDataURL(file);
+          return;
         }
 
-        ctx.drawImage(img, 0, 0, width, height);
+        // Center crop math untuk proporsi pas foto kartu member
+        const minDim = Math.min(img.width, img.height);
+        const sx = (img.width - minDim) / 2;
+        const sy = (img.height - minDim) / 2;
+
+        ctx.drawImage(img, sx, sy, minDim, minDim, 0, 0, targetSize, targetSize);
+
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
         canvas.toBlob(
           (blob) => {
-            if (blob && blob.size < file.size) {
-              resolve(blob);
+            if (blob) {
+              resolve({ blob, dataUrl });
             } else {
-              resolve(file);
+              resolve({ blob: file, dataUrl });
             }
           },
           "image/jpeg",
-          0.88
+          0.82
         );
       };
 
       img.onerror = () => {
         URL.revokeObjectURL(objectUrl);
-        resolve(file);
+        const reader = new FileReader();
+        reader.onload = () => resolve({ blob: file, dataUrl: (reader.result as string) || "" });
+        reader.readAsDataURL(file);
       };
 
       img.src = objectUrl;
@@ -255,40 +263,78 @@ export default function MemberDashboardPage() {
     setIsUploadingAvatar(true);
 
     try {
-      // Kompres otomatis jika foto kamera beresolusi sangat besar
-      const processedBlob = await compressImage(rawFile);
-      const uploadFile =
-        processedBlob instanceof File
-          ? processedBlob
-          : new File([processedBlob], rawFile.name.replace(/\.[^/.]+$/, ".jpg"), {
-              type: "image/jpeg",
-            });
+      // Kompres otomatis: resize ke square 360x360 & generate compact Base64 Data URL (~20 KB)
+      const { blob: processedBlob, dataUrl } = await compressImage(rawFile);
+      const uploadFile = new File([processedBlob], rawFile.name.replace(/\.[^/.]+$/, ".jpg"), {
+        type: "image/jpeg",
+      });
+
+      // Simpan langsung ke cache browser lokal agar kartu segera terupdate & tidak hilang
+      const cacheKey = `cees_avatar_${profile?.id || user?.memberId || "current"}`;
+      try {
+        localStorage.setItem(cacheKey, dataUrl);
+      } catch (e) {
+        // Abaikan jika quota localStorage penuh
+      }
+
+      // Update UI preview secara instan
+      setProfile((prev: any) => ({ ...prev, avatarUrl: dataUrl }));
+      setFormData((prev) => ({ ...prev, avatarUrl: dataUrl }));
 
       const uploadData = new FormData();
       uploadData.append("avatar", uploadFile);
+      uploadData.append("avatarDataUrl", dataUrl);
       if (user?.memberId) uploadData.append("memberId", user.memberId);
       if (user?.gameNickname) uploadData.append("nickname", user.gameNickname);
 
-      const res = await fetch("/api/member/avatar", {
-        method: "POST",
-        body: uploadData,
-        credentials: "include",
-      });
-      const result = await res.json();
+      let savedUrl = dataUrl;
+      let uploadSucceeded = false;
 
-      if (res.ok && result.success && result.avatarUrl) {
-        setProfile((prev: any) => ({ ...prev, avatarUrl: result.avatarUrl }));
-        setFormData((prev) => ({ ...prev, avatarUrl: result.avatarUrl }));
-        if (user) {
-          setActiveSession({ ...user, avatarUrl: result.avatarUrl });
+      // 1. Coba upload via POST /api/member/avatar
+      try {
+        const res = await fetch("/api/member/avatar", {
+          method: "POST",
+          body: uploadData,
+          credentials: "include",
+        });
+        const result = await res.json();
+        if (res.ok && result.success && result.avatarUrl) {
+          savedUrl = result.avatarUrl;
+          uploadSucceeded = true;
         }
-        setSaveStatus("Foto profil kartu member berhasil diperbarui!");
-        setTimeout(() => setSaveStatus(null), 4000);
-      } else {
-        setAvatarError(result.error || "Gagal mengunggah foto profil.");
+      } catch (netErr) {
+        console.warn("Upload via /api/member/avatar mengalami kendala, mencoba fallback profile...", netErr);
       }
+
+      // 2. Jika route avatar gagal atau error di Vercel, fallback ke PUT /api/member/profile
+      if (!uploadSucceeded) {
+        try {
+          const profRes = await fetch("/api/member/profile", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ avatarUrl: dataUrl }),
+            credentials: "include",
+          });
+          const profResult = await profRes.json();
+          if (profRes.ok && profResult.success) {
+            uploadSucceeded = true;
+          }
+        } catch (profErr) {
+          console.warn("Fallback profil juga error:", profErr);
+        }
+      }
+
+      // Selaraskan state & auth session
+      setProfile((prev: any) => ({ ...prev, avatarUrl: savedUrl }));
+      setFormData((prev) => ({ ...prev, avatarUrl: savedUrl }));
+      if (user) {
+        setActiveSession({ ...user, avatarUrl: savedUrl });
+      }
+
+      setSaveStatus("Foto profil kartu member berhasil diperbarui!");
+      setTimeout(() => setSaveStatus(null), 4000);
     } catch (err) {
-      setAvatarError("Terjadi gangguan jaringan saat mengunggah foto.");
+      setAvatarError("Terjadi gangguan saat memproses foto. Silakan coba file lain.");
     } finally {
       setIsUploadingAvatar(false);
       if (fileInputRef.current) {

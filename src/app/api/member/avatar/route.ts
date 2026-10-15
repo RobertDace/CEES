@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { verifySessionToken, signSessionToken } from "@/lib/security";
 import { db, isFirebaseConfigured } from "@/lib/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, setDoc } from "firebase/firestore";
 import {
   resolveMemberProfile,
   readLocalMembers,
@@ -15,18 +15,10 @@ import {
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
-function ensureUploadsDir() {
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-}
-
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   try {
-    ensureUploadsDir();
-
     // 1. Ekstraksi Token dari Cookie atau Authorization Header
     let token = req.cookies.get("cees_member_token")?.value;
     const adminToken = req.cookies.get("cees_admin_token")?.value;
@@ -62,68 +54,88 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Jika tidak ada sesi valid
+    // 2. Ambil File & Data URI dari FormData
+    const formData = await req.formData();
+    const file = formData.get("avatar") as File | null;
+    const clientDataUrl = (formData.get("avatarDataUrl") as string | null) || "";
+    const formNickname = (formData.get("nickname") as string | null) || "";
+    const formMemberId = (formData.get("memberId") as string | null) || "";
+
+    // Fallback ID jika cookie sempat tertunda di browser
     if (!memberId) {
+      memberId = formMemberId || formNickname || null;
+    }
+
+    // Jika tidak ada sesi valid sama sekali
+    if (!memberId && !isAdmin) {
       return NextResponse.json(
         { success: false, error: "Sesi tidak ditemukan atau telah kedaluwarsa. Silakan login kembali." },
         { status: 401 }
       );
     }
 
-    // 2. Ambil File dari FormData
-    const formData = await req.formData();
-    const file = formData.get("avatar") as File | null;
-
-    if (!file) {
+    if (!file && !clientDataUrl) {
       return NextResponse.json(
         { success: false, error: "Tidak ada file foto yang dipilih." },
         { status: 400 }
       );
     }
 
-    // 3. Validasi Format & Ekstensi Gambar (Toleran terhadap berbagai perangkat & browser)
-    const rawExt = path.extname(file.name || "") || ".png";
+    // 3. Validasi Format & Ekstensi Gambar
+    const rawExt = file ? path.extname(file.name || "") || ".jpg" : ".jpg";
     const ext = rawExt.toLowerCase();
-    const isImageMime = Boolean(file.type && file.type.toLowerCase().startsWith("image/"));
+    const isImageMime = Boolean(file?.type && file.type.toLowerCase().startsWith("image/"));
     const isImageExt = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".jfif", ".bmp", ".svg"].includes(ext);
+    const isDataUrlImage = clientDataUrl.startsWith("data:image/");
 
-    if (!isImageMime && !isImageExt) {
+    if (!isImageMime && !isImageExt && !isDataUrlImage) {
       return NextResponse.json(
         { success: false, error: "Format file harus berupa gambar (JPG, PNG, atau WebP)." },
         { status: 400 }
       );
     }
 
-    // 4. Batasan Ukuran Maksimal 15MB
-    const maxSize = 15 * 1024 * 1024;
-    if (file.size > maxSize) {
-      return NextResponse.json(
-        { success: false, error: "Ukuran file foto maksimal adalah 15 MB." },
-        { status: 400 }
-      );
+    // 4. Siapkan URL Foto (Kompatibel Vercel Serverless & Localhost)
+    let publicUrl = clientDataUrl;
+
+    if (!publicUrl && file) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      const mime = isImageMime ? file.type.toLowerCase() : "image/jpeg";
+      publicUrl = `data:${mime};base64,${buffer.toString("base64")}`;
     }
 
-    // 5. Simpan File ke Folder public/uploads
-    const safeNick = verifiedSession?.gameNickname
-      ? verifiedSession.gameNickname.replace(/[^a-zA-Z0-9]/g, "_").slice(0, 15)
-      : "avatar";
-    const filename = `avatar_${safeNick}_${Date.now()}${ext === ".jfif" ? ".jpg" : ext}`;
-    const destination = path.join(uploadsDir, filename);
+    // Jika bukan di lingkungan Vercel dan file tersedia, coba simpan juga ke public/uploads/
+    const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+    if (!isVercel && file) {
+      try {
+        if (!fs.existsSync(uploadsDir)) {
+          fs.mkdirSync(uploadsDir, { recursive: true });
+        }
+        const safeNick = (verifiedSession?.gameNickname || formNickname || "avatar")
+          .replace(/[^a-zA-Z0-9]/g, "_")
+          .slice(0, 15);
+        const filename = `avatar_${safeNick}_${Date.now()}${ext === ".jfif" ? ".jpg" : ext}`;
+        const destination = path.join(uploadsDir, filename);
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    fs.writeFileSync(destination, buffer);
+        const bytes = await file.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+        fs.writeFileSync(destination, buffer);
+        publicUrl = `/uploads/${filename}`;
+      } catch (fsErr) {
+        console.warn("Lingkungan read-only / filesystem tidak writable, fallback ke Data URI:", fsErr);
+        // Tetap gunakan publicUrl berbasis Data URI
+      }
+    }
 
-    const publicUrl = `/uploads/${filename}`;
-
-    // 6. Sinkronisasi Avatar ke Data Member & Akun
+    // 5. Sinkronisasi Avatar ke Data Member & Akun
     let realMemberId = memberId;
-    let resolvedNick = verifiedSession?.gameNickname || "";
+    let resolvedNick = verifiedSession?.gameNickname || formNickname || "";
 
     if (!isAdmin) {
       const { member } = await resolveMemberProfile({
         memberId,
-        gameNickname: verifiedSession?.gameNickname,
+        gameNickname: verifiedSession?.gameNickname || formNickname,
         email: verifiedSession?.email,
         accountId: verifiedSession?.uid,
       });
@@ -133,7 +145,7 @@ export async function POST(req: NextRequest) {
         resolvedNick = member.gameNickname || resolvedNick;
       }
 
-      // Perbarui di liveMembers.json
+      // Perbarui di liveMembers.json jika filesystem mengizinkan
       const members = readLocalMembers();
       const memberIndex = members.findIndex(
         (m: any) =>
@@ -147,7 +159,7 @@ export async function POST(req: NextRequest) {
         saveLocalMembers(members);
       }
 
-      // Perbarui juga di memberAccounts.json
+      // Perbarui juga di memberAccounts.json jika filesystem mengizinkan
       const accounts = readLocalAccounts();
       const accIndex = accounts.findIndex(
         (a: any) =>
@@ -162,21 +174,25 @@ export async function POST(req: NextRequest) {
         saveLocalAccounts(accounts);
       }
 
-      // Perbarui di Firestore jika terhubung
+      // 6. Perbarui di Cloud Firestore (Ini yang membuat data persisten di Vercel!)
       if (isFirebaseConfigured && db && realMemberId && realMemberId !== "admin_hq") {
         try {
           const memberRef = doc(db, "members", realMemberId);
-          await updateDoc(memberRef, {
-            avatarUrl: publicUrl,
-            updatedAt: new Date().toISOString(),
-          });
+          await setDoc(
+            memberRef,
+            {
+              avatarUrl: publicUrl,
+              updatedAt: new Date().toISOString(),
+            },
+            { merge: true }
+          );
         } catch (fsErr) {
           console.warn("Gagal update avatar di Firestore:", fsErr);
         }
       }
     }
 
-    // 7. Refresh Cookie Sesi Member jika login sebagai member
+    // 7. Refresh Cookie Sesi Member
     const response = NextResponse.json({
       success: true,
       message: "Foto profil member berhasil diperbarui!",
@@ -184,9 +200,17 @@ export async function POST(req: NextRequest) {
     });
 
     if (verifiedSession) {
+      // PENTING: Jangan simpan Base64 Data URI ke dalam cookie karena cookie dibatasi maksimal 4KB
+      const cookieAvatar =
+        publicUrl && !publicUrl.startsWith("data:") && publicUrl.length < 255
+          ? publicUrl
+          : verifiedSession.avatarUrl && !verifiedSession.avatarUrl.startsWith("data:")
+          ? verifiedSession.avatarUrl
+          : "/assets/default_avatar.jpg";
+
       const refreshedSession = {
         ...verifiedSession,
-        avatarUrl: publicUrl,
+        avatarUrl: cookieAvatar,
         memberId: realMemberId,
       };
       const newToken = signSessionToken(refreshedSession);
