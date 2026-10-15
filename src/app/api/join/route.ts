@@ -9,6 +9,7 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  getDoc,
   query,
   orderBy,
 } from "firebase/firestore";
@@ -342,7 +343,21 @@ export async function PATCH(req: NextRequest) {
     const { id, verified } = body;
 
     const members = readMembers();
-    const idx = members.findIndex((m: any) => m.id === id);
+    let idx = members.findIndex((m: any) => m.id === id);
+
+    // Jika tidak ditemukan di file lokal, coba cari di Firestore jika aktif
+    if (idx === -1 && isFirebaseConfigured && db) {
+      try {
+        const snap = await getDoc(doc(db, "members", id));
+        if (snap.exists()) {
+          const fsData = { ...(snap.data() as any), id: snap.id };
+          members.push(fsData);
+          idx = members.length - 1;
+        }
+      } catch (e) {
+        console.warn("Gagal cek doc Firestore di PATCH /api/join:", e);
+      }
+    }
 
     if (idx === -1) {
       return NextResponse.json({ success: false, error: "Member tidak ditemukan." }, { status: 404 });
@@ -354,6 +369,29 @@ export async function PATCH(req: NextRequest) {
     members[idx].updatedAt = new Date().toISOString();
 
     saveMembers(members);
+
+    // Selaraskan akun member jika ada
+    try {
+      const accounts = readAccounts();
+      const normMemberNick = (members[idx].gameNickname || "").toLowerCase().replace(/[^a-z0-9]/gi, "").replace(/0/g, "o");
+      let accountsUpdated = false;
+
+      for (let i = 0; i < accounts.length; i++) {
+        const acc = accounts[i];
+        const normAccNick = (acc.gameNickname || "").toLowerCase().replace(/[^a-z0-9]/gi, "").replace(/0/g, "o");
+        if (acc.memberId === id || (normMemberNick && normMemberNick === normAccNick)) {
+          accounts[i].memberId = members[idx].id;
+          accounts[i].updatedAt = new Date().toISOString();
+          accountsUpdated = true;
+        }
+      }
+
+      if (accountsUpdated) {
+        saveAccounts(accounts);
+      }
+    } catch (accErr) {
+      console.warn("Gagal selaraskan akun di PATCH /api/join:", accErr);
+    }
 
     if (isFirebaseConfigured && db) {
       try {

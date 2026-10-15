@@ -4,32 +4,17 @@ import path from "path";
 import { verifySessionToken } from "@/lib/security";
 import { db, isFirebaseConfigured } from "@/lib/firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import {
+  resolveMemberProfile,
+  readLocalMembers,
+  saveLocalMembers,
+} from "@/lib/memberHelper";
 
-const membersFilePath = path.join(process.cwd(), "src", "data", "liveMembers.json");
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
 function ensureUploadsDir() {
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-}
-
-function readMembers(): any[] {
-  try {
-    if (fs.existsSync(membersFilePath)) {
-      return JSON.parse(fs.readFileSync(membersFilePath, "utf-8"));
-    }
-  } catch (err) {
-    console.error("Gagal membaca liveMembers.json:", err);
-  }
-  return [];
-}
-
-function saveMembers(mems: any[]) {
-  try {
-    fs.writeFileSync(membersFilePath, JSON.stringify(mems, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Gagal menyimpan liveMembers.json:", err);
   }
 }
 
@@ -111,20 +96,28 @@ export async function POST(req: NextRequest) {
 
     const publicUrl = `/uploads/${filename}`;
 
-    // 6. Perbarui Avatar di Data Member Lokal
-    const members = readMembers();
-    const memberIndex = members.findIndex((m: any) => m.id === memberId);
+    // 6. Perbarui Avatar di Data Member Lokal & Firestore
+    let realMemberId = memberId;
+    if (memberId !== "admin_hq") {
+      const { member } = await resolveMemberProfile({ memberId });
+      if (member) {
+        realMemberId = member.id;
+      }
+    }
+
+    const members = readLocalMembers();
+    const memberIndex = members.findIndex((m: any) => m.id === realMemberId);
 
     if (memberIndex !== -1) {
       members[memberIndex].avatarUrl = publicUrl;
       members[memberIndex].updatedAt = new Date().toISOString();
-      saveMembers(members);
+      saveLocalMembers(members);
     }
 
     // 7. Perbarui di Firestore jika terhubung
-    if (isFirebaseConfigured && db && memberId !== "admin_hq") {
+    if (isFirebaseConfigured && db && realMemberId !== "admin_hq") {
       try {
-        const memberRef = doc(db, "members", memberId);
+        const memberRef = doc(db, "members", realMemberId);
         await updateDoc(memberRef, {
           avatarUrl: publicUrl,
           updatedAt: new Date().toISOString(),

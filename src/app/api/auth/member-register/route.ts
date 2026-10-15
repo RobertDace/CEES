@@ -1,48 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { hashPassword, signSessionToken } from "@/lib/security";
-
-const accountsFilePath = path.join(process.cwd(), "src", "data", "memberAccounts.json");
-const membersFilePath = path.join(process.cwd(), "src", "data", "liveMembers.json");
-
-function readAccounts(): any[] {
-  try {
-    if (fs.existsSync(accountsFilePath)) {
-      return JSON.parse(fs.readFileSync(accountsFilePath, "utf-8"));
-    }
-  } catch (err) {
-    console.error("Gagal membaca memberAccounts.json:", err);
-  }
-  return [];
-}
-
-function readMembers(): any[] {
-  try {
-    if (fs.existsSync(membersFilePath)) {
-      return JSON.parse(fs.readFileSync(membersFilePath, "utf-8"));
-    }
-  } catch (err) {
-    console.error("Gagal membaca liveMembers.json:", err);
-  }
-  return [];
-}
-
-function saveAccounts(accs: any[]) {
-  try {
-    fs.writeFileSync(accountsFilePath, JSON.stringify(accs, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Gagal menyimpan memberAccounts.json:", err);
-  }
-}
-
-function saveMembers(mems: any[]) {
-  try {
-    fs.writeFileSync(membersFilePath, JSON.stringify(mems, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Gagal menyimpan liveMembers.json:", err);
-  }
-}
+import {
+  readLocalAccounts,
+  saveLocalAccounts,
+  readLocalMembers,
+  saveLocalMembers,
+  getAllMembers,
+  findMemberInList,
+  normalizeNickname,
+  normalizePhone,
+} from "@/lib/memberHelper";
+import { db, isFirebaseConfigured } from "@/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,7 +27,7 @@ export async function POST(req: NextRequest) {
     } = body;
 
     const cleanNick = (gameNickname || "").trim();
-    const cleanWa = (whatsapp || "").trim().replace(/[^0-9]/g, "");
+    const cleanWa = (whatsapp || "").trim();
     const cleanPass = (password || "").trim();
 
     if (!cleanNick || !cleanPass) {
@@ -75,12 +44,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const accounts = readAccounts();
-    const members = readMembers();
+    const accounts = readLocalAccounts();
+    const members = await getAllMembers();
+    const normNick = normalizeNickname(cleanNick);
 
     // 1. Cek apakah Nickname sudah memiliki akun terdaftar
     const existingAccount = accounts.find(
-      (a: any) => a.gameNickname && a.gameNickname.toLowerCase() === cleanNick.toLowerCase()
+      (a: any) =>
+        (a.gameNickname && a.gameNickname.toLowerCase() === cleanNick.toLowerCase()) ||
+        (a.gameNickname && normalizeNickname(a.gameNickname) === normNick)
     );
 
     if (existingAccount) {
@@ -93,19 +65,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. Cek apakah member sudah pernah mendaftar di Roster liveMembers
-    let targetMember = members.find(
-      (m: any) => m.gameNickname && m.gameNickname.toLowerCase() === cleanNick.toLowerCase()
-    );
+    // 2. Cek apakah member sudah pernah mendaftar di Roster (toleran tanda baca, 0 vs O, dsb)
+    let targetMember = findMemberInList(members, {
+      nickname: cleanNick,
+      phone: cleanWa,
+    });
 
-    // Jika member sudah ada di roster, verifikasi kecocokan nomor WhatsApp
-    if (targetMember) {
-      const storedWa = (targetMember.whatsapp || "").replace(/[^0-9]/g, "");
-      // Ambil 8 digit terakhir untuk toleransi format 0812 vs 62812
-      const endWa = cleanWa.slice(-8);
-      const endStored = storedWa.slice(-8);
+    // Jika member sudah ada di roster, verifikasi kecocokan nomor WhatsApp jika diisi
+    if (targetMember && cleanWa && targetMember.whatsapp) {
+      const normInputWa = normalizePhone(cleanWa);
+      const normStoredWa = normalizePhone(targetMember.whatsapp);
 
-      if (cleanWa && storedWa && endWa !== endStored) {
+      if (normInputWa.length >= 8 && normStoredWa.length >= 8 && normInputWa !== normStoredWa) {
         return NextResponse.json(
           {
             success: false,
@@ -114,8 +85,10 @@ export async function POST(req: NextRequest) {
           { status: 403 }
         );
       }
-    } else {
-      // 3. Jika member baru, buatkan data di liveMembers
+    }
+
+    // 3. Jika member baru (belum pernah mendaftar di roster)
+    if (!targetMember) {
       const newMemberId = `mem_${Date.now()}`;
       targetMember = {
         id: newMemberId,
@@ -126,7 +99,7 @@ export async function POST(req: NextRequest) {
         city: city || "Samarinda",
         playerType: "Santai Mabar",
         verified: false,
-        status: "MEMBER BARU",
+        status: "MENUNGGU WA",
         avatarUrl: "/assets/default_avatar.jpg",
         timestamp: new Date().toLocaleDateString("id-ID", {
           day: "numeric",
@@ -135,8 +108,20 @@ export async function POST(req: NextRequest) {
         }),
         submittedAtIso: new Date().toISOString(),
       };
-      members.push(targetMember);
-      saveMembers(members);
+
+      // Simpan ke Firestore jika aktif
+      if (isFirebaseConfigured && db) {
+        try {
+          const docRef = await addDoc(collection(db, "members"), targetMember);
+          targetMember.id = docRef.id;
+        } catch (fsErr) {
+          console.warn("Gagal simpan member baru ke Firestore:", fsErr);
+        }
+      }
+
+      const localList = readLocalMembers();
+      localList.unshift(targetMember);
+      saveLocalMembers(localList);
     }
 
     // 4. Enkripsi password menggunakan Scrypt
@@ -145,7 +130,7 @@ export async function POST(req: NextRequest) {
     const newAccount = {
       id: `acc_${Date.now()}`,
       memberId: targetMember.id,
-      gameNickname: targetMember.gameNickname,
+      gameNickname: targetMember.gameNickname || cleanNick,
       email: email?.trim().toLowerCase() || null,
       passwordHash: hash,
       salt,
@@ -154,7 +139,7 @@ export async function POST(req: NextRequest) {
     };
 
     accounts.push(newAccount);
-    saveAccounts(accounts);
+    saveLocalAccounts(accounts);
 
     // 5. Buat Sesi Login Otomatis
     const now = Date.now();
@@ -162,8 +147,8 @@ export async function POST(req: NextRequest) {
       uid: newAccount.id,
       memberId: targetMember.id,
       role: "member",
-      displayName: targetMember.gameNickname,
-      gameNickname: targetMember.gameNickname,
+      displayName: targetMember.gameNickname || cleanNick,
+      gameNickname: targetMember.gameNickname || cleanNick,
       division: targetMember.division || "ALL",
       email: newAccount.email,
       avatarUrl: targetMember.avatarUrl || "/assets/default_avatar.jpg",
@@ -177,7 +162,7 @@ export async function POST(req: NextRequest) {
 
     const response = NextResponse.json({
       success: true,
-      message: "Akun member berhasil dibuat dan terverifikasi!",
+      message: "Akun member berhasil dibuat dan terhubung ke profil resmi!",
       user: session,
       token,
     });

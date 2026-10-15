@@ -179,43 +179,50 @@ export default function LiveMemberRoster() {
           </p>
         </div>
 
-        {/* Counter & Action */}
-        <div className="flex flex-wrap items-center gap-3 font-mono">
+        {/* Counter & Action Buttons Lockup */}
+        <div className="flex items-stretch gap-2.5 font-mono shrink-0">
           {/* Total Member Counter (Sesuai Jumlah Data Nyata) */}
-          <div className="border-2 border-slate-900 bg-slate-100 px-4 py-2 text-center shadow-[3px_3px_0px_0px_#0030FF] dark:border-white dark:bg-dark-base">
-            <div className="text-[10px] font-bold text-slate-600 uppercase dark:text-steel-400">
+          <div className="flex flex-col justify-center border-2 border-slate-900 bg-slate-100 px-4 py-1.5 text-center shadow-[3px_3px_0px_0px_#0030FF] dark:border-white dark:bg-dark-base min-w-[110px]">
+            <div className="text-[10px] font-bold text-slate-600 uppercase dark:text-steel-400 tracking-wider">
               TOTAL ANGGOTA
             </div>
-            <div className="font-display text-2xl font-black text-brand-blue dark:text-brand-cyan">
+            <div className="font-display text-2xl font-black text-brand-blue dark:text-brand-cyan leading-tight my-0.5">
               {members.length}
             </div>
-            {filteredMembers.length !== members.length && (
+            {filteredMembers.length !== members.length ? (
               <div className="text-[9px] font-bold text-slate-500 dark:text-steel-400">
-                ({filteredMembers.length} sesuai filter)
+                ({filteredMembers.length} filter)
+              </div>
+            ) : (
+              <div className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                LIVE FEED
               </div>
             )}
           </div>
 
-          <button
-            type="button"
-            onClick={() => fetchMembers()}
-            disabled={loading}
-            className="inline-flex items-center space-x-1.5 border-2 border-slate-900 bg-white px-3.5 py-2.5 text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-50 disabled:opacity-50 dark:border-white dark:bg-dark-base dark:text-white rounded-none transition-colors"
-            title="Muat ulang data live"
-          >
-            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
-            <span className="hidden sm:inline">Refresh</span>
-          </button>
+          {/* Action Buttons: Neatly stacked pair with matching height and uniform width */}
+          <div className="flex flex-col justify-between gap-1.5 min-w-[130px]">
+            <button
+              type="button"
+              onClick={() => fetchMembers()}
+              disabled={loading}
+              className="inline-flex flex-1 items-center justify-center space-x-2 border-2 border-slate-900 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-100 hover:text-brand-blue disabled:opacity-50 dark:border-white dark:bg-dark-base dark:text-white dark:hover:bg-slate-800 rounded-none transition-all active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+              title="Muat ulang data live"
+            >
+              <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
+              <span>Refresh</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={exportToCSV}
-            className="inline-flex items-center space-x-1.5 border-2 border-slate-900 bg-white px-3.5 py-2.5 text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-50 dark:border-white dark:bg-dark-base dark:text-white rounded-none transition-colors"
-            title="Download data pendaftar sebagai file Excel/CSV"
-          >
-            <Download className="h-4 w-4" />
-            <span className="hidden sm:inline">Export Excel</span>
-          </button>
+            <button
+              type="button"
+              onClick={exportToCSV}
+              className="inline-flex flex-1 items-center justify-center space-x-2 border-2 border-slate-900 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-600 dark:border-white dark:bg-dark-base dark:text-white dark:hover:bg-emerald-950/40 rounded-none transition-all active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+              title="Download data pendaftar sebagai file Excel/CSV"
+            >
+              <Download className="h-3.5 w-3.5" />
+              <span>Export Excel</span>
+            </button>
+          </div>
         </div>
       </div>
 

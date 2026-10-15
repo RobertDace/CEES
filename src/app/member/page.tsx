@@ -28,6 +28,7 @@ import {
   UploadCloud,
   Loader2,
   Clock,
+  RefreshCw,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { COMMUNITY_INFO } from "@/data/community";
@@ -58,35 +59,80 @@ export default function MemberDashboardPage() {
     avatarUrl: "/assets/default_avatar.jpg",
   });
 
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  // Handle Logout Member dan redirect ke Beranda (Home)
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await logout();
+    } catch (err) {
+      console.warn("Logout error:", err);
+    } finally {
+      window.location.href = "/";
+    }
+  };
+
   // Load member profile from API
-  useEffect(() => {
-    async function fetchProfile() {
-      try {
-        setLoadingProfile(true);
-        const res = await fetch("/api/member/profile");
-        const data = await res.json();
-        if (res.ok && data.success && data.profile) {
-          setProfile(data.profile);
-          setFormData({
-            gameId: data.profile.gameId || "",
-            discordTag: data.profile.discordTag || "",
-            city: data.profile.city || "Samarinda",
-            playerType: data.profile.playerType || "Santai Mabar",
-            motivation: data.profile.motivation || "",
-            avatarUrl: data.profile.avatarUrl || "/assets/default_avatar.jpg",
+  const fetchProfile = async (silent = false) => {
+    try {
+      if (!silent) setLoadingProfile(true);
+      else setIsRefreshing(true);
+
+      const res = await fetch(`/api/member/profile?t=${Date.now()}`, {
+        cache: "no-store",
+      });
+      const data = await res.json();
+      if (res.ok && data.success && data.profile) {
+        setProfile(data.profile);
+        setFormData({
+          gameId: data.profile.gameId || "",
+          discordTag: data.profile.discordTag || "",
+          city: data.profile.city || "Samarinda",
+          playerType: data.profile.playerType || "Santai Mabar",
+          motivation: data.profile.motivation || "",
+          avatarUrl: data.profile.avatarUrl || "/assets/default_avatar.jpg",
+        });
+
+        // Selaraskan status di AuthContext jika terjadi perubahan verifikasi / ID
+        if (
+          user &&
+          (user.verified !== Boolean(data.profile.verified) ||
+            user.memberId !== data.profile.id ||
+            user.gameNickname !== data.profile.gameNickname)
+        ) {
+          setActiveSession({
+            ...user,
+            memberId: data.profile.id,
+            gameNickname: data.profile.gameNickname,
+            displayName: data.profile.gameNickname,
+            verified: Boolean(data.profile.verified),
           });
         }
-      } catch (err) {
-        console.error("Gagal memuat profil member:", err);
-      } finally {
-        setLoadingProfile(false);
       }
+    } catch (err) {
+      console.error("Gagal memuat profil member:", err);
+    } finally {
+      setLoadingProfile(false);
+      setIsRefreshing(false);
     }
+  };
 
+  useEffect(() => {
     if (user) {
       fetchProfile();
     }
-  }, [user]);
+  }, [user?.uid, user?.memberId]);
+
+  // Polling otomatis setiap 12 detik jika kartu masih menunggu verifikasi admin
+  useEffect(() => {
+    if (!profile || profile.verified || user?.role === "admin") return;
+    const interval = setInterval(() => {
+      fetchProfile(true);
+    }, 12000);
+    return () => clearInterval(interval);
+  }, [profile?.verified, user?.role]);
 
   // Handle Save Profile
   const handleSaveProfile = async (e: React.FormEvent) => {
@@ -200,13 +246,21 @@ export default function MemberDashboardPage() {
           <p className="mt-2 text-xs text-slate-600 dark:text-steel-300">
             Halaman ini khusus member resmi CEES AREA. Silakan masuk terlebih dahulu melalui Portal Member.
           </p>
-          <Link
-            href="/login"
-            className="brutal-btn mt-6 flex items-center justify-center gap-2 py-3 text-xs"
-          >
-            <span>Buka Portal Login</span>
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
+            <Link
+              href="/"
+              className="w-full flex-1 brutal-btn flex items-center justify-center gap-2 py-3 text-xs border-2 border-slate-900 bg-white dark:bg-dark-surface dark:border-white text-slate-900 dark:text-white"
+            >
+              Kembali ke Beranda
+            </Link>
+            <Link
+              href="/login"
+              className="w-full flex-1 brutal-btn flex items-center justify-center gap-2 py-3 text-xs bg-brand-cyan text-slate-900"
+            >
+              <span>Buka Portal Login</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -225,15 +279,17 @@ export default function MemberDashboardPage() {
             <span className="hidden opacity-60 sm:inline">// DIGITAL ID & COMMUNITY PASSPORT</span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-brand-cyan uppercase">
+            <span className={`uppercase font-bold ${profile?.verified ? "text-emerald-300 dark:text-emerald-400" : "text-brand-cyan"}`}>
               {profile?.verified ? "✓ TERVERIFIKASI WA" : "MENUNGGU KONFIRMASI WA"}
             </span>
             <button
-              onClick={() => logout()}
-              className="underline hover:text-brand-cyan"
-              title="Keluar Akun"
+              type="button"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="underline hover:text-brand-cyan cursor-pointer transition-colors disabled:opacity-50"
+              title="Keluar Akun dan Kembali ke Beranda"
             >
-              [ LOGOUT ]
+              {isLoggingOut ? "[ KELUAR... ]" : "[ LOGOUT ]"}
             </button>
           </div>
         </div>
@@ -287,14 +343,46 @@ export default function MemberDashboardPage() {
                 </p>
               </div>
             </div>
-            <a
-              href="https://wa.me/6285705035765?text=Halo%20Admin%20CEES%20GANK,%20saya%20sudah%20mendaftar%20di%20website%20dan%20ingin%20mengonfirmasi%20akun%20member%20saya."
-              target="_blank"
-              rel="noreferrer"
-              className="brutal-btn shrink-0 border-2 border-slate-900 bg-emerald-500 px-3.5 py-1.5 font-display text-xs font-bold text-white shadow-[2px_2px_0px_0px_#000000] hover:bg-emerald-600 transition-colors"
-            >
-              Hubungi Admin via WA
-            </a>
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => fetchProfile(true)}
+                disabled={isRefreshing}
+                className="brutal-btn flex items-center gap-1.5 border-2 border-slate-900 bg-white px-3 py-1.5 font-display text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-50 transition-colors disabled:opacity-60"
+                title="Cek apakah admin sudah memverifikasi akun Anda"
+              >
+                <RefreshCw className={`h-3.5 w-3.5 ${isRefreshing ? "animate-spin" : ""}`} />
+                <span>{isRefreshing ? "Mengecek..." : "Cek Status Terkini"}</span>
+              </button>
+              <a
+                href="https://wa.me/6285705035765?text=Halo%20Admin%20CEES%20GANK,%20saya%20sudah%20mendaftar%20di%20website%20dan%20ingin%20mengonfirmasi%20akun%20member%20saya."
+                target="_blank"
+                rel="noreferrer"
+                className="brutal-btn shrink-0 border-2 border-slate-900 bg-emerald-500 px-3.5 py-1.5 font-display text-xs font-bold text-white shadow-[2px_2px_0px_0px_#000000] hover:bg-emerald-600 transition-colors"
+              >
+                Hubungi Admin via WA
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* Verified Notice for verified members */}
+        {profile?.verified && user?.role !== "admin" && (
+          <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-2 border-emerald-600 bg-emerald-50 p-4 font-mono text-xs text-emerald-900 shadow-[4px_4px_0px_0px_#059669] dark:border-emerald-400 dark:bg-emerald-950/40 dark:text-emerald-200">
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+              <div>
+                <p className="font-bold uppercase">Status Anggota: Resmi & Terverifikasi Admin ✓</p>
+                <p className="text-[11px] text-emerald-800 dark:text-emerald-300">
+                  Selamat! Kartu tanda anggota resmi CEES AREA Anda telah aktif penuh dan tercatat di Roster Komunitas.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="border-2 border-emerald-700 bg-white dark:bg-dark-surface px-3 py-1 font-mono text-[11px] font-black uppercase text-emerald-700 dark:text-emerald-300 shadow-[2px_2px_0px_0px_#059669]">
+                ✓ VERIFIED MEMBER
+              </span>
+            </div>
           </div>
         )}
 

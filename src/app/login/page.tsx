@@ -209,7 +209,7 @@ function LoginFormContent() {
     setIsLoading(true);
     await logout();
     setIsLoading(false);
-    setSuccessMessage("Sesi akun telah ditutup.");
+    window.location.href = "/";
   };
 
   return (

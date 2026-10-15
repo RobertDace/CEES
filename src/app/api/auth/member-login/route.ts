@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { verifyPassword, signSessionToken } from "@/lib/security";
+import {
+  readLocalAccounts,
+  saveLocalAccounts,
+  getAllMembers,
+  findMemberInList,
+  resolveMemberProfile,
+  normalizeNickname,
+} from "@/lib/memberHelper";
 
 interface RateLimitRecord {
   attempts: number;
@@ -16,39 +22,6 @@ function getClientIp(req: NextRequest): string {
   const forwarded = req.headers.get("x-forwarded-for");
   if (forwarded) return forwarded.split(",")[0].trim();
   return req.headers.get("x-real-ip") || "127.0.0.1";
-}
-
-const accountsFilePath = path.join(process.cwd(), "src", "data", "memberAccounts.json");
-const membersFilePath = path.join(process.cwd(), "src", "data", "liveMembers.json");
-
-function readAccounts(): any[] {
-  try {
-    if (fs.existsSync(accountsFilePath)) {
-      return JSON.parse(fs.readFileSync(accountsFilePath, "utf-8"));
-    }
-  } catch (err) {
-    console.error("Gagal membaca memberAccounts.json:", err);
-  }
-  return [];
-}
-
-function readMembers(): any[] {
-  try {
-    if (fs.existsSync(membersFilePath)) {
-      return JSON.parse(fs.readFileSync(membersFilePath, "utf-8"));
-    }
-  } catch (err) {
-    console.error("Gagal membaca liveMembers.json:", err);
-  }
-  return [];
-}
-
-function saveAccounts(accs: any[]) {
-  try {
-    fs.writeFileSync(accountsFilePath, JSON.stringify(accs, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Gagal menyimpan memberAccounts.json:", err);
-  }
 }
 
 export async function POST(req: NextRequest) {
@@ -72,8 +45,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { loginType = "credentials", identifier, password, googleUser } = body;
 
-    const accounts = readAccounts();
-    const members = readMembers();
+    const accounts = readLocalAccounts();
+    const members = await getAllMembers();
 
     // 2. Alur Login Google
     if (loginType === "google") {
@@ -86,59 +59,32 @@ export async function POST(req: NextRequest) {
 
       const googleEmail = googleUser.email.toLowerCase().trim();
 
-      // Cari apakah sudah ada member dengan email ini atau cocokkan nickname
+      // Cari akun atau selaraskan dengan profil member
       let account = accounts.find((a: any) => a.email && a.email.toLowerCase() === googleEmail);
-      let member = members.find((m: any) => {
-        const accMatch = account && m.id === account.memberId;
-        const emailMatch = m.email && m.email.toLowerCase() === googleEmail;
-        return accMatch || emailMatch;
+      const { member } = await resolveMemberProfile({
+        email: googleEmail,
+        gameNickname: googleUser.displayName,
+        accountId: account?.id,
       });
 
-      // Jika belum ada akun, otomatis daftarkan akun member Google baru
       if (!account) {
         const newAccountId = `g_${Date.now()}`;
         const matchedMemberId = member ? member.id : `m_${Date.now()}`;
 
-        // Jika member belum ada di roster, buat profil member awal
-        if (!member) {
-          member = {
-            id: matchedMemberId,
-            fullName: googleUser.displayName || "Member Komunitas",
-            gameNickname: googleUser.displayName?.split(" ")[0] || "Player",
-            email: googleEmail,
-            division: "ALL",
-            city: "Samarinda",
-            playerType: "Member",
-            verified: false,
-            status: "MEMBER BARU",
-            avatarUrl: googleUser.photoURL || "/assets/default_avatar.jpg",
-            timestamp: new Date().toLocaleDateString("id-ID", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            }),
-          };
-          members.push(member);
-          try {
-            fs.writeFileSync(membersFilePath, JSON.stringify(members, null, 2), "utf-8");
-          } catch (e) {
-            console.error("Gagal update liveMembers.json saat Google Login:", e);
-          }
-        }
-
         account = {
           id: newAccountId,
-          memberId: member.id,
+          memberId: matchedMemberId,
           email: googleEmail,
-          gameNickname: member.gameNickname,
+          gameNickname: member ? member.gameNickname : (googleUser.displayName?.split(" ")[0] || "Player"),
           authProvider: "google",
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         };
         accounts.push(account);
-        saveAccounts(accounts);
+        saveLocalAccounts(accounts);
       }
 
+      const isMemberVerified = Boolean(member?.verified);
       const session = {
         uid: account.id,
         memberId: member ? member.id : account.memberId,
@@ -148,7 +94,7 @@ export async function POST(req: NextRequest) {
         division: member ? member.division : "ALL",
         email: googleEmail,
         avatarUrl: googleUser.photoURL || member?.avatarUrl || "/assets/default_avatar.jpg",
-        verified: Boolean(member?.verified),
+        verified: isMemberVerified,
         authType: "google",
         authenticatedAt: new Date().toISOString(),
         expiresAt: new Date(now + 7 * 24 * 60 * 60 * 1000).toISOString(),
@@ -186,18 +132,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Cari akun terdaftar
-    const account = accounts.find(
+    const normId = normalizeNickname(cleanId);
+
+    // Cari akun terdaftar (fleksibel: exact nickname, email, atau normalized nickname leetspeak)
+    let account = accounts.find(
       (a: any) =>
         (a.gameNickname && a.gameNickname.toLowerCase() === cleanId) ||
-        (a.email && a.email.toLowerCase() === cleanId)
+        (a.email && a.email.toLowerCase() === cleanId) ||
+        (a.gameNickname && normalizeNickname(a.gameNickname) === normId)
     );
 
-    // Jika akun belum dibuat di memberAccounts.json, cek apakah member terdaftar di liveMembers
+    // Jika akun belum dibuat di memberAccounts.json, cek apakah member terdaftar di roster
     if (!account) {
-      const existingMember = members.find(
-        (m: any) => m.gameNickname && m.gameNickname.toLowerCase() === cleanId
-      );
+      const existingMember = findMemberInList(members, {
+        nickname: cleanId,
+      });
 
       if (existingMember) {
         return NextResponse.json(
@@ -263,18 +212,30 @@ export async function POST(req: NextRequest) {
     // Login Berhasil: Reset Rate Limit
     rateLimitMap.delete(clientIp);
 
-    const member = members.find((m: any) => m.id === account.memberId);
+    // Ambil profil member terkini & auto-heal jika ada perbedaan ID
+    const { member } = await resolveMemberProfile({
+      memberId: account.memberId,
+      gameNickname: account.gameNickname,
+      email: account.email,
+      accountId: account.id,
+    });
+
+    const isMemberVerified = Boolean(member?.verified);
+    const resolvedMemberId = member ? member.id : account.memberId;
+    const resolvedNickname = member ? member.gameNickname : account.gameNickname;
+    const resolvedDivision = member ? member.division : "ALL";
+    const resolvedAvatar = member?.avatarUrl || "/assets/default_avatar.jpg";
 
     const session = {
       uid: account.id,
-      memberId: member ? member.id : account.memberId,
+      memberId: resolvedMemberId,
       role: "member",
-      displayName: member ? member.gameNickname : account.gameNickname,
-      gameNickname: member ? member.gameNickname : account.gameNickname,
-      division: member ? member.division : "ALL",
+      displayName: resolvedNickname,
+      gameNickname: resolvedNickname,
+      division: resolvedDivision,
       email: account.email || null,
-      avatarUrl: member?.avatarUrl || "/assets/default_avatar.jpg",
-      verified: Boolean(member?.verified),
+      avatarUrl: resolvedAvatar,
+      verified: isMemberVerified,
       authType: "nickname",
       authenticatedAt: new Date().toISOString(),
       expiresAt: new Date(now + 7 * 24 * 60 * 60 * 1000).toISOString(),

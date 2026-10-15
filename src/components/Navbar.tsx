@@ -22,7 +22,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [secretClicks, setSecretClicks] = useState(0);
   const clickTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -280,9 +280,18 @@ export default function Navbar() {
                       {user.role === "admin" ? "ADMIN" : "MEMBER"}: {user.gameNickname || user.displayName}
                     </span>
                   </span>
-                  <Link href="/login" className="text-brand-blue underline dark:text-brand-cyan">
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setMobileMenuOpen(false);
+                      await logout();
+                      window.location.href = "/";
+                    }}
+                    className="text-brand-blue underline dark:text-brand-cyan cursor-pointer font-bold"
+                    title="Keluar Akun dan Kembali ke Beranda"
+                  >
                     [ LOGOUT ]
-                  </Link>
+                  </button>
                 </div>
               </div>
             ) : (
