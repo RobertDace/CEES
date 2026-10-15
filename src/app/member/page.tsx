@@ -171,19 +171,83 @@ export default function MemberDashboardPage() {
     setTimeout(() => setCopiedId(false), 2500);
   };
 
+  // Kompresi foto secara cerdas di sisi browser untuk menjaga kualitas tinggi & upload super cepat
+  const compressImage = async (file: File): Promise<Blob | File> => {
+    return new Promise((resolve) => {
+      if (!file.type.startsWith("image/") || file.type.includes("svg")) {
+        return resolve(file);
+      }
+
+      const img = document.createElement("img");
+      const objectUrl = URL.createObjectURL(file);
+
+      img.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+        const maxDimension = 1080;
+        let { width, height } = img;
+
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
+          } else {
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+
+        if (!ctx) {
+          return resolve(file);
+        }
+
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob(
+          (blob) => {
+            if (blob && blob.size < file.size) {
+              resolve(blob);
+            } else {
+              resolve(file);
+            }
+          },
+          "image/jpeg",
+          0.88
+        );
+      };
+
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        resolve(file);
+      };
+
+      img.src = objectUrl;
+    });
+  };
+
   // Handle Avatar Upload
   const handleAvatarFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const rawFile = e.target.files?.[0];
+    if (!rawFile) return;
 
-    // Validasi Tipe & Ukuran (max 5MB)
-    const validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
-    if (!validTypes.includes(file.type)) {
+    // Validasi Ekstensi & MIME
+    const fileName = rawFile.name.toLowerCase();
+    const isImage =
+      rawFile.type.startsWith("image/") ||
+      [".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".jfif", ".bmp"].some((ext) =>
+        fileName.endsWith(ext)
+      );
+
+    if (!isImage) {
       setAvatarError("Format file harus berupa gambar (JPG, PNG, atau WebP).");
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      setAvatarError("Ukuran file foto maksimal 5 MB.");
+
+    if (rawFile.size > 20 * 1024 * 1024) {
+      setAvatarError("Ukuran file foto maksimal 20 MB.");
       return;
     }
 
@@ -191,12 +255,24 @@ export default function MemberDashboardPage() {
     setIsUploadingAvatar(true);
 
     try {
+      // Kompres otomatis jika foto kamera beresolusi sangat besar
+      const processedBlob = await compressImage(rawFile);
+      const uploadFile =
+        processedBlob instanceof File
+          ? processedBlob
+          : new File([processedBlob], rawFile.name.replace(/\.[^/.]+$/, ".jpg"), {
+              type: "image/jpeg",
+            });
+
       const uploadData = new FormData();
-      uploadData.append("avatar", file);
+      uploadData.append("avatar", uploadFile);
+      if (user?.memberId) uploadData.append("memberId", user.memberId);
+      if (user?.gameNickname) uploadData.append("nickname", user.gameNickname);
 
       const res = await fetch("/api/member/avatar", {
         method: "POST",
         body: uploadData,
+        credentials: "include",
       });
       const result = await res.json();
 
@@ -301,7 +377,7 @@ export default function MemberDashboardPage() {
           type="file"
           ref={fileInputRef}
           onChange={handleAvatarFileSelect}
-          accept="image/png,image/jpeg,image/webp,image/gif"
+          accept="image/*"
           className="hidden"
         />
 

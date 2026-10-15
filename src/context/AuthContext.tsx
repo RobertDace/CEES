@@ -76,8 +76,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserSession | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Helper untuk sinkronisasi cookie HTTP-Only server admin
-  const syncAdminServerCookie = async (sessionData: UserSession) => {
+  // Helper untuk sinkronisasi cookie HTTP-Only server (Admin & Member)
+  const syncServerCookie = async (sessionData: UserSession) => {
     try {
       await fetch("/api/auth/session", {
         method: "POST",
@@ -114,9 +114,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             authenticatedAt: parsed.authenticatedAt || new Date().toISOString(),
           };
           setUser(activeSession);
-          if (activeSession.role === "admin") {
-            syncAdminServerCookie(activeSession);
-          }
+          syncServerCookie(activeSession);
           setLoading(false);
           return;
         } else {
@@ -142,7 +140,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             authenticatedAt: new Date().toISOString(),
           };
           setUser(session);
-          syncAdminServerCookie(session);
+          syncServerCookie(session);
         } else {
           const stored = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_ADMIN_KEY);
           if (!stored) {
@@ -180,7 +178,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         authenticatedAt: new Date().toISOString(),
       };
       setUser(session);
-      await syncAdminServerCookie(session);
+      await syncServerCookie(session);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
       return { success: true };
     } catch (err: any) {
@@ -217,7 +215,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         authenticatedAt: new Date().toISOString(),
       };
       setUser(session);
-      await syncAdminServerCookie(session);
+      await syncServerCookie(session);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
       return { success: true };
     } catch (err: any) {
@@ -387,6 +385,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Direct Setter for active session (e.g. from /join instant registration)
   const setActiveSession = (sessionData: UserSession) => {
     setUser(sessionData);
+    syncServerCookie(sessionData);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(sessionData));
     } catch (err) {
