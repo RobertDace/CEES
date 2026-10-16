@@ -467,6 +467,15 @@
   to { transform: translateX(-50%); }
 }
 
+@keyframes toastTimer {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+.animate-toast-timer {
+  animation-name: toastTimer;
+}
+
 /* ------------------------------------------------------------------
    Accessibility
 ------------------------------------------------------------------- */

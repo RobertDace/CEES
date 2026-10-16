@@ -1,0 +1,333 @@
+{
+  "liveTournament": {
+    "id": "cees-fast-scrim-s1",
+    "title": "CEES FAST SCRIM SEASON 1",
+    "subtitle": "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES",
+    "status": "LIVE",
+    "isVisible": false,
+    "totalMatches": 5,
+    "currentMatch": 2,
+    "currentMap": "Miramar",
+    "scoringSystem": "PMWC 10-Point Official",
+    "prizePool": "Rp 1.500.000 + Trophy",
+    "date": "16 Oktober 2026",
+    "location": "Samarinda Gaming Hub & Online Room",
+    "updatedAt": "2026-10-16T02:14:50.665Z",
+    "teams": [
+      {
+        "id": "t1",
+        "code": "CEES",
+        "name": "CEES GANK PRIME"
+      },
+      {
+        "id": "t2",
+        "code": "PAW",
+        "name": "PAWPAW SAMARINDA"
+      },
+      {
+        "id": "t3",
+        "code": "BOR",
+        "name": "BORNEO PREDATORS"
+      },
+      {
+        "id": "t4",
+        "code": "MHK",
+        "name": "MAHAKAM WOLVES"
+      },
+      {
+        "id": "t5",
+        "code": "EVO",
+        "name": "EVO SAMARINDA"
+      },
+      {
+        "id": "t6",
+        "code": "SMD",
+        "name": "SAMARINDA ROAR"
+      },
+      {
+        "id": "t7",
+        "code": "KTI",
+        "name": "KUTAI WARRIORS"
+      },
+      {
+        "id": "t8",
+        "code": "BPP",
+        "name": "BALIKPAPAN ELITE"
+      },
+      {
+        "id": "t9",
+        "code": "TGR",
+        "name": "TENGGARONG FORCE"
+      },
+      {
+        "id": "t10",
+        "code": "SGT",
+        "name": "SANGATTA VIPERS"
+      },
+      {
+        "id": "t11",
+        "code": "BER",
+        "name": "BERAU PHANTOM"
+      },
+      {
+        "id": "t12",
+        "code": "NVA",
+        "name": "NOVA REBELS"
+      },
+      {
+        "id": "t13",
+        "code": "BTR",
+        "name": "BONTANG TITANS"
+      },
+      {
+        "id": "t14",
+        "code": "APX",
+        "name": "APEX HUNTERS"
+      },
+      {
+        "id": "t15",
+        "code": "DKS",
+        "name": "DARK KNIGHTS"
+      },
+      {
+        "id": "team-1792116050320",
+        "name": "RRQ ACADEMY",
+        "code": "RRQ"
+      }
+    ],
+    "matches": [
+      {
+        "matchId": "m1",
+        "matchNumber": 1,
+        "mapName": "Erangel",
+        "isCompleted": true,
+        "teamResults": [
+          {
+            "teamId": "t1",
+            "rank": 1,
+            "kills": 9
+          },
+          {
+            "teamId": "t2",
+            "rank": 2,
+            "kills": 5
+          },
+          {
+            "teamId": "t3",
+            "rank": 3,
+            "kills": 6
+          },
+          {
+            "teamId": "t4",
+            "rank": 4,
+            "kills": 4
+          },
+          {
+            "teamId": "t5",
+            "rank": 5,
+            "kills": 2
+          },
+          {
+            "teamId": "t6",
+            "rank": 6,
+            "kills": 3
+          },
+          {
+            "teamId": "t7",
+            "rank": 7,
+            "kills": 1
+          },
+          {
+            "teamId": "t8",
+            "rank": 8,
+            "kills": 2
+          },
+          {
+            "teamId": "t9",
+            "rank": 9,
+            "kills": 1
+          },
+          {
+            "teamId": "t10",
+            "rank": 10,
+            "kills": 0
+          },
+          {
+            "teamId": "t11",
+            "rank": 11,
+            "kills": 2
+          },
+          {
+            "teamId": "t12",
+            "rank": 12,
+            "kills": 1
+          },
+          {
+            "teamId": "t13",
+            "rank": 13,
+            "kills": 0
+          },
+          {
+            "teamId": "t14",
+            "rank": 14,
+            "kills": 1
+          },
+          {
+            "teamId": "t15",
+            "rank": 15,
+            "kills": 0
+          },
+          {
+            "teamId": "team-1792116050320",
+            "rank": 16,
+            "kills": 0
+          }
+        ]
+      },
+      {
+        "matchId": "m2",
+        "matchNumber": 2,
+        "mapName": "Miramar",
+        "isCompleted": true,
+        "teamResults": [
+          {
+            "teamId": "t1",
+            "rank": 2,
+            "kills": 7
+          },
+          {
+            "teamId": "t2",
+            "rank": 3,
+            "kills": 4
+          },
+          {
+            "teamId": "t3",
+            "rank": 5,
+            "kills": 3
+          },
+          {
+            "teamId": "t4",
+            "rank": 1,
+            "kills": 11
+          },
+          {
+            "teamId": "t5",
+            "rank": 6,
+            "kills": 2
+          },
+          {
+            "teamId": "t6",
+            "rank": 8,
+            "kills": 1
+          },
+          {
+            "teamId": "t7",
+            "rank": 4,
+            "kills": 5
+          },
+          {
+            "teamId": "t8",
+            "rank": 7,
+            "kills": 3
+          },
+          {
+            "teamId": "t9",
+            "rank": 10,
+            "kills": 1
+          },
+          {
+            "teamId": "t10",
+            "rank": 9,
+            "kills": 2
+          },
+          {
+            "teamId": "t11",
+            "rank": 12,
+            "kills": 1
+          },
+          {
+            "teamId": "t12",
+            "rank": 11,
+            "kills": 0
+          },
+          {
+            "teamId": "t13",
+            "rank": 14,
+            "kills": 1
+          },
+          {
+            "teamId": "t14",
+            "rank": 13,
+            "kills": 0
+          },
+          {
+            "teamId": "t15",
+            "rank": 15,
+            "kills": 0
+          },
+          {
+            "teamId": "team-1792116050320",
+            "rank": 16,
+            "kills": 0
+          }
+        ]
+      },
+      {
+        "matchId": "m3",
+        "matchNumber": 3,
+        "mapName": "Sanhok",
+        "time": "20:30 WITA",
+        "isCompleted": false,
+        "teamResults": []
+      }
+    ]
+  },
+  "archivedTournaments": [
+    {
+      "id": "arch-offline-s1-robinson",
+      "archivedAt": "2024-12-10T22:00:00.000Z",
+      "title": "CEES AREA OFFLINE TOURNAMENT S1",
+      "date": "Desember 2024",
+      "champion": {
+        "teamId": "t1",
+        "teamName": "CEES GANK PRIME",
+        "teamCode": "CEES",
+        "matchesPlayed": 5,
+        "wwcd": 2,
+        "rankPoints": 28,
+        "elimPoints": 34,
+        "totalPoints": 62,
+        "lastMatchPoints": 14,
+        "lastMatchRank": 1,
+        "rank": 1
+      },
+      "runnerUp": {
+        "teamId": "t2",
+        "teamName": "PAWPAW SAMARINDA",
+        "teamCode": "PAW",
+        "matchesPlayed": 5,
+        "wwcd": 1,
+        "rankPoints": 21,
+        "elimPoints": 28,
+        "totalPoints": 49,
+        "lastMatchPoints": 9,
+        "lastMatchRank": 2,
+        "rank": 2
+      },
+      "thirdPlace": {
+        "teamId": "t3",
+        "teamName": "BORNEO PREDATORS",
+        "teamCode": "BOR",
+        "matchesPlayed": 5,
+        "wwcd": 1,
+        "rankPoints": 18,
+        "elimPoints": 25,
+        "totalPoints": 43,
+        "lastMatchPoints": 6,
+        "lastMatchRank": 4,
+        "rank": 3
+      },
+      "standings": []
+    }
+  ]
+}

@@ -15,6 +15,7 @@ import {
   Crosshair,
   Download,
 } from "lucide-react";
+import { ceesAlert } from "@/lib/ceesAlert";
 
 interface Member {
   id: string;
@@ -38,7 +39,10 @@ export default function LiveMemberRoster() {
 
   const exportToCSV = () => {
     if (members.length === 0) {
-      alert("Belum ada data anggota untuk diekspor ke Excel.");
+      ceesAlert.warning({
+        title: "DATA KOSONG",
+        message: "Belum ada data anggota untuk diekspor ke file Excel / CSV.",
+      });
       return;
     }
     const headers = [
@@ -75,6 +79,12 @@ export default function LiveMemberRoster() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    ceesAlert.toast({
+      type: "success",
+      title: "EXPORT BERHASIL",
+      message: `${members.length} data anggota diekspor ke format CSV / Excel.`,
+      duration: 3000,
+    });
   };
 
   const fetchMembers = async (silent = false) => {

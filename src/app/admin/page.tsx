@@ -31,10 +31,14 @@ import {
   Clock,
   Search,
   Check,
+  Swords,
+  Trophy,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import TournamentAdminPanel from "@/components/admin/TournamentAdminPanel";
+import { ceesAlert } from "@/lib/ceesAlert";
 
-type TabType = "home" | "quotes" | "staff" | "activities" | "members" | "market";
+type TabType = "home" | "quotes" | "staff" | "activities" | "members" | "market" | "tournament";
 
 export default function AdminToolsPage() {
   const router = useRouter();
@@ -199,6 +203,14 @@ export default function AdminToolsPage() {
     setSaving(true);
     setSaveStatus(null);
     setErrorStatus(null);
+
+    ceesAlert.loading({
+      title: "MENYIMPAN PERUBAHAN SITUS",
+      message: "Mengirimkan seluruh konten web, foto, dan data turnamen ke server HQ...",
+      showProgress: true,
+      progress: 35,
+    });
+
     try {
       const payload = {
         community,
@@ -210,6 +222,12 @@ export default function AdminToolsPage() {
         operatorName: user?.displayName || "Admin Operator",
       };
 
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("cees_admin_save_tournament"));
+      }
+
+      ceesAlert.updateProgress(70, "Sinkronisasi database server & file storage...");
+
       const res = await fetch("/api/admin/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -218,6 +236,7 @@ export default function AdminToolsPage() {
 
       const json = await res.json();
       if (res.ok && json.success) {
+        ceesAlert.updateProgress(100, "Menyelesaikan proses simpan...");
         if (json.data) {
           setAuditMeta({
             lastUpdated: json.data.lastUpdated,
@@ -225,13 +244,20 @@ export default function AdminToolsPage() {
             auditLog: json.data.auditLog || [],
           });
         }
-        setSaveStatus("Semua perubahan konten, foto, dan quotes berhasil disimpan secara permanen!");
+        setSaveStatus("Semua perubahan konten, foto, dan turnamen berhasil disimpan secara permanen!");
+        ceesAlert.success(
+          "PERUBAHAN BERHASIL DISIMPAN",
+          "Semua konten situs web, susunan pengurus, agenda, produk market, dan turnamen telah berhasil disimpan permanen ke server HQ!"
+        );
         setTimeout(() => setSaveStatus(null), 5000);
       } else {
-        setErrorStatus(json.error || "Gagal menyimpan perubahan ke server.");
+        const errMsg = json.error || "Gagal menyimpan perubahan ke server.";
+        setErrorStatus(errMsg);
+        ceesAlert.error("GAGAL MENYIMPAN", errMsg);
       }
     } catch (err) {
       setErrorStatus("Terjadi kegagalan jaringan saat menyimpan data.");
+      ceesAlert.error("KESALAHAN JARINGAN", "Terjadi kegagalan jaringan saat menyimpan data ke server.");
     } finally {
       setSaving(false);
     }
@@ -239,24 +265,60 @@ export default function AdminToolsPage() {
 
   // Upload file helper
   const uploadImage = async (file: File, category: string): Promise<string | null> => {
+    // Validasi file
+    const isImage = file.type.startsWith("image/") || /\.(jpe?g|png|webp|gif|svg|avif)$/i.test(file.name);
+    if (!isImage) {
+      ceesAlert.warning({
+        title: "FORMAT TIDAK VALID",
+        message: `File "${file.name}" bukan format gambar yang didukung (JPG, PNG, WebP, GIF, SVG).`,
+      });
+      return null;
+    }
+
+    if (file.size > 15 * 1024 * 1024) {
+      ceesAlert.warning({
+        title: "FILE TERLALU BESAR",
+        message: `Ukuran file "${file.name}" melebihi batas upload (maks. 15 MB).`,
+      });
+      return null;
+    }
+
+    const fileSizeFormatted = file.size > 1024 * 1024 
+      ? `${(file.size / (1024 * 1024)).toFixed(1)} MB` 
+      : `${Math.round(file.size / 1024)} KB`;
+
+    ceesAlert.loading({
+      title: "MENGUNGGAH FOTO",
+      message: `Mengompres & mentransfer "${file.name}" (${fileSizeFormatted}) ke storage server...`,
+      showProgress: true,
+      progress: 35,
+    });
+
     const formData = new FormData();
     formData.append("file", file);
     formData.append("category", category);
 
     try {
+      ceesAlert.updateProgress(75, "Menyimpan aset gambar ke server storage...");
       const res = await fetch("/api/admin/upload", {
         method: "POST",
         body: formData,
       });
       const data = await res.json();
       if (res.ok && data.success) {
+        ceesAlert.close();
+        ceesAlert.toast({
+          type: "success",
+          title: "FOTO BERHASIL DIUNGGAH",
+          message: `File "${file.name}" berhasil disimpan ke server.`,
+        });
         return data.url;
       } else {
-        alert(data.error || "Gagal mengunggah foto.");
+        ceesAlert.error("GAGAL UNGGAH FOTO", data.error || "Gagal mengunggah foto.");
         return null;
       }
     } catch (err) {
-      alert("Terjadi kesalahan jaringan saat mengunggah foto.");
+      ceesAlert.error("KESALAHAN JARINGAN", "Terjadi kesalahan jaringan saat mengunggah foto.");
       return null;
     }
   };
@@ -276,9 +338,23 @@ export default function AdminToolsPage() {
     setStaffList([...staffList, newStaff]);
   };
 
-  const handleRemoveStaff = (index: number) => {
-    if (confirm("Hapus pengurus ini dari daftar?")) {
+  const handleRemoveStaff = async (index: number) => {
+    const staffName = staffList[index]?.name || "pengurus";
+    if (
+      await ceesAlert.confirm({
+        title: "HAPUS PENGURUS",
+        message: `Yakin ingin menghapus "${staffName}" dari susunan pengurus CEES AREA?`,
+        danger: true,
+        confirmText: "YA, HAPUS",
+        cancelText: "BATAL",
+      })
+    ) {
       setStaffList(staffList.filter((_, i) => i !== index));
+      ceesAlert.toast({
+        type: "info",
+        title: "PENGURUS DIHAPUS",
+        message: `Data "${staffName}" telah dihapus dari daftar.`,
+      });
     }
   };
 
@@ -318,9 +394,23 @@ export default function AdminToolsPage() {
     setActivitiesList([newAct, ...activitiesList]);
   };
 
-  const handleRemoveActivity = (index: number) => {
-    if (confirm("Hapus agenda kegiatan ini?")) {
+  const handleRemoveActivity = async (index: number) => {
+    const actTitle = activitiesList[index]?.title || "kegiatan";
+    if (
+      await ceesAlert.confirm({
+        title: "HAPUS AGENDA KEGIATAN",
+        message: `Yakin ingin menghapus agenda "${actTitle}"?`,
+        danger: true,
+        confirmText: "YA, HAPUS",
+        cancelText: "BATAL",
+      })
+    ) {
       setActivitiesList(activitiesList.filter((_, i) => i !== index));
+      ceesAlert.toast({
+        type: "info",
+        title: "AGENDA DIHAPUS",
+        message: `Agenda "${actTitle}" telah dihapus.`,
+      });
     }
   };
 
@@ -385,9 +475,24 @@ export default function AdminToolsPage() {
     setQuotes({ ...quotes, communityQuotes: updated });
   };
 
-  const handleRemoveCommunityQuote = (index: number) => {
-    const updated = (quotes.communityQuotes || []).filter((_: any, i: number) => i !== index);
-    setQuotes({ ...quotes, communityQuotes: updated });
+  const handleRemoveCommunityQuote = async (index: number) => {
+    if (
+      await ceesAlert.confirm({
+        title: "HAPUS KUTIPAN MEMBER",
+        message: "Yakin ingin menghapus kutipan inspiratif ini dari tampilan beranda?",
+        danger: true,
+        confirmText: "YA, HAPUS",
+        cancelText: "BATAL",
+      })
+    ) {
+      const updated = (quotes.communityQuotes || []).filter((_: any, i: number) => i !== index);
+      setQuotes({ ...quotes, communityQuotes: updated });
+      ceesAlert.toast({
+        type: "info",
+        title: "KUTIPAN DIHAPUS",
+        message: "Kutipan telah dihapus dari rotasi.",
+      });
+    }
   };
 
   // Market helpers
@@ -411,10 +516,24 @@ export default function AdminToolsPage() {
     setMarket({ ...market, features: updated });
   };
 
-  const handleRemoveMarketFeature = (index: number) => {
-    if (confirm("Hapus item teaser produk ini?")) {
+  const handleRemoveMarketFeature = async (index: number) => {
+    const prodTitle = market.features?.[index]?.title || "produk";
+    if (
+      await ceesAlert.confirm({
+        title: "HAPUS TEASER PRODUK",
+        message: `Yakin ingin menghapus item "${prodTitle}" dari katalog teaser merchandise?`,
+        danger: true,
+        confirmText: "YA, HAPUS",
+        cancelText: "BATAL",
+      })
+    ) {
       const updated = (market.features || []).filter((_: any, i: number) => i !== index);
       setMarket({ ...market, features: updated });
+      ceesAlert.toast({
+        type: "info",
+        title: "PRODUK DIHAPUS",
+        message: `Item "${prodTitle}" telah dihapus dari teaser.`,
+      });
     }
   };
 
@@ -449,16 +568,33 @@ export default function AdminToolsPage() {
               : m
           )
         );
+        ceesAlert.toast({
+          type: "success",
+          title: "STATUS VERIFIKASI BERUBAH",
+          message: !currentStatus
+            ? "Member berhasil diverifikasi ke Official Roster!"
+            : "Status verifikasi member telah dicabut.",
+        });
       } else {
-        alert(data.error || "Gagal mengubah status verifikasi member.");
+        ceesAlert.error("GAGAL VERIFIKASI", data.error || "Gagal mengubah status verifikasi member.");
       }
     } catch (e) {
-      alert("Terjadi kesalahan jaringan saat verifikasi member.");
+      ceesAlert.error("KESALAHAN JARINGAN", "Terjadi kesalahan jaringan saat verifikasi member.");
     }
   };
 
   const handleDeleteMember = async (id: string, nickname: string) => {
-    if (!confirm(`Yakin ingin menghapus data member "${nickname}"? Akun ini tidak akan muncul lagi di roster.`)) return;
+    if (
+      !(await ceesAlert.confirm({
+        title: "HAPUS DATA MEMBER",
+        message: `Yakin ingin menghapus data member "${nickname}"? Akun dan kartu ID digital ini tidak akan muncul lagi di roster resmi komunitas.`,
+        danger: true,
+        confirmText: "YA, HAPUS PERMANEN",
+        cancelText: "BATALKAN",
+      }))
+    )
+      return;
+
     try {
       const res = await fetch(`/api/join?id=${id}&pin=cees2026`, {
         method: "DELETE",
@@ -466,11 +602,16 @@ export default function AdminToolsPage() {
       const data = await res.json();
       if (res.ok && data.success) {
         setLiveMembers((prev) => prev.filter((m) => m.id !== id));
+        ceesAlert.toast({
+          type: "success",
+          title: "MEMBER DIHAPUS",
+          message: `Data member "${nickname}" berhasil dihapus secara permanen.`,
+        });
       } else {
-        alert(data.error || "Gagal menghapus data member.");
+        ceesAlert.error("GAGAL HAPUS MEMBER", data.error || "Gagal menghapus data member.");
       }
     } catch (e) {
-      alert("Terjadi gangguan jaringan saat menghapus member.");
+      ceesAlert.error("KESALAHAN JARINGAN", "Terjadi gangguan jaringan saat menghapus member.");
     }
   };
 
@@ -628,6 +769,11 @@ export default function AdminToolsPage() {
                 id: "members",
                 label: `06. Verifikasi Member (${pendingWaCount > 0 ? `${pendingWaCount} Pending WA` : `${liveMembers.length} Total`})`,
                 icon: ShieldCheck,
+              },
+              {
+                id: "tournament",
+                label: "07. Turnamen Live & PUBGM",
+                icon: Swords,
               },
             ];
           })().map((t) => {
@@ -2048,6 +2194,11 @@ export default function AdminToolsPage() {
             </div>
           );
         })()}
+
+        {/* ============================================================== */}
+        {/* TAB 7: TURNAMEN LIVE & PUBGM CALCULATOR */}
+        {/* ============================================================== */}
+        {activeTab === "tournament" && <TournamentAdminPanel />}
       </div>
 
       {/* 9. Floating Save Status Bar */}

@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import DivisionCard from "@/components/DivisionCard";
 import FounderFeature from "@/components/FounderFeature";
 import LiveMemberRoster from "@/components/LiveMemberRoster";
+import LiveTournamentSection from "@/components/tournament/LiveTournamentSection";
 import { DIVISIONS, ACTIVITIES, COMMUNITY_INFO, HOME_SECTIONS } from "@/data/community";
 import { ArrowUpRight, Flame, Trophy, MapPin, Calendar, Zap } from "lucide-react";
 
@@ -13,6 +14,9 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* 1. Hero Section */}
       <HeroSection />
+
+      {/* 1.5. Live Event & Tournament Standings (Show / Hide controlled by Admin) */}
+      <LiveTournamentSection />
 
       {/* 2. Core Motto & Origin Callout */}
       <section className="border-b-2 border-slate-900 bg-white py-12 transition-colors duration-200 dark:border-dark-border dark:bg-dark-surface">

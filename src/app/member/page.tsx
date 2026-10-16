@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { COMMUNITY_INFO } from "@/data/community";
+import { ceesAlert } from "@/lib/ceesAlert";
 
 export default function MemberDashboardPage() {
   const router = useRouter();
@@ -151,6 +152,11 @@ export default function MemberDashboardPage() {
     e.preventDefault();
     setIsSaving(true);
     setSaveStatus(null);
+    ceesAlert.loading({
+      title: "MENYIMPAN PROFIL",
+      message: "Menyinkronkan data profil member ke server...",
+      progress: 40,
+    });
 
     try {
       const res = await fetch("/api/member/profile", {
@@ -164,12 +170,29 @@ export default function MemberDashboardPage() {
         setProfile(data.profile);
         setIsEditing(false);
         setSaveStatus("Profil member berhasil diperbarui!");
-        setTimeout(() => setSaveStatus(null), 4000);
+        ceesAlert.updateProgress(100, "Data tersimpan!");
+        setTimeout(() => {
+          ceesAlert.close();
+          ceesAlert.toast({
+            type: "success",
+            title: "PROFIL TERSIMPAN",
+            message: "Informasi kartu digital berhasil diperbarui!",
+            duration: 3500,
+          });
+        }, 500);
       } else {
-        alert(data.error || "Gagal memperbarui profil.");
+        ceesAlert.close();
+        ceesAlert.error({
+          title: "GAGAL SIMPAN",
+          message: data.error || "Gagal memperbarui profil member.",
+        });
       }
     } catch (err) {
-      alert("Terjadi gangguan jaringan saat menyimpan profil.");
+      ceesAlert.close();
+      ceesAlert.error({
+        title: "KENDALA JARINGAN",
+        message: "Terjadi gangguan jaringan saat menyimpan profil.",
+      });
     } finally {
       setIsSaving(false);
     }
@@ -251,16 +274,29 @@ export default function MemberDashboardPage() {
 
     if (!isImage) {
       setAvatarError("Format file harus berupa gambar (JPG, PNG, atau WebP).");
+      ceesAlert.warning({
+        title: "FORMAT TIDAK VALID",
+        message: "Format file harus berupa gambar (JPG, PNG, atau WebP).",
+      });
       return;
     }
 
     if (rawFile.size > 20 * 1024 * 1024) {
       setAvatarError("Ukuran file foto maksimal 20 MB.");
+      ceesAlert.warning({
+        title: "FILE TERLALU BESAR",
+        message: "Ukuran file foto maksimal 20 MB. Harap pilih foto lain.",
+      });
       return;
     }
 
     setAvatarError(null);
     setIsUploadingAvatar(true);
+    ceesAlert.loading({
+      title: "MEMPROSES FOTO PROFIL",
+      message: "Mengompresi dan menyiapkan foto untuk kartu digital...",
+      progress: 25,
+    });
 
     try {
       // Kompres otomatis: resize ke square 360x360 & generate compact Base64 Data URL (~20 KB)
@@ -268,6 +304,8 @@ export default function MemberDashboardPage() {
       const uploadFile = new File([processedBlob], rawFile.name.replace(/\.[^/.]+$/, ".jpg"), {
         type: "image/jpeg",
       });
+
+      ceesAlert.updateProgress(60, "Mengunggah avatar ke server cloud...");
 
       // Simpan langsung ke cache browser lokal agar kartu segera terupdate & tidak hilang
       const cacheKey = `cees_avatar_${profile?.id || user?.memberId || "current"}`;
@@ -332,9 +370,24 @@ export default function MemberDashboardPage() {
       }
 
       setSaveStatus("Foto profil kartu member berhasil diperbarui!");
+      ceesAlert.updateProgress(100, "Avatar berhasil dipasang!");
+      setTimeout(() => {
+        ceesAlert.close();
+        ceesAlert.toast({
+          type: "success",
+          title: "AVATAR DIPERBARUI",
+          message: "Foto profil kartu digital kamu telah tersimpan!",
+          duration: 3500,
+        });
+      }, 500);
       setTimeout(() => setSaveStatus(null), 4000);
     } catch (err) {
+      ceesAlert.close();
       setAvatarError("Terjadi gangguan saat memproses foto. Silakan coba file lain.");
+      ceesAlert.error({
+        title: "UPLOAD GAGAL",
+        message: "Terjadi gangguan saat memproses foto. Silakan coba file lain.",
+      });
     } finally {
       setIsUploadingAvatar(false);
       if (fileInputRef.current) {

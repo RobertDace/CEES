@@ -6,7 +6,14 @@
     "taglineMeaning": "Tetap Tak Terkalahkan",
     "establishedDate": "4 Oktober 2024",
     "headquarters": "Samarinda, Kalimantan Timur",
-    "coverage": ["Samarinda", "Kutai Kartanegara", "Kutai Timur", "Sangatta", "Berau", "Pulau Jawa"],
+    "coverage": [
+      "Samarinda",
+      "Kutai Kartanegara",
+      "Kutai Timur",
+      "Sangatta",
+      "Berau",
+      "Pulau Jawa"
+    ],
     "totalMembers": 90,
     "sponsor": {
       "name": "PAWPAW Samarinda",
@@ -194,5 +201,80 @@
         "badge": "Integrasi Sistem"
       }
     ]
-  }
+  },
+  "operatorName": "2OB1T",
+  "lastUpdated": "2026-10-16T02:14:54.327Z",
+  "lastUpdatedBy": "2OB1T",
+  "auditLog": [
+    {
+      "id": "audit_1792116894327",
+      "operator": "2OB1T",
+      "action": "UPDATE_CMS_CONTENT",
+      "fields": [
+        "community",
+        "home",
+        "quotes",
+        "staff",
+        "activities",
+        "market"
+      ],
+      "timestamp": "2026-10-16T02:14:54.327Z"
+    },
+    {
+      "id": "audit_1792116877654",
+      "operator": "2OB1T",
+      "action": "UPDATE_CMS_CONTENT",
+      "fields": [
+        "community",
+        "home",
+        "quotes",
+        "staff",
+        "activities",
+        "market"
+      ],
+      "timestamp": "2026-10-16T02:14:37.654Z"
+    },
+    {
+      "id": "audit_1792116108985",
+      "operator": "2OB1T",
+      "action": "UPDATE_CMS_CONTENT",
+      "fields": [
+        "community",
+        "home",
+        "quotes",
+        "staff",
+        "activities",
+        "market"
+      ],
+      "timestamp": "2026-10-16T02:01:48.985Z"
+    },
+    {
+      "id": "audit_1792116088663",
+      "operator": "2OB1T",
+      "action": "UPDATE_CMS_CONTENT",
+      "fields": [
+        "community",
+        "home",
+        "quotes",
+        "staff",
+        "activities",
+        "market"
+      ],
+      "timestamp": "2026-10-16T02:01:28.663Z"
+    },
+    {
+      "id": "audit_1792114953251",
+      "operator": "2OB1T",
+      "action": "UPDATE_CMS_CONTENT",
+      "fields": [
+        "community",
+        "home",
+        "quotes",
+        "staff",
+        "activities",
+        "market"
+      ],
+      "timestamp": "2026-10-16T01:42:33.251Z"
+    }
+  ]
 }

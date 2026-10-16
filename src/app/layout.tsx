@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthProvider } from "@/context/AuthContext";
+import CeesAlertContainer from "@/components/common/CeesAlertContainer";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -98,6 +99,7 @@ export default function RootLayout({
               </main>
               <Footer />
             </div>
+            <CeesAlertContainer />
           </AuthProvider>
         </ThemeProvider>
       </body>
