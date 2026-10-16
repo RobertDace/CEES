@@ -137,10 +137,10 @@ export default function LiveTournamentSection() {
             </div>
 
             {/* Quick Action Tools */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full sm:w-auto">
               <button
                 onClick={() => setIsShareModalOpen(true)}
-                className="brutal-btn flex items-center space-x-2 px-4 py-2.5 text-xs font-bold rounded-none"
+                className="brutal-btn col-span-2 sm:col-span-1 flex items-center justify-center space-x-2 px-3 sm:px-4 py-2.5 text-xs font-bold rounded-none"
                 title="Generate poster klasemen untuk Instagram Story / Feed / TikTok"
               >
                 <Share2 className="h-4 w-4" />
@@ -149,7 +149,7 @@ export default function LiveTournamentSection() {
 
               <button
                 onClick={handleCopyWA}
-                className="border-2 border-slate-900 bg-emerald-500 px-4 py-2.5 font-mono text-xs font-bold text-slate-950 hover:bg-emerald-400 shadow-[3px_3px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center space-x-1.5 rounded-none dark:border-white"
+                className="border-2 border-slate-900 bg-emerald-500 px-3 sm:px-4 py-2.5 font-mono text-xs font-bold text-slate-950 hover:bg-emerald-400 shadow-[3px_3px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center justify-center space-x-1.5 rounded-none dark:border-white"
                 title="Salin ringkasan klasemen ke format pesan WhatsApp"
               >
                 {copiedWA ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
@@ -158,11 +158,11 @@ export default function LiveTournamentSection() {
 
               <button
                 onClick={handleExcelExport}
-                className="border-2 border-slate-900 bg-slate-100 px-3 py-2.5 font-mono text-xs font-bold text-slate-800 hover:bg-slate-200 shadow-[3px_3px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center space-x-1.5 rounded-none dark:border-white dark:bg-dark-base dark:text-white"
+                className="border-2 border-slate-900 bg-slate-100 px-3 py-2.5 font-mono text-xs font-bold text-slate-800 hover:bg-slate-200 shadow-[3px_3px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center justify-center space-x-1.5 rounded-none dark:border-white dark:bg-dark-base dark:text-white"
                 title="Unduh rekap turnamen (.xlsx)"
               >
                 <Download className="h-4 w-4" />
-                <span className="hidden sm:inline">EXCEL</span>
+                <span>EXCEL</span>
               </button>
             </div>
           </div>
@@ -219,11 +219,11 @@ export default function LiveTournamentSection() {
           </div>
         </div>
 
-        {/* View Switcher Tabs (Overall vs Per-Match) */}
-        <div className="mt-6 flex flex-wrap items-center gap-2">
+        {/* View Switcher Tabs (Overall vs Per-Match) - Swipeable on Mobile */}
+        <div className="mt-6 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1.5 touch-pan-x">
           <button
             onClick={() => setActiveTab("overall")}
-            className={`border-2 border-slate-900 px-4 py-2 font-mono text-xs font-black uppercase transition-all rounded-none dark:border-white ${
+            className={`shrink-0 whitespace-nowrap border-2 border-slate-900 px-4 py-2 font-mono text-xs font-black uppercase transition-all rounded-none dark:border-white ${
               activeTab === "overall"
                 ? "bg-slate-900 text-white shadow-[4px_4px_0px_0px_#0030FF] dark:bg-white dark:text-slate-950"
                 : "bg-white text-slate-800 hover:bg-slate-100 dark:bg-dark-surface dark:text-steel-300"
@@ -236,7 +236,7 @@ export default function LiveTournamentSection() {
             <button
               key={m.matchId}
               onClick={() => setActiveTab(m.matchNumber)}
-              className={`border-2 border-slate-900 px-3.5 py-2 font-mono text-xs font-bold uppercase transition-all rounded-none dark:border-white ${
+              className={`shrink-0 whitespace-nowrap border-2 border-slate-900 px-3.5 py-2 font-mono text-xs font-bold uppercase transition-all rounded-none dark:border-white ${
                 activeTab === m.matchNumber
                   ? "bg-brand-blue text-white shadow-[4px_4px_0px_0px_#000] dark:bg-brand-cyan dark:text-slate-950"
                   : "bg-white text-slate-700 hover:bg-slate-100 dark:bg-dark-surface dark:text-steel-300"
@@ -254,13 +254,13 @@ export default function LiveTournamentSection() {
             <table className="w-full text-left font-mono text-xs border-collapse">
               <thead>
                 <tr className="border-b-2 border-slate-900 bg-slate-900 text-white dark:border-white dark:bg-dark-void text-[11px] uppercase tracking-wider">
-                  <th className="py-3 px-3 sm:px-4 text-center w-12 sm:w-16"># POS</th>
-                  <th className="py-3 px-3 sm:px-4">TIM / CLAN</th>
-                  <th className="py-3 px-2 sm:px-3 text-center">MATCH</th>
-                  <th className="py-3 px-2 sm:px-3 text-center">WWCD</th>
-                  <th className="py-3 px-2 sm:px-3 text-right">RANK PTS</th>
-                  <th className="py-3 px-2 sm:px-3 text-right">ELIMS</th>
-                  <th className="py-3 px-3 sm:px-4 text-right bg-brand-blue text-white font-black text-sm">
+                  <th className="py-3 px-2 sm:px-4 text-center w-12 sm:w-16 sticky left-0 z-20 bg-slate-900 dark:bg-dark-void min-w-[48px]"># POS</th>
+                  <th className="py-3 px-3 sm:px-4 sticky left-[48px] sm:left-16 z-20 bg-slate-900 dark:bg-dark-void min-w-[150px] sm:min-w-[180px] shadow-[2px_0px_0px_0px_#000] dark:shadow-[2px_0px_0px_0px_#fff]">TIM / CLAN</th>
+                  <th className="py-3 px-2 sm:px-3 text-center min-w-[65px]">MATCH</th>
+                  <th className="py-3 px-2 sm:px-3 text-center min-w-[65px]">WWCD</th>
+                  <th className="py-3 px-2 sm:px-3 text-right min-w-[80px]">RANK PTS</th>
+                  <th className="py-3 px-2 sm:px-3 text-right min-w-[70px]">ELIMS</th>
+                  <th className="py-3 px-3 sm:px-4 text-right bg-brand-blue text-white font-black text-sm min-w-[90px]">
                     TOTAL PTS
                   </th>
                 </tr>
@@ -273,16 +273,16 @@ export default function LiveTournamentSection() {
                   const isSafeZone = rank > 3 && rank <= 8;
 
                   let rankBg = "bg-white dark:bg-dark-surface";
-                  if (isTop1) rankBg = "bg-amber-100/60 dark:bg-amber-950/30";
-                  else if (isTop3) rankBg = "bg-blue-50/70 dark:bg-blue-950/20";
+                  if (isTop1) rankBg = "bg-amber-100/90 dark:bg-amber-950/70";
+                  else if (isTop3) rankBg = "bg-blue-50/90 dark:bg-blue-950/60";
 
                   return (
                     <tr
                       key={team.teamId}
                       className={`hover:bg-slate-100 dark:hover:bg-dark-void transition-colors ${rankBg}`}
                     >
-                      {/* POS */}
-                      <td className="py-3 px-3 sm:px-4 text-center">
+                      {/* POS (Sticky Left) */}
+                      <td className={`py-3 px-2 sm:px-4 text-center sticky left-0 z-10 ${rankBg}`}>
                         <span
                           className={`inline-flex items-center justify-center font-display font-black text-xs h-6 w-6 border-2 border-slate-900 shadow-[1px_1px_0px_0px_#000] dark:border-white ${
                             isTop1
@@ -298,13 +298,13 @@ export default function LiveTournamentSection() {
                         </span>
                       </td>
 
-                      {/* TIM */}
-                      <td className="py-3 px-3 sm:px-4">
+                      {/* TIM (Sticky Left 2nd) */}
+                      <td className={`py-3 px-3 sm:px-4 sticky left-[48px] sm:left-16 z-10 ${rankBg} shadow-[2px_0px_0px_0px_rgba(0,0,0,0.15)] dark:shadow-[2px_0px_0px_0px_rgba(255,255,255,0.15)]`}>
                         <div className="flex items-center space-x-2">
                           <span className="border border-slate-900 bg-slate-900 px-1.5 py-0.5 text-[10px] font-black text-white dark:border-white dark:bg-white dark:text-slate-950">
                             {team.teamCode}
                           </span>
-                          <span className="font-display font-black text-sm sm:text-base text-slate-900 uppercase dark:text-white">
+                          <span className="font-display font-black text-xs sm:text-base text-slate-900 uppercase dark:text-white truncate max-w-[120px] sm:max-w-none">
                             {team.teamName}
                           </span>
                         </div>

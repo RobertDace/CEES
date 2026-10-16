@@ -660,8 +660,8 @@ export default function TournamentAdminPanel() {
           </div>
         </div>
 
-        {/* Match Selector Tabs */}
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        {/* Match Selector Tabs (Swipeable on Mobile) */}
+        <div className="mt-4 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1.5 touch-pan-x">
           {Array.from({ length: Math.max(tournament.matches.length, 3) }, (_, i) => i + 1).map(
             (num) => {
               const matchObj = tournament.matches.find((m) => m.matchNumber === num);
@@ -670,7 +670,7 @@ export default function TournamentAdminPanel() {
                 <button
                   key={num}
                   onClick={() => handleSelectMatch(num)}
-                  className={`border-2 border-slate-900 px-4 py-2 font-mono text-xs font-black uppercase transition-all rounded-none dark:border-white ${
+                  className={`shrink-0 whitespace-nowrap border-2 border-slate-900 px-4 py-2 font-mono text-xs font-black uppercase transition-all rounded-none dark:border-white ${
                     isActive
                       ? "bg-brand-blue text-white shadow-[3px_3px_0px_0px_#000] dark:bg-brand-cyan dark:text-slate-950"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-dark-base dark:text-steel-300"
@@ -715,17 +715,17 @@ export default function TournamentAdminPanel() {
           </div>
         </div>
 
-        {/* Teams Input Table */}
+        {/* Teams Input Table (Sticky Left on Mobile) */}
         <div className="mt-4 border-2 border-slate-900 overflow-x-auto dark:border-white">
           <table className="w-full text-left font-mono text-xs border-collapse">
             <thead>
               <tr className="border-b-2 border-slate-900 bg-slate-900 text-white dark:border-white dark:bg-dark-void uppercase">
-                <th className="py-2.5 px-4 w-12 text-center">#</th>
-                <th className="py-2.5 px-4">TIM / PESERTA</th>
-                <th className="py-2.5 px-4 w-32 text-center">PLACEMENT RANK (1-16)</th>
-                <th className="py-2.5 px-4 w-28 text-center">KILLS</th>
-                <th className="py-2.5 px-4 w-32 text-right">PLACEMENT PTS</th>
-                <th className="py-2.5 px-4 w-32 text-right bg-brand-blue text-white">TOTAL PTS MATCH</th>
+                <th className="py-2.5 px-3 w-12 text-center sticky left-0 z-20 bg-slate-900 dark:bg-dark-void min-w-[40px]">#</th>
+                <th className="py-2.5 px-3 sticky left-[40px] z-20 bg-slate-900 dark:bg-dark-void min-w-[150px] shadow-[2px_0px_0px_0px_#000] dark:shadow-[2px_0px_0px_0px_#fff]">TIM / PESERTA</th>
+                <th className="py-2.5 px-4 w-32 text-center min-w-[130px]">PLACEMENT RANK (1-16)</th>
+                <th className="py-2.5 px-4 w-28 text-center min-w-[100px]">KILLS</th>
+                <th className="py-2.5 px-4 w-32 text-right min-w-[110px]">PLACEMENT PTS</th>
+                <th className="py-2.5 px-4 w-32 text-right bg-brand-blue text-white min-w-[120px]">TOTAL PTS MATCH</th>
               </tr>
             </thead>
             <tbody className="divide-y-2 divide-slate-200 dark:divide-dark-border">
@@ -735,17 +735,19 @@ export default function TournamentAdminPanel() {
                 const rankPts = PMWC_RANK_POINTS[currentRank] ?? 0;
                 const totalMatchPts = rankPts + (Number(currentKills) || 0);
 
+                const rowBg = currentRank === 1 
+                  ? "bg-amber-50 dark:bg-amber-950/40" 
+                  : "bg-white dark:bg-dark-surface";
+
                 return (
                   <tr
                     key={t.id}
-                    className={`hover:bg-slate-50 dark:hover:bg-dark-base ${
-                      currentRank === 1 ? "bg-amber-50/60 dark:bg-amber-950/20" : ""
-                    }`}
+                    className={`hover:bg-slate-50 dark:hover:bg-dark-base ${rowBg}`}
                   >
-                    <td className="py-2 px-4 text-center font-bold text-slate-500">
+                    <td className={`py-2 px-3 text-center font-bold text-slate-500 sticky left-0 z-10 ${rowBg}`}>
                       {index + 1}
                     </td>
-                    <td className="py-2 px-4">
+                    <td className={`py-2 px-3 sticky left-[40px] z-10 ${rowBg} shadow-[2px_0px_0px_0px_rgba(0,0,0,0.15)] dark:shadow-[2px_0px_0px_0px_rgba(255,255,255,0.15)]`}>
                       <div className="flex items-center space-x-2">
                         <span className="font-mono font-black text-xs bg-slate-900 text-white px-1.5 py-0.5 border border-slate-900 dark:bg-white dark:text-slate-950">
                           {t.code}
@@ -754,7 +756,7 @@ export default function TournamentAdminPanel() {
                           type="text"
                           value={t.name}
                           onChange={(e) => handleUpdateTeam(t.id, "name", e.target.value.toUpperCase())}
-                          className="font-display font-black text-xs sm:text-sm uppercase text-slate-900 dark:text-white bg-transparent border-b border-dashed border-slate-400/60 dark:border-steel-700 hover:border-brand-blue focus:border-brand-blue focus:outline-none px-1 py-0.5 w-full min-w-[140px]"
+                          className="font-display font-black text-xs sm:text-sm uppercase text-slate-900 dark:text-white bg-transparent border-b border-dashed border-slate-400/60 dark:border-steel-700 hover:border-brand-blue focus:border-brand-blue focus:outline-none px-1 py-0.5 w-full min-w-[120px]"
                           title="Klik untuk langsung ganti nama tim"
                         />
                       </div>

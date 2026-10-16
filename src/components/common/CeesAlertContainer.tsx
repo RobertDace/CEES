@@ -258,7 +258,7 @@ export default function CeesAlertContainer() {
       )}
 
       {/* 2. SWEET TOAST NOTIFICATION STACK (Corner Popups) */}
-      <div className="fixed bottom-5 right-5 z-[115] flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-3 sm:px-0">
+      <div className="fixed bottom-20 sm:bottom-5 right-3 sm:right-5 z-[115] flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-2 sm:px-0">
         {toasts.map((toast) => {
           let borderColor = "border-slate-900 dark:border-white";
           let shadowColor = "shadow-[4px_4px_0px_0px_#0030FF]";

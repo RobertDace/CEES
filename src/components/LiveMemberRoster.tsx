@@ -239,14 +239,14 @@ export default function LiveMemberRoster() {
       {/* Control Bar: Search & Division Filters */}
       <div className="mt-6 flex flex-col gap-4 border-b-2 border-slate-900 pb-6 dark:border-white lg:flex-row lg:items-center lg:justify-between">
 
-        {/* Division Filter Buttons */}
-        <div className="flex flex-wrap gap-2">
+        {/* Division Filter Buttons (Swipeable on Mobile) */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1.5 touch-pan-x">
           {divisionFilters.map((df) => (
             <button
               key={df.value}
               type="button"
               onClick={() => setSelectedDivision(df.value)}
-              className={`border-2 px-3.5 py-1.5 font-display text-xs font-bold uppercase tracking-wider transition-all rounded-none ${selectedDivision === df.value
+              className={`shrink-0 whitespace-nowrap border-2 px-3.5 py-1.5 font-display text-xs font-bold uppercase tracking-wider transition-all rounded-none ${selectedDivision === df.value
                   ? "border-brand-blue bg-brand-blue text-white shadow-[2px_2px_0px_0px_#000000] dark:shadow-[2px_2px_0px_0px_#FFFFFF]"
                   : "border-slate-900 bg-white text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-base dark:text-white"
                 }`}

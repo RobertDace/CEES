@@ -138,20 +138,52 @@ class CeesAlertService {
     });
   }
 
-  public success(title: string, message?: string, details?: string): Promise<boolean> {
-    return this.fire({ type: "success", title, message, details });
+  public playClick() {
+    this.playSound("click");
   }
 
-  public error(title: string, message?: string, details?: string): Promise<boolean> {
-    return this.fire({ type: "error", title, message, details, danger: true });
+  public success(
+    titleOrOptions: string | { title: string; message?: string; details?: string },
+    message?: string,
+    details?: string
+  ): Promise<boolean> {
+    if (typeof titleOrOptions === "object") {
+      return this.fire({ type: "success", ...titleOrOptions });
+    }
+    return this.fire({ type: "success", title: titleOrOptions, message, details });
   }
 
-  public warning(title: string, message?: string, details?: string): Promise<boolean> {
-    return this.fire({ type: "warning", title, message, details });
+  public error(
+    titleOrOptions: string | { title: string; message?: string; details?: string },
+    message?: string,
+    details?: string
+  ): Promise<boolean> {
+    if (typeof titleOrOptions === "object") {
+      return this.fire({ type: "error", danger: true, ...titleOrOptions });
+    }
+    return this.fire({ type: "error", title: titleOrOptions, message, details, danger: true });
   }
 
-  public info(title: string, message?: string, details?: string): Promise<boolean> {
-    return this.fire({ type: "info", title, message, details });
+  public warning(
+    titleOrOptions: string | { title: string; message?: string; details?: string },
+    message?: string,
+    details?: string
+  ): Promise<boolean> {
+    if (typeof titleOrOptions === "object") {
+      return this.fire({ type: "warning", ...titleOrOptions });
+    }
+    return this.fire({ type: "warning", title: titleOrOptions, message, details });
+  }
+
+  public info(
+    titleOrOptions: string | { title: string; message?: string; details?: string },
+    message?: string,
+    details?: string
+  ): Promise<boolean> {
+    if (typeof titleOrOptions === "object") {
+      return this.fire({ type: "info", ...titleOrOptions });
+    }
+    return this.fire({ type: "info", title: titleOrOptions, message, details });
   }
 
   /**

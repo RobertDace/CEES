@@ -755,8 +755,8 @@ export default function AdminToolsPage() {
           </div>
         )}
 
-        {/* 4. Tab Navigation */}
-        <div className="mt-6 flex flex-wrap gap-2 border-b-2 border-slate-900 pb-2 dark:border-white">
+        {/* 4. Tab Navigation (Smooth Horizontal Scroll on Mobile) */}
+        <div className="mt-6 flex items-center gap-2 overflow-x-auto no-scrollbar pb-2.5 border-b-2 border-slate-900 dark:border-white touch-pan-x">
           {(() => {
             const pendingWaCount = liveMembers.filter((m) => !Boolean(m.verified)).length;
             return [
@@ -783,9 +783,9 @@ export default function AdminToolsPage() {
               <button
                 key={t.id}
                 onClick={() => setActiveTab(t.id as TabType)}
-                className={`flex items-center gap-2 border-2 border-slate-900 px-4 py-2.5 font-display text-sm font-bold uppercase transition-all dark:border-white ${
+                className={`flex shrink-0 whitespace-nowrap items-center gap-2 border-2 border-slate-900 px-4 py-2.5 font-display text-xs sm:text-sm font-bold uppercase transition-all rounded-none dark:border-white ${
                   active
-                    ? "bg-brand-blue text-white shadow-[4px_4px_0px_0px_#00F0FF] dark:bg-brand-cyan dark:text-slate-900 dark:shadow-[4px_4px_0px_0px_#0030FF]"
+                    ? "bg-brand-blue text-white shadow-[3px_3px_0px_0px_#00F0FF] dark:bg-brand-cyan dark:text-slate-900 dark:shadow-[3px_3px_0px_0px_#0030FF]"
                     : "bg-white text-slate-800 hover:bg-slate-100 dark:bg-dark-base dark:text-steel-200 dark:hover:bg-dark-surface"
                 }`}
               >

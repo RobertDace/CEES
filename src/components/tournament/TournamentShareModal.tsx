@@ -114,45 +114,47 @@ export default function TournamentShareModal({
         </div>
 
         {/* Toolbar Kontrol */}
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center space-x-2">
-            <span className="font-mono text-xs font-bold text-slate-600 dark:text-steel-400 uppercase">
+        <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs font-bold text-slate-600 dark:text-steel-400 uppercase shrink-0">
               Rasio:
             </span>
-            <button
-              onClick={() => setAspectRatio("1:1")}
-              className={`border-2 border-slate-900 px-3 py-1 font-mono text-xs font-bold transition-all rounded-none dark:border-white ${
-                aspectRatio === "1:1"
-                  ? "bg-brand-blue text-white shadow-[2px_2px_0px_0px_#000] dark:bg-brand-cyan dark:text-slate-950"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-dark-base dark:text-steel-300"
-              }`}
-            >
-              1:1 (FEED / POST)
-            </button>
-            <button
-              onClick={() => setAspectRatio("9:16")}
-              className={`border-2 border-slate-900 px-3 py-1 font-mono text-xs font-bold transition-all rounded-none dark:border-white ${
-                aspectRatio === "9:16"
-                  ? "bg-brand-blue text-white shadow-[2px_2px_0px_0px_#000] dark:bg-brand-cyan dark:text-slate-950"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-dark-base dark:text-steel-300"
-              }`}
-            >
-              9:16 (STORY / TIKTOK)
-            </button>
+            <div className="grid grid-cols-2 gap-1.5 flex-1 sm:flex-initial">
+              <button
+                onClick={() => setAspectRatio("1:1")}
+                className={`border-2 border-slate-900 px-3 py-1.5 font-mono text-xs font-bold transition-all rounded-none dark:border-white text-center ${
+                  aspectRatio === "1:1"
+                    ? "bg-brand-blue text-white shadow-[2px_2px_0px_0px_#000] dark:bg-brand-cyan dark:text-slate-950"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-dark-base dark:text-steel-300"
+                }`}
+              >
+                1:1 (FEED)
+              </button>
+              <button
+                onClick={() => setAspectRatio("9:16")}
+                className={`border-2 border-slate-900 px-3 py-1.5 font-mono text-xs font-bold transition-all rounded-none dark:border-white text-center ${
+                  aspectRatio === "9:16"
+                    ? "bg-brand-blue text-white shadow-[2px_2px_0px_0px_#000] dark:bg-brand-cyan dark:text-slate-950"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-dark-base dark:text-steel-300"
+                }`}
+              >
+                9:16 (STORY)
+              </button>
+            </div>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2">
             <button
               onClick={handleCopyWA}
-              className="border-2 border-slate-900 bg-emerald-500 px-3.5 py-1.5 font-mono text-xs font-bold text-slate-950 hover:bg-emerald-400 shadow-[2px_2px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center space-x-1.5"
+              className="border-2 border-slate-900 bg-emerald-500 px-3.5 py-2 font-mono text-xs font-bold text-slate-950 hover:bg-emerald-400 shadow-[2px_2px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center justify-center space-x-1.5"
             >
               {copiedWA ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-              <span>{copiedWA ? "TERSALIN!" : "SALIN TEKS WA"}</span>
+              <span>{copiedWA ? "TERSALIN!" : "SALIN WA"}</span>
             </button>
             <button
               onClick={handleDownload}
               disabled={isGenerating}
-              className="border-2 border-slate-900 bg-brand-blue px-4 py-1.5 font-mono text-xs font-bold text-white hover:bg-blue-600 shadow-[2px_2px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center space-x-1.5 disabled:opacity-50"
+              className="border-2 border-slate-900 bg-brand-blue px-4 py-2 font-mono text-xs font-bold text-white hover:bg-blue-600 shadow-[2px_2px_0px_0px_#000] transition-transform active:translate-x-0.5 active:translate-y-0.5 inline-flex items-center justify-center space-x-1.5 disabled:opacity-50"
             >
               <Download className="h-4 w-4" />
               <span>{isGenerating ? "MEMPROSES..." : "UNDUH PNG"}</span>
@@ -161,7 +163,7 @@ export default function TournamentShareModal({
         </div>
 
         {/* Card Canvas Container (What gets screenshotted) */}
-        <div className="mt-4 flex justify-center overflow-x-auto bg-slate-900/95 p-3 sm:p-5 border-2 border-slate-900 dark:border-white">
+        <div className="mt-4 flex justify-center overflow-x-auto overflow-y-auto max-h-[60vh] bg-slate-900/95 p-3 sm:p-5 border-2 border-slate-900 dark:border-white">
           <div
             ref={cardRef}
             className={`relative flex flex-col justify-between border-4 border-white bg-[#060810] p-5 text-white shadow-2xl transition-all select-none overflow-hidden ${

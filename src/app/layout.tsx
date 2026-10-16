@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Oswald, Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthProvider } from "@/context/AuthContext";
@@ -94,10 +95,11 @@ export default function RootLayout({
 
             <div className="relative z-10 flex min-h-screen flex-col">
               <Navbar />
-              <main id="main-content" className="flex-1">
+              <main id="main-content" className="flex-1 pb-20 lg:pb-0">
                 {children}
               </main>
               <Footer />
+              <MobileBottomNav />
             </div>
             <CeesAlertContainer />
           </AuthProvider>
