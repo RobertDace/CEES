@@ -7,6 +7,7 @@ import { Menu, X, ArrowUpRight, ShieldCheck, Sliders, Gamepad2, User, LogIn } fr
 import { COMMUNITY_INFO } from "@/data/community";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import NotificationBell from "@/components/notifications/NotificationBell";
 import { useAuth } from "@/context/AuthContext";
 
 // Authentic navigation links matching the original CEES AREA website
@@ -144,30 +145,31 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop Right Action Area */}
-        <div className="hidden shrink-0 items-center gap-2.5 xl:gap-3 lg:flex">
+        <div className="hidden shrink-0 items-center gap-2 xl:gap-2.5 lg:flex">
           <ThemeToggle />
+          <NotificationBell />
           {user ? (
             user.role === "admin" ? (
               <>
                 {/* Operator Active Session Tag */}
                 <Link
                   href="/login"
-                  className="flex items-center gap-1.5 border-2 border-slate-900 bg-slate-100 px-2.5 py-2 font-mono text-xs font-bold text-slate-800 transition-colors hover:bg-slate-900 hover:text-white dark:border-white dark:bg-dark-surface dark:text-steel-200 dark:hover:bg-white dark:hover:text-slate-900"
+                  className="flex h-9 items-center gap-1.5 border-2 border-slate-900 bg-slate-100 px-2.5 font-mono text-xs font-bold text-slate-800 shadow-[2px_2px_0px_0px_#000000] transition-colors hover:bg-slate-900 hover:text-white dark:border-white dark:bg-dark-surface dark:text-steel-200 dark:shadow-[2px_2px_0px_0px_#FFFFFF] dark:hover:bg-white dark:hover:text-slate-900 select-none"
                   title="Sesi Pengurus: Buka Terminal / Logout"
                 >
-                  <ShieldCheck className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                  <ShieldCheck className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan shrink-0" />
                   <span className="max-w-[85px] truncate uppercase">{user.displayName || "ADMIN"}</span>
                 </Link>
 
                 {/* Dynamic Corner Button: Admin Tools */}
                 <Link
                   href="/admin"
-                  className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-3.5 py-2 text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
+                  className="brutal-btn flex h-9 items-center gap-1.5 border-2 border-slate-900 bg-brand-cyan px-3.5 text-xs font-bold uppercase tracking-wider text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
                   title="Akses CMS & Editor Halaman Web"
                 >
-                  <Sliders className="h-4 w-4" />
+                  <Sliders className="h-3.5 w-3.5 shrink-0" />
                   <span>Admin Tools</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
                 </Link>
               </>
             ) : (
@@ -175,22 +177,22 @@ export default function Navbar() {
                 {/* Member Active Session Tag */}
                 <Link
                   href="/member"
-                  className="flex items-center gap-1.5 border-2 border-slate-900 bg-brand-cyan/20 px-2.5 py-2 font-mono text-xs font-bold text-slate-800 transition-colors hover:bg-brand-cyan hover:text-slate-900 dark:border-white dark:bg-dark-surface dark:text-steel-200 dark:hover:bg-brand-cyan dark:hover:text-slate-900"
+                  className="flex h-9 items-center gap-1.5 border-2 border-slate-900 bg-brand-cyan/20 px-2.5 font-mono text-xs font-bold text-slate-800 shadow-[2px_2px_0px_0px_#000000] transition-colors hover:bg-brand-cyan hover:text-slate-900 dark:border-white dark:bg-dark-surface dark:text-steel-200 dark:shadow-[2px_2px_0px_0px_#FFFFFF] dark:hover:bg-brand-cyan dark:hover:text-slate-900 select-none"
                   title="Kartu Member & Profil"
                 >
-                  <Gamepad2 className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                  <Gamepad2 className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan shrink-0" />
                   <span className="max-w-[95px] truncate uppercase">{user.gameNickname || user.displayName}</span>
                 </Link>
 
                 {/* Member Hub Corner Button */}
                 <Link
                   href="/member"
-                  className="brutal-btn flex items-center gap-2 border-2 border-slate-900 bg-brand-cyan px-3.5 py-2 text-xs font-bold text-slate-900 shadow-[4px_4px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
+                  className="brutal-btn flex h-9 items-center gap-1.5 border-2 border-slate-900 bg-brand-cyan px-3.5 text-xs font-bold uppercase tracking-wider text-slate-900 shadow-[2px_2px_0px_0px_#0030FF] hover:bg-white hover:text-slate-900 dark:border-white dark:bg-brand-cyan dark:text-slate-900 dark:hover:bg-white whitespace-nowrap"
                   title="Kartu Tanda Anggota & Profil"
                 >
-                  <User className="h-4 w-4" />
+                  <User className="h-3.5 w-3.5 shrink-0" />
                   <span>Kartu Member</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
                 </Link>
               </>
             )
@@ -199,17 +201,20 @@ export default function Navbar() {
               {/* Tombol Sign In */}
               <Link
                 href="/login"
-                className="flex items-center gap-1.5 border-2 border-slate-900 bg-white px-3 py-2 font-display text-xs font-bold uppercase tracking-wider text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0 transition-all dark:border-white dark:bg-dark-surface dark:text-white dark:shadow-[2px_2px_0px_0px_#FFFFFF] dark:hover:bg-dark-void whitespace-nowrap"
+                className="flex h-9 items-center gap-1.5 border-2 border-slate-900 bg-white px-3 font-display text-xs font-bold uppercase tracking-wider text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0 transition-all dark:border-white dark:bg-dark-surface dark:text-white dark:shadow-[2px_2px_0px_0px_#FFFFFF] dark:hover:bg-dark-void whitespace-nowrap"
                 title="Masuk ke Portal Member atau Staf"
               >
-                <LogIn className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan" />
+                <LogIn className="h-3.5 w-3.5 text-brand-blue dark:text-brand-cyan shrink-0" />
                 <span>Sign In</span>
               </Link>
 
               {/* Default Corner Button: Join Member */}
-              <Link href="/join" className="brutal-btn px-4 py-2 text-xs whitespace-nowrap">
+              <Link
+                href="/join"
+                className="brutal-btn flex h-9 items-center gap-1.5 px-3.5 text-xs font-bold uppercase tracking-wider whitespace-nowrap shadow-[2px_2px_0px_0px_#0030FF]"
+              >
                 <span>Join Member</span>
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
               </Link>
             </div>
           )}
@@ -217,15 +222,16 @@ export default function Navbar() {
 
         {/* Mobile controls */}
         <div className="flex items-center gap-2 lg:hidden">
+          <NotificationBell isMobileCompact />
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setMobileMenuOpen((v) => !v)}
-            className="border-2 border-slate-900 bg-white p-2 text-slate-900 dark:border-white dark:bg-dark-surface dark:text-white"
+            className="flex h-9 w-9 items-center justify-center border-2 border-slate-900 bg-white text-slate-900 shadow-[2px_2px_0px_0px_#000000] hover:bg-slate-100 transition-all dark:border-white dark:bg-dark-surface dark:text-white dark:shadow-[2px_2px_0px_0px_#FFFFFF] shrink-0"
             aria-label={mobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
           </button>
         </div>
       </div>

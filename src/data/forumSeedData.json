@@ -1,0 +1,319 @@
+{
+  "threads": [
+    {
+      "id": "Bs8z3JltQAIa7pauoRF0",
+      "title": "FREEZE LANE ADALAH KUNCI MENANGIN LANING EARLY GAME!!",
+      "slug": "freeze-lane-adalah-kunci-menangin-laning-early-gam",
+      "category": "TACTICS_META",
+      "gameDivision": "MLBB",
+      "content": "Jadi gini kita ga perlu buru buru clear minion di bawah menit 2 agar musuh clear lebih cepat dan minion lebih maju ke kita alhasil kita bisa freeze lane musuh denga gampang",
+      "image": "",
+      "tags": [
+        "TIPS"
+      ],
+      "isPinned": false,
+      "isLocked": false,
+      "authorId": "acc_1792034405101",
+      "authorName": "2OB1T.",
+      "authorNickname": "2OB1T.",
+      "authorAvatar": "/uploads/avatar_2OB1T__1792049805395.jpg",
+      "authorDivision": "MLBB",
+      "authorCity": "Samarinda",
+      "authorRole": "member",
+      "authorVerified": true,
+      "likes": 1,
+      "likedBy": [
+        "acc_1792034405101"
+      ],
+      "commentsCount": 0,
+      "comments": [],
+      "views": 1,
+      "createdAt": "2026-10-16T07:09:03.444Z",
+      "updatedAt": "2026-10-16T07:09:03.444Z"
+    },
+    {
+      "id": "thread-cees-hq-01",
+      "title": "PEMBERITAHUAN RESMI: JADWAL SCRIM RUTIN MALAM MINGGU & TRIAL ROSTER BARU PUBGM CEES AREA",
+      "slug": "jadwal-scrim-rutin-malam-minggu-trial-roster-baru",
+      "category": "HQ_ANNOUNCEMENT",
+      "gameDivision": "PUBGM",
+      "content": "Halo seluruh anggota komunitas CEES AREA dan player se-Kalimantan Timur!\n\nUntuk menyambut rangkaian turnamen offline dan online bulan depan, pengurus HQ CEES GANK menetapkan jadwal scrim resmi mingguan:\n\n1. Jadwal Scrim: Setiap Sabtu & Minggu malam, Pukul 20.30 WITA (Waktu Samarinda).\n2. Slot Room: 16 Tim per match dengan format PMWC 10-Point Official.\n3. Syarat Squad: Minimal 2 pemain berdomisili Kalimantan Timur (Samarinda, Balikpapan, Kukar, Kutim, Berau).\n\nBagi member yang ingin mengajukan timnya masuk rotasi room utama atau ingin mendaftar seleksi trial Roster Prime, silakan reply di thread ini atau hubungi pengurus divisi di Discord.\n\nTetap junjung tinggi sportivitas dan persaudaraan. Invictus Maneo!",
+      "image": "/assets/activities/tourney_s1.png",
+      "tags": [
+        "PENGUMUMAN",
+        "SCRIM",
+        "ROSTER_TRIAL",
+        "PUBGM"
+      ],
+      "isPinned": true,
+      "isLocked": false,
+      "authorId": "admin_hq",
+      "authorName": "Administrator HQ",
+      "authorNickname": "CEES_COMMANDER",
+      "authorAvatar": "/assets/staff/dace.jpg",
+      "authorDivision": "PUBGM",
+      "authorCity": "Samarinda",
+      "authorRole": "admin",
+      "authorVerified": true,
+      "likes": 28,
+      "likedBy": [
+        "admin_hq",
+        "0BRZTZ2ql5cGdkhDfu7U",
+        "4DSatC8lZYhvO9Z5bmyP"
+      ],
+      "commentsCount": 4,
+      "views": 412,
+      "createdAt": "2026-10-15T14:30:00.000Z",
+      "updatedAt": "2026-10-15T14:30:00.000Z",
+      "comments": [
+        {
+          "id": "c-101",
+          "threadId": "thread-cees-hq-01",
+          "authorId": "0BRZTZ2ql5cGdkhDfu7U",
+          "authorName": "Muhammad Wahyu",
+          "authorNickname": "Wayy",
+          "authorAvatar": "",
+          "authorDivision": "MLBB",
+          "authorRole": "member",
+          "authorVerified": true,
+          "content": "Siap komandan! Untuk divisi MLBB kapan ada agenda scrim internal juga nih min? Biar squad Balikpapan bisa sparing bareng Samarinda.",
+          "createdAt": "2026-10-15T15:10:00.000Z",
+          "likes": 5
+        },
+        {
+          "id": "c-102",
+          "threadId": "thread-cees-hq-01",
+          "authorId": "admin_hq",
+          "authorName": "Administrator HQ",
+          "authorNickname": "CEES_COMMANDER",
+          "authorAvatar": "/assets/staff/dace.jpg",
+          "authorDivision": "PUBGM",
+          "authorRole": "admin",
+          "authorVerified": true,
+          "content": "@Wayy Sedang disusun jadwalnya brader, kemungkinan hari Jumat malam untuk MLBB. Pantau terus ya!",
+          "createdAt": "2026-10-15T15:25:00.000Z",
+          "likes": 4
+        },
+        {
+          "id": "c-103",
+          "threadId": "thread-cees-hq-01",
+          "authorId": "4DSatC8lZYhvO9Z5bmyP",
+          "authorName": "Alfian Robit",
+          "authorNickname": "2OB1T.",
+          "authorAvatar": "/uploads/avatar_2OB1T__1792049805395.jpg",
+          "authorDivision": "MLBB",
+          "authorRole": "member",
+          "authorVerified": true,
+          "content": "Gas poolll! Siap tempur buat harumkan nama Samarinda!",
+          "createdAt": "2026-10-15T16:00:00.000Z",
+          "likes": 8
+        },
+        {
+          "id": "c-104",
+          "threadId": "thread-cees-hq-01",
+          "authorId": "l37ezrV1fUAW2WFzBevc",
+          "authorName": "Arya Pratama",
+          "authorNickname": "AryaaX",
+          "authorAvatar": "",
+          "authorDivision": "PUBGM",
+          "authorRole": "member",
+          "authorVerified": true,
+          "content": "Squad kami dari Kukar siap isi slot room minggu ini min!",
+          "createdAt": "2026-10-15T17:15:00.000Z",
+          "likes": 3
+        }
+      ]
+    },
+    {
+      "id": "thread-scrim-02",
+      "title": "OPEN SCRIM PUBGM TIER 2 // ROOM MALAM INI 20.30 WITA // SLOT TERBATAS 16 TIM KALTIM",
+      "slug": "open-scrim-pubgm-tier-2-malam-ini",
+      "category": "SCRIM_LFT",
+      "gameDivision": "PUBGM",
+      "content": "Malam kawan-kawan CEES! Kami mau buka mini scrim pemanasan malam ini:\n\n- Map 1: Erangel (20.30 WITA)\n- Map 2: Miramar (21.15 WITA)\n- Point System: PMWC 10-Point\n- Syarat: Wajib no cheat, no emu, full gyro/finger murni.\n\nYang mau booking slot langsung reply kode tim & nama kapten di bawah. Slot sisa 6 tim lagi ya!",
+      "tags": [
+        "SCRIM",
+        "PUBGM",
+        "FAST_MATCH",
+        "SAMARINDA"
+      ],
+      "isPinned": false,
+      "isLocked": false,
+      "authorId": "4DSatC8lZYhvO9Z5bmyP",
+      "authorName": "Alfian Robit",
+      "authorNickname": "2OB1T.",
+      "authorAvatar": "/uploads/avatar_2OB1T__1792049805395.jpg",
+      "authorDivision": "PUBGM",
+      "authorCity": "Samarinda",
+      "authorRole": "member",
+      "authorVerified": true,
+      "likes": 14,
+      "likedBy": [
+        "admin_hq",
+        "4DSatC8lZYhvO9Z5bmyP"
+      ],
+      "commentsCount": 3,
+      "views": 258,
+      "createdAt": "2026-10-16T08:00:00.000Z",
+      "updatedAt": "2026-10-16T07:23:21.894Z",
+      "comments": [
+        {
+          "id": "c-201",
+          "threadId": "thread-scrim-02",
+          "authorId": "l37ezrV1fUAW2WFzBevc",
+          "authorName": "Arya Pratama",
+          "authorNickname": "AryaaX",
+          "authorAvatar": "",
+          "authorDivision": "PUBGM",
+          "authorRole": "member",
+          "authorVerified": true,
+          "content": "Booking 1 slot: BORNEO PREDATORS (BOR) // Kapten: AryaaX. Tolong kirim ID & Pass room ya bang.",
+          "createdAt": "2026-10-16T08:30:00.000Z",
+          "likes": 2
+        },
+        {
+          "id": "c-202",
+          "threadId": "thread-scrim-02",
+          "authorId": "4DSatC8lZYhvO9Z5bmyP",
+          "authorName": "Alfian Robit",
+          "authorNickname": "2OB1T.",
+          "authorAvatar": "/uploads/avatar_2OB1T__1792049805395.jpg",
+          "authorDivision": "PUBGM",
+          "authorRole": "member",
+          "authorVerified": true,
+          "content": "@AryaaX Locked slot 10 buat BORNEO PREDATORS! Nanti ID/Pass dishare di grup WA 15 menit sebelum match.",
+          "createdAt": "2026-10-16T08:45:00.000Z",
+          "likes": 1
+        },
+        {
+          "id": "c-1792135401893-uyit",
+          "threadId": "thread-scrim-02",
+          "authorId": "0BRZTZ2ql5cGdkhDfu7U",
+          "authorName": "Muhammad Wahyu",
+          "authorNickname": "Wayy",
+          "authorAvatar": "",
+          "authorDivision": "GENERAL",
+          "authorRole": "member",
+          "authorVerified": true,
+          "content": "Mantap bang, squad kami siap turun scrim!",
+          "likes": 0,
+          "createdAt": "2026-10-16T07:23:21.893Z"
+        }
+      ]
+    },
+    {
+      "id": "thread-tactics-03",
+      "title": "TIPS & ROTASI MAP MIRAMAR: CARA HOLD DATARAN TINGGI WATER TREATMENT TANPA KE-THIRD PARTY",
+      "slug": "tips-rotasi-map-miramar-hold-water-treatment",
+      "category": "TACTICS_META",
+      "gameDivision": "PUBGM",
+      "content": "Banyak tim sering blunder saat circle 3-4 narik ke arah Water Treatment Miramar. Biasanya mati konyol karena kejepit bukit dari arah San Martin dan Hacienda.\n\nTips dari divisi PUBGM CEES:\n1. Jangan langsung ambil compound tengah kalau split 2-2 belum pegang bukit batu sisi timur.\n2. Siapkan minimal 6 smoke per player saat rotasi menit ke-18.\n3. Manfaatkan buggy untuk scout kontur tanah rendah daripada mobil dacia/uaz yang rawan dibom molotov.\n\nAda yang punya taktik alternatif lain buat map gurun ini? Boleh sharing pengalamannya!",
+      "tags": [
+        "GUIDE",
+        "PUBGM",
+        "MIRAMAR",
+        "STRATEGY"
+      ],
+      "isPinned": false,
+      "isLocked": false,
+      "authorId": "0BRZTZ2ql5cGdkhDfu7U",
+      "authorName": "Muhammad Wahyu",
+      "authorNickname": "Wayy",
+      "authorAvatar": "",
+      "authorDivision": "PUBGM",
+      "authorCity": "Balikpapan",
+      "authorRole": "member",
+      "authorVerified": true,
+      "likes": 19,
+      "likedBy": [
+        "0BRZTZ2ql5cGdkhDfu7U",
+        "admin_hq"
+      ],
+      "commentsCount": 1,
+      "views": 320,
+      "createdAt": "2026-10-16T05:30:00.000Z",
+      "updatedAt": "2026-10-16T05:30:00.000Z",
+      "comments": [
+        {
+          "id": "c-301",
+          "threadId": "thread-tactics-03",
+          "authorId": "admin_hq",
+          "authorName": "Administrator HQ",
+          "authorNickname": "CEES_COMMANDER",
+          "authorAvatar": "/assets/staff/dace.jpg",
+          "authorDivision": "PUBGM",
+          "authorRole": "admin",
+          "authorVerified": true,
+          "content": "Setuju banget. Terutama soal smoke line buat cover rotasi terbuka, di Miramar 1 meter open field tanpa cover itu auto lobby. Good breakdown!",
+          "createdAt": "2026-10-16T06:15:00.000Z",
+          "likes": 4
+        }
+      ]
+    },
+    {
+      "id": "thread-lounge-04",
+      "title": "KOPDAR SANTAI & MABAR BARENG WEEKEND INI DI TEPIAN MAHAKAM SAMARINDA // WHO'S IN?",
+      "slug": "kopdar-santai-mabar-tepian-mahakam",
+      "category": "LOUNGE",
+      "gameDivision": "GENERAL",
+      "content": "Halo warga CEES area Samarinda!\n\nSabtu sore besok rencananya kita mau ngumpul santai di warung kopi Tepian Mahakam dekat Islamic Center. Agendanya:\n- Ngopi sore & mabar santai MLBB / PUBGM\n- Diskusi desain jersey baru bareng admin\n- Foto bareng buat feed Instagram & web\n\nYang domisili Samarinda atau lagi main ke sini langsung join aja ya, bawa chargeran & colokan!",
+      "image": "/assets/activities/gath_s2.png",
+      "tags": [
+        "KOPDAR",
+        "SAMARINDA",
+        "MAHAKAM",
+        "COMMUNITY"
+      ],
+      "isPinned": false,
+      "isLocked": false,
+      "authorId": "admin_hq",
+      "authorName": "Administrator HQ",
+      "authorNickname": "CEES_COMMANDER",
+      "authorAvatar": "/assets/staff/dace.jpg",
+      "authorDivision": "GENERAL",
+      "authorCity": "Samarinda",
+      "authorRole": "admin",
+      "authorVerified": true,
+      "likes": 32,
+      "likedBy": [
+        "admin_hq",
+        "0BRZTZ2ql5cGdkhDfu7U",
+        "4DSatC8lZYhvO9Z5bmyP"
+      ],
+      "commentsCount": 2,
+      "views": 490,
+      "createdAt": "2026-10-16T03:00:00.000Z",
+      "updatedAt": "2026-10-16T03:00:00.000Z",
+      "comments": [
+        {
+          "id": "c-401",
+          "threadId": "thread-lounge-04",
+          "authorId": "4DSatC8lZYhvO9Z5bmyP",
+          "authorName": "Alfian Robit",
+          "authorNickname": "2OB1T.",
+          "authorAvatar": "/uploads/avatar_2OB1T__1792049805395.jpg",
+          "authorDivision": "MLBB",
+          "authorRole": "member",
+          "authorVerified": true,
+          "content": "Gasss! Jam berapa kumpulnya min? Nanti saya bawa teman-teman mabar MLBB juga.",
+          "createdAt": "2026-10-16T03:30:00.000Z",
+          "likes": 3
+        },
+        {
+          "id": "c-402",
+          "threadId": "thread-lounge-04",
+          "authorId": "admin_hq",
+          "authorName": "Administrator HQ",
+          "authorNickname": "CEES_COMMANDER",
+          "authorAvatar": "/assets/staff/dace.jpg",
+          "authorDivision": "GENERAL",
+          "authorRole": "admin",
+          "authorVerified": true,
+          "content": "Kumpul jam 16.30 WITA ya brad, pas teduh sambil lihat sunset jembatan Mahakam!",
+          "createdAt": "2026-10-16T03:45:00.000Z",
+          "likes": 5
+        }
+      ]
+    }
+  ]
+}

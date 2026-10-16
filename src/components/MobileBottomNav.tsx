@@ -1,7 +1,7 @@
 // src/components/MobileBottomNav.tsx
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -15,10 +15,29 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { ceesAlert } from "@/lib/ceesAlert";
+import { fetchUserNotifications } from "@/lib/notifications/notificationHelper";
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
   const { user } = useAuth();
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    const userId = user?.uid || user?.memberId || (user?.role === "admin" ? "admin_hq" : "");
+    if (!userId) {
+      setUnreadCount(0);
+      return;
+    }
+    const checkUnread = async () => {
+      try {
+        const { unreadCount: count } = await fetchUserNotifications(userId);
+        setUnreadCount(count);
+      } catch (e) {}
+    };
+    checkUnread();
+    const interval = setInterval(checkUnread, 30000);
+    return () => clearInterval(interval);
+  }, [user]);
 
   // Route matcher
   const isTabActive = (href: string) => {
@@ -125,6 +144,12 @@ export default function MobileBottomNav() {
                     active ? "scale-110" : "group-hover:scale-105"
                   }`}
                 />
+                {tab.name === "FLASH" && unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1.5 flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-600 border border-slate-900 dark:border-white" />
+                  </span>
+                )}
               </div>
 
               {/* Text Label in Tactical Monospace & Display */}

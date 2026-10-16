@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { NEWS_LIST } from "@/data/community";
-import { Radio, ExternalLink, Layers, Globe, Filter, RefreshCw, ShieldCheck, Flame, ArrowUpRight } from "lucide-react";
+import { Radio, ExternalLink, Layers, Globe, Filter, RefreshCw, ShieldCheck, Flame, ArrowUpRight, MessageSquare } from "lucide-react";
+import ForumWarRoom from "@/components/forum/ForumWarRoom";
 
 interface ScrapedArticle {
   id: string;
@@ -14,11 +15,25 @@ interface ScrapedArticle {
 }
 
 export default function NewsPage() {
-  const [activeTab, setActiveTab] = useState<"sandbox-frame" | "live-feed">("sandbox-frame");
+  const [activeTab, setActiveTab] = useState<"forum" | "live-feed" | "sandbox-frame">("forum");
   const [feedArticles, setFeedArticles] = useState<ScrapedArticle[]>([]);
   const [loadingFeed, setLoadingFeed] = useState<boolean>(true);
   const [selectedGameFilter, setSelectedGameFilter] = useState<string>("ALL");
   const [iframeKey, setIframeKey] = useState<number>(1);
+
+  // Sync tab from URL query if available
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const tabParam = new URLSearchParams(window.location.search).get("tab");
+      if (tabParam === "live-feed" || tabParam === "news") {
+        setActiveTab("live-feed");
+      } else if (tabParam === "sandbox" || tabParam === "sandbox-frame") {
+        setActiveTab("sandbox-frame");
+      } else if (tabParam === "forum") {
+        setActiveTab("forum");
+      }
+    }
+  }, []);
 
   // Fetch parsed articles from /api/esports-feed
   useEffect(() => {
@@ -69,40 +84,60 @@ export default function NewsPage() {
         <div className="border-b-2 border-slate-900 pb-8 dark:border-white">
           <div className="inline-flex items-center space-x-2 border-2 border-brand-blue bg-white px-3.5 py-1 text-xs font-bold text-brand-blue shadow-[2px_2px_0px_0px_#0030FF] rounded-none dark:border-brand-blue dark:bg-dark-surface dark:text-brand-cyan">
             <Radio className="h-4 w-4 animate-pulse" />
-            <span className="uppercase tracking-wider font-mono">Kanal Informasi & Berita E-Sport</span>
+            <span className="uppercase tracking-wider font-mono">Sentra Komunikasi & Berita E-Sport</span>
           </div>
           <h1 className="mt-4 font-display text-4xl font-black tracking-tight text-slate-900 uppercase sm:text-6xl dark:text-white">
             E-SPORT FLASH
           </h1>
           <p className="mt-2 text-sm font-bold text-brand-blue dark:text-brand-cyan">
-            Pusat kurasi berita esports nasional dan internasional yang disandbox langsung dari <strong className="text-brand-blue dark:text-brand-cyan">esports.id</strong>, serta buletin resmi komunitas CEES AREA.
+            Pusat kurasi berita esports nasional dan internasional dari <strong className="text-brand-blue dark:text-brand-cyan">esports.id</strong>, serta War Room forum diskusi, scrim & taktik komunitas CEES AREA.
           </p>
 
           {/* Mode Switcher Tabs */}
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-2.5 sm:gap-3">
             <button
-              onClick={() => setActiveTab("live-feed")}
-              className={`flex items-center space-x-2 border-2 px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${activeTab === "live-feed"
+              onClick={() => setActiveTab("forum")}
+              className={`flex items-center space-x-2 border-2 px-4 sm:px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${
+                activeTab === "forum"
                   ? "border-brand-blue bg-brand-blue text-white shadow-[4px_4px_0px_0px_#0F172A] dark:shadow-[4px_4px_0px_0px_#FFFFFF]"
                   : "border-slate-900 bg-white text-slate-900 shadow-[3px_3px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-surface dark:text-white dark:hover:bg-dark-base"
-                }`}
+              }`}
+            >
+              <MessageSquare className="h-4 w-4" />
+              <span>War Room // Forum Komunitas</span>
+              <span className="font-mono text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 border border-slate-950 font-black">
+                KOMUNITAS
+              </span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("live-feed")}
+              className={`flex items-center space-x-2 border-2 px-4 sm:px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${
+                activeTab === "live-feed"
+                  ? "border-brand-blue bg-brand-blue text-white shadow-[4px_4px_0px_0px_#0F172A] dark:shadow-[4px_4px_0px_0px_#FFFFFF]"
+                  : "border-slate-900 bg-white text-slate-900 shadow-[3px_3px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-surface dark:text-white dark:hover:bg-dark-base"
+              }`}
             >
               <Layers className="h-4 w-4" />
-              <span>Katalog Berita Esports.ID & CEES</span>
+              <span>Katalog Berita Esports.ID</span>
             </button>
 
             <button
               onClick={() => setActiveTab("sandbox-frame")}
-              className={`flex items-center space-x-2 border-2 px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${activeTab === "sandbox-frame"
+              className={`flex items-center space-x-2 border-2 px-4 sm:px-5 py-3 font-display text-xs font-bold tracking-wider uppercase transition-all rounded-none ${
+                activeTab === "sandbox-frame"
                   ? "border-brand-blue bg-brand-blue text-white shadow-[4px_4px_0px_0px_#0F172A] dark:shadow-[4px_4px_0px_0px_#FFFFFF]"
                   : "border-slate-900 bg-white text-slate-900 shadow-[3px_3px_0px_0px_#0030FF] hover:bg-slate-50 dark:border-white dark:bg-dark-surface dark:text-white dark:hover:bg-dark-base"
-                }`}
+              }`}
             >
               <Globe className="h-4 w-4" />
-              <span>Portal Ter-Sandbox (esports.id Live)</span>
+              <span>Portal Ter-Sandbox Live</span>
             </button>
           </div>
         </div>
+
+        {/* TAB 0: WAR ROOM FORUM KOMUNITAS */}
+        {activeTab === "forum" && <ForumWarRoom />}
 
         {/* TAB 1: Live Feed from esports.id + CEES Updates */}
         {activeTab === "live-feed" && (

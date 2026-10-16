@@ -18,17 +18,17 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   const isDark = mounted && theme === "dark";
 
   const segment = (active: boolean) =>
-    `px-2 py-1 transition-colors duration-150 ${
+    `flex items-center justify-center px-2 sm:px-2.5 transition-colors duration-150 leading-none select-none text-[10px] sm:text-[11px] ${
       active
-        ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
-        : "text-slate-500 hover:text-slate-900 dark:text-steel-400 dark:hover:text-white"
+        ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-black"
+        : "text-slate-600 hover:text-slate-900 dark:text-steel-400 dark:hover:text-white"
     }`;
 
   return (
     <div
       role="group"
       aria-label="Pilih tema tampilan"
-      className={`inline-flex items-stretch border-2 border-slate-900 bg-white font-mono text-[10px] font-bold uppercase tracking-wider dark:border-white dark:bg-dark-surface ${className}`}
+      className={`inline-flex h-9 items-stretch border-2 border-slate-900 bg-white font-mono font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_#000000] dark:border-white dark:bg-dark-surface dark:shadow-[2px_2px_0px_0px_#FFFFFF] ${className}`}
     >
       <button
         type="button"
