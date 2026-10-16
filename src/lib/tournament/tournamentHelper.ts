@@ -63,7 +63,11 @@ export async function saveLiveTournament(
   data: LiveTournamentData
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    // 1. Simpan ke Firestore jika aktif
+    let fbSuccess = false;
+    let apiSuccess = false;
+    let apiError = "";
+
+    // 1. Simpan ke Firestore jika aktif di client
     if (isFirebaseConfigured && db) {
       try {
         const liveDocRef = doc(db, TOURNAMENTS_COLLECTION, LIVE_DOC_ID);
@@ -71,31 +75,51 @@ export async function saveLiveTournament(
           ...data,
           updatedAt: new Date().toISOString(),
         });
-      } catch (fbErr) {
-        console.warn("Gagal update ke Firestore (fallback ke API):", fbErr);
+        fbSuccess = true;
+      } catch (fbErr: any) {
+        console.warn("Gagal update ke Firestore dari client (fallback ke API):", fbErr);
       }
     }
 
-    // 2. Simpan ke file lokal via API
-    const res = await fetch("/api/tournament/live", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    // 2. Simpan ke file lokal / serverless via API
+    try {
+      const res = await fetch("/api/tournament/live", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    const json = await res.json();
+      if (res.ok) {
+        const json = await res.json();
+        apiSuccess = Boolean(json?.success);
+        if (!apiSuccess) {
+          apiError = json?.error || "Gagal menyimpan ke server.";
+        }
+      } else {
+        const json = await res.json().catch(() => null);
+        apiError = json?.error || `Server HTTP ${res.status}`;
+      }
+    } catch (apiErr: any) {
+      console.warn("API save live tournament error:", apiErr);
+      apiError = apiErr?.message || "Kesalahan koneksi API.";
+    }
 
-    // 3. Broadcast update ke semua tab browser & komponen secara instan
+    // 3. Broadcast update ke semua tab browser & simpan ke localStorage instant cache
     if (typeof window !== "undefined") {
       try {
         window.dispatchEvent(new CustomEvent("cees_tournament_updated", { detail: data }));
         localStorage.setItem("cees_tournament_updated_at", Date.now().toString());
+        localStorage.setItem("cees_live_tournament_cache", JSON.stringify(data));
       } catch (e) {
         // ignore storage errors
       }
     }
 
-    return json;
+    if (fbSuccess || apiSuccess) {
+      return { success: true };
+    }
+
+    return { success: false, error: apiError || "Gagal menyimpan turnamen." };
   } catch (err: any) {
     console.error("Error saveLiveTournament:", err);
     return { success: false, error: err.message || "Gagal menyimpan turnamen." };
@@ -126,24 +150,49 @@ export async function archiveCurrentTournament(
       standings,
     };
 
+    let fbSuccess = false;
+    let apiSuccess = false;
+    let apiError = "";
+
     // 1. Simpan ke Firestore jika aktif
     if (isFirebaseConfigured && db) {
       try {
         const archDocRef = doc(db, ARCHIVES_COLLECTION, archivePayload.id);
         await setDoc(archDocRef, archivePayload);
+        fbSuccess = true;
       } catch (fbErr) {
         console.warn("Gagal arsip ke Firestore:", fbErr);
       }
     }
 
     // 2. Simpan via API
-    const res = await fetch("/api/tournament/archive", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(archivePayload),
-    });
+    try {
+      const res = await fetch("/api/tournament/archive", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(archivePayload),
+      });
 
-    return await res.json();
+      if (res.ok) {
+        const json = await res.json();
+        apiSuccess = Boolean(json?.success);
+        if (!apiSuccess) {
+          apiError = json?.error || "Gagal menyimpan arsip ke server.";
+        }
+      } else {
+        const json = await res.json().catch(() => null);
+        apiError = json?.error || `Server HTTP ${res.status}`;
+      }
+    } catch (apiErr: any) {
+      console.warn("API archive error:", apiErr);
+      apiError = apiErr?.message || "Gagal menghubungi server arsip.";
+    }
+
+    if (fbSuccess || apiSuccess) {
+      return { success: true };
+    }
+
+    return { success: false, error: apiError || "Gagal mengarsipkan turnamen." };
   } catch (err: any) {
     console.error("Error archiveCurrentTournament:", err);
     return { success: false, error: err.message || "Gagal mengarsipkan turnamen." };

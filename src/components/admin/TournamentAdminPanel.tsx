@@ -153,23 +153,46 @@ export default function TournamentAdminPanel() {
   // Toggle Show/Hide on Homepage
   const handleToggleVisibility = async () => {
     if (!tournament) return;
+    const nextState = !tournament.isVisible;
     const updated = {
       ...tournament,
-      isVisible: !tournament.isVisible,
+      isVisible: nextState,
     };
     setTournament(updated);
     setSaving(true);
+    setErrorStatus(null);
+    setSaveStatus(null);
+
+    ceesAlert.loading({
+      title: "MENGUBAH VISIBILITAS",
+      message: nextState
+        ? "Mengaktifkan penayangan turnamen di Beranda..."
+        : "Menyembunyikan turnamen dari Beranda...",
+      showProgress: true,
+      progress: 50,
+    });
+
     const res = await saveLiveTournament(updated);
     setSaving(false);
     if (res.success) {
-      setSaveStatus(
-        updated.isVisible
-          ? "Turnamen sekarang TAMPIL di Beranda."
-          : "Turnamen sekarang DISEMBUNYIKAN dari Beranda."
+      const msg = updated.isVisible
+        ? "Turnamen sekarang TAMPIL di Beranda!"
+        : "Turnamen sekarang DISEMBUNYIKAN dari Beranda!";
+      setSaveStatus(msg);
+      ceesAlert.success(
+        updated.isVisible ? "TURNAMEN AKTIF" : "TURNAMEN DISEMBUNYIKAN",
+        msg
       );
-      setTimeout(() => setSaveStatus(null), 3000);
+      setTimeout(() => setSaveStatus(null), 3500);
     } else {
-      setErrorStatus("Gagal mengubah visibilitas turnamen.");
+      // Revert optimistic update
+      setTournament({
+        ...tournament,
+        isVisible: !nextState,
+      });
+      const errorMsg = res.error || "Gagal mengubah visibilitas turnamen.";
+      setErrorStatus(errorMsg);
+      ceesAlert.error("GAGAL MENGUBAH VISIBILITAS", errorMsg);
     }
   };
 

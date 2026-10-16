@@ -1,14 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import os from "os";
 
 const contentFilePath = path.join(process.cwd(), "src", "data", "siteContent.json");
+const tmpContentPath = path.join(os.tmpdir(), "cees_siteContent.json");
+
+declare global {
+  var __cees_site_content: any;
+}
 
 function readSiteContent() {
+  if (globalThis.__cees_site_content) {
+    return globalThis.__cees_site_content;
+  }
+  try {
+    if (fs.existsSync(tmpContentPath)) {
+      const data = fs.readFileSync(tmpContentPath, "utf-8");
+      const parsed = JSON.parse(data);
+      if (parsed) {
+        globalThis.__cees_site_content = parsed;
+        return parsed;
+      }
+    }
+  } catch (e) {}
+
   try {
     if (fs.existsSync(contentFilePath)) {
       const data = fs.readFileSync(contentFilePath, "utf-8");
-      return JSON.parse(data);
+      const parsed = JSON.parse(data);
+      globalThis.__cees_site_content = parsed;
+      return parsed;
     }
   } catch (err) {
     console.error("Gagal membaca siteContent.json:", err);
@@ -16,14 +38,18 @@ function readSiteContent() {
   return null;
 }
 
-function writeSiteContent(data: any) {
+function writeSiteContent(data: any): boolean {
+  globalThis.__cees_site_content = data;
+  try {
+    fs.writeFileSync(tmpContentPath, JSON.stringify(data, null, 2), "utf-8");
+  } catch (e) {}
+
   try {
     fs.writeFileSync(contentFilePath, JSON.stringify(data, null, 2), "utf-8");
-    return true;
   } catch (err) {
-    console.error("Gagal menulis siteContent.json:", err);
-    return false;
+    console.log("Vercel filesystem read-only: site content disimpan ke memory & /tmp.");
   }
+  return true;
 }
 
 export const dynamic = "force-dynamic";

@@ -666,7 +666,7 @@ export default function AdminToolsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-28 transition-colors duration-200 dark:bg-dark-void">
+    <div className="min-h-screen bg-slate-50 pb-44 sm:pb-36 lg:pb-28 transition-colors duration-200 dark:bg-dark-void">
       {/* 1. Header Banner Strip */}
       <div className="border-b-2 border-slate-900 bg-brand-blue py-2 text-white dark:border-white dark:bg-dark-base">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 font-mono text-[11px] font-bold uppercase tracking-wider sm:px-6 lg:px-8">
@@ -2201,23 +2201,23 @@ export default function AdminToolsPage() {
         {activeTab === "tournament" && <TournamentAdminPanel />}
       </div>
 
-      {/* 9. Floating Save Status Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-40 border-t-2 border-slate-900 bg-white p-3 shadow-lg dark:border-white dark:bg-dark-surface">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 font-mono text-xs">
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-bold text-slate-800 dark:text-steel-200">
+      {/* 9. Floating Save Status Bar - Elevated above MobileBottomNav on mobile screens */}
+      <div className="fixed bottom-[calc(env(safe-area-inset-bottom,0px)+58px)] lg:bottom-0 inset-x-0 z-30 border-t-2 border-slate-900 bg-white/95 p-2 sm:p-3 shadow-[0px_-4px_10px_rgba(0,0,0,0.1)] dark:border-white dark:bg-dark-surface/95 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-4 font-mono text-xs">
+          <div className="flex items-center gap-1.5 sm:gap-2 truncate mr-2">
+            <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-bold text-slate-800 dark:text-steel-200 text-[10px] sm:text-xs truncate">
               SESI ADMIN: {user.displayName} (SEKTOR HQ)
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button
               onClick={handleSaveAll}
               disabled={saving}
-              className="brutal-btn flex items-center gap-2 px-6 py-2.5 text-xs font-bold"
+              className="brutal-btn flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 sm:py-2.5 text-[11px] sm:text-xs font-bold shadow-[2px_2px_0px_0px_#000]"
             >
-              <Save className="h-4 w-4" />
+              <Save className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span>{saving ? "MENYIMPAN DATA..." : "SIMPAN PERUBAHAN WEB"}</span>
             </button>
           </div>

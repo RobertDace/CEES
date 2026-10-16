@@ -4,7 +4,7 @@
     "title": "CEES FAST SCRIM SEASON 1",
     "subtitle": "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES",
     "status": "LIVE",
-    "isVisible": false,
+    "isVisible": true,
     "totalMatches": 5,
     "currentMatch": 2,
     "currentMap": "Miramar",
@@ -12,7 +12,7 @@
     "prizePool": "Rp 1.500.000 + Trophy",
     "date": "16 Oktober 2026",
     "location": "Samarinda Gaming Hub & Online Room",
-    "updatedAt": "2026-10-16T02:14:50.665Z",
+    "updatedAt": "2026-10-16T02:51:11.251Z",
     "teams": [
       {
         "id": "t1",
