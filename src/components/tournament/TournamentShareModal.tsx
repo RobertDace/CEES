@@ -25,6 +25,7 @@ interface TournamentShareModalProps {
   onClose: () => void;
   tournament: LiveTournamentData;
   standings: TournamentStanding[];
+  sheetName?: string;
 }
 
 export default function TournamentShareModal({
@@ -32,6 +33,7 @@ export default function TournamentShareModal({
   onClose,
   tournament,
   standings,
+  sheetName,
 }: TournamentShareModalProps) {
   const [aspectRatio, setAspectRatio] = useState<"1:1" | "9:16">("1:1");
   const [isGenerating, setIsGenerating] = useState(false);
@@ -39,6 +41,19 @@ export default function TournamentShareModal({
   const cardRef = useRef<HTMLDivElement>(null);
 
   if (!isOpen) return null;
+
+  const handleCopyWA = () => {
+    const text = generateWhatsAppShareText(tournament, standings, sheetName);
+    navigator.clipboard.writeText(text);
+    setCopiedWA(true);
+    setTimeout(() => setCopiedWA(false), 2500);
+    ceesAlert.toast({
+      type: "success",
+      title: "REKAP WA TERSALIN!",
+      message: sheetName ? `Format rekap klasemen ${sheetName} siap dibagikan ke WhatsApp.` : "Format rekap klasemen siap dibagikan ke WhatsApp.",
+      duration: 2500,
+    });
+  };
 
   const handleDownload = async () => {
     if (!cardRef.current) return;
@@ -74,19 +89,6 @@ export default function TournamentShareModal({
     } finally {
       setIsGenerating(false);
     }
-  };
-
-  const handleCopyWA = () => {
-    const text = generateWhatsAppShareText(tournament, standings);
-    navigator.clipboard.writeText(text);
-    setCopiedWA(true);
-    ceesAlert.toast({
-      type: "success",
-      title: "FORMAT WA TERSALIN",
-      message: "Teks rekap turnamen siap ditempel ke grup WhatsApp!",
-      duration: 3000,
-    });
-    setTimeout(() => setCopiedWA(false), 2500);
   };
 
   const topFragger = [...standings].sort((a, b) => b.elimPoints - a.elimPoints)[0];
@@ -211,10 +213,17 @@ export default function TournamentShareModal({
               {/* Title & Match Info */}
               <div className="mt-2.5 flex items-end justify-between">
                 <div>
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-brand-cyan font-bold">
-                    OFFICIAL TOURNAMENT STANDINGS
-                  </span>
-                  <h2 className="font-display text-lg font-black uppercase text-white tracking-tight leading-tight">
+                  <div className="flex items-center space-x-1.5 flex-wrap">
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-brand-cyan font-bold">
+                      OFFICIAL STANDINGS
+                    </span>
+                    {sheetName && (
+                      <span className="font-mono text-[9px] font-black uppercase bg-brand-blue text-white px-1.5 py-0.5 border border-white/40 shadow-[1px_1px_0px_0px_#fff]">
+                        {sheetName}
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="font-display text-lg font-black uppercase text-white tracking-tight leading-tight mt-0.5">
                     {tournament.title}
                   </h2>
                 </div>

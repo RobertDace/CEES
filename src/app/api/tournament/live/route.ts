@@ -1,10 +1,14 @@
-// src/app/api/tournament/live/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import os from "os";
 import { db, isFirebaseConfigured } from "@/lib/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  LiveTournamentData,
+  normalizeTournamentData,
+  createNewTournament,
+} from "@/lib/tournament/pubgmCalculator";
 
 const LIVE_DOC_ID = "current_tournament";
 const TOURNAMENTS_COLLECTION = "tournaments";
@@ -84,40 +88,54 @@ const NO_CACHE_HEADERS = {
 
 export async function GET() {
   try {
+    const fileData = readTournamentFile() || { liveTournament: null, tournaments: [], archivedTournaments: [] };
+    let liveData: any = null;
+    let source = "local_cache";
+
     // 1. Ambil dari Firestore jika aktif
     if (isFirebaseConfigured && db) {
       try {
         const liveDocRef = doc(db, TOURNAMENTS_COLLECTION, LIVE_DOC_ID);
         const snap = await getDoc(liveDocRef);
         if (snap.exists()) {
-          const liveData = snap.data();
-          return NextResponse.json(
-            {
-              success: true,
-              data: liveData,
-              source: "firestore",
-            },
-            { headers: NO_CACHE_HEADERS }
-          );
+          liveData = snap.data();
+          source = "firestore";
         }
       } catch (fbErr) {
         console.warn("Gagal getDoc Firestore (fallback ke file/tmp):", fbErr);
       }
     }
 
-    // 2. Ambil dari file / tmp / memory
-    const fileData = readTournamentFile();
-    if (!fileData || !fileData.liveTournament) {
-      return NextResponse.json(
-        { success: false, error: "Data turnamen belum ditemukan." },
-        { status: 404, headers: NO_CACHE_HEADERS }
-      );
+    // 2. Fallback ke fileData jika Firestore belum ada
+    if (!liveData) {
+      liveData = fileData.liveTournament;
     }
+
+    if (!liveData) {
+      liveData = createNewTournament("CEES FAST SCRIM SEASON 1", "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES", true);
+    }
+
+    const normalizedLive = normalizeTournamentData(liveData);
+
+    // Ambil list semua turnamen
+    let tournamentsList: LiveTournamentData[] = Array.isArray(fileData.tournaments) && fileData.tournaments.length > 0
+      ? fileData.tournaments.map((t: any) => normalizeTournamentData(t))
+      : [normalizedLive];
+
+    // Pastikan turnamen live saat ini terdaftar di tournamentsList
+    const existingIndex = tournamentsList.findIndex((t) => t.id === normalizedLive.id);
+    if (existingIndex >= 0) {
+      tournamentsList[existingIndex] = normalizedLive;
+    } else {
+      tournamentsList.unshift(normalizedLive);
+    }
+
     return NextResponse.json(
       {
         success: true,
-        data: fileData.liveTournament,
-        source: "local_cache",
+        data: normalizedLive,
+        tournaments: tournamentsList,
+        source,
       },
       { headers: NO_CACHE_HEADERS }
     );
@@ -139,10 +157,52 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const updatedLiveTournament = {
-      ...payload,
-      updatedAt: new Date().toISOString(),
-    };
+    const fileData = readTournamentFile() || { liveTournament: null, tournaments: [], archivedTournaments: [] };
+    let tournamentsList: LiveTournamentData[] = Array.isArray(fileData.tournaments)
+      ? fileData.tournaments.map((t: any) => normalizeTournamentData(t))
+      : [];
+
+    let updatedLiveTournament: LiveTournamentData;
+
+    // Handle aksi ganti turnamen aktif via setActiveTournamentId
+    if (payload.setActiveTournamentId) {
+      const targetId = payload.setActiveTournamentId;
+      const found = tournamentsList.find((t) => t.id === targetId);
+      if (!found) {
+        return NextResponse.json(
+          { success: false, error: "Turnamen target tidak ditemukan." },
+          { status: 404 }
+        );
+      }
+      updatedLiveTournament = {
+        ...found,
+        updatedAt: new Date().toISOString(),
+      };
+    } else {
+      // Normal update
+      const normalizedPayload = normalizeTournamentData(payload);
+      updatedLiveTournament = {
+        ...normalizedPayload,
+        updatedAt: new Date().toISOString(),
+      };
+    }
+
+    // Update dalam array tournaments
+    const matchIdx = tournamentsList.findIndex((t) => t.id === updatedLiveTournament.id);
+    if (matchIdx >= 0) {
+      tournamentsList[matchIdx] = updatedLiveTournament;
+    } else {
+      tournamentsList.unshift(updatedLiveTournament);
+    }
+
+    // Jika payload juga menyertakan update daftar tournaments
+    if (Array.isArray(payload.allTournaments)) {
+      tournamentsList = payload.allTournaments.map((t: any) => normalizeTournamentData(t));
+      const activeIdx = tournamentsList.findIndex((t) => t.id === updatedLiveTournament.id);
+      if (activeIdx >= 0) {
+        tournamentsList[activeIdx] = updatedLiveTournament;
+      }
+    }
 
     // 1. Simpan ke Firestore jika aktif
     if (isFirebaseConfigured && db) {
@@ -155,14 +215,15 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Simpan ke local / tmp / memory
-    const fileData = readTournamentFile() || { liveTournament: {}, archivedTournaments: [] };
     fileData.liveTournament = updatedLiveTournament;
+    fileData.tournaments = tournamentsList;
     writeTournamentFile(fileData);
 
     return NextResponse.json(
       {
         success: true,
-        data: fileData.liveTournament,
+        data: updatedLiveTournament,
+        tournaments: tournamentsList,
         message: "Data turnamen berhasil diperbarui.",
       },
       { headers: NO_CACHE_HEADERS }
@@ -175,3 +236,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

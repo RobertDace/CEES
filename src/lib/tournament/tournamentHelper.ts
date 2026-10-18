@@ -12,6 +12,7 @@ import {
   LiveTournamentData,
   ArchivedTournament,
   calculatePUBGMStandings,
+  normalizeTournamentData,
 } from "./pubgmCalculator";
 
 const LIVE_DOC_ID = "current_tournament";
@@ -19,7 +20,7 @@ const TOURNAMENTS_COLLECTION = "tournaments";
 const ARCHIVES_COLLECTION = "tournament_archives";
 
 /**
- * Fetch data turnamen live dari API backend (fallback aman)
+ * Fetch data turnamen live & seluruh list turnamen dari API backend
  */
 export async function fetchLiveTournamentFromApi(): Promise<LiveTournamentData | null> {
   try {
@@ -32,10 +33,93 @@ export async function fetchLiveTournamentFromApi(): Promise<LiveTournamentData |
     });
     if (!res.ok) return null;
     const json = await res.json();
-    return json.success ? json.data : null;
+    return json.success && json.data ? normalizeTournamentData(json.data) : null;
   } catch (err) {
     console.error("Gagal fetchLiveTournamentFromApi:", err);
     return null;
+  }
+}
+
+/**
+ * Fetch data semua turnamen yang terdaftar di sistem
+ */
+export async function fetchAllTournamentsFromApi(): Promise<{
+  live: LiveTournamentData | null;
+  tournaments: LiveTournamentData[];
+}> {
+  try {
+    const res = await fetch(`/api/tournament/live?t=${Date.now()}`, {
+      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+      },
+    });
+    if (!res.ok) return { live: null, tournaments: [] };
+    const json = await res.json();
+    if (json.success) {
+      const live = json.data ? normalizeTournamentData(json.data) : null;
+      const tournaments = Array.isArray(json.tournaments)
+        ? json.tournaments.map((t: any) => normalizeTournamentData(t))
+        : live ? [live] : [];
+      return { live, tournaments };
+    }
+    return { live: null, tournaments: [] };
+  } catch (err) {
+    console.error("Gagal fetchAllTournamentsFromApi:", err);
+    return { live: null, tournaments: [] };
+  }
+}
+
+/**
+ * Beralih turnamen aktif yang ditampilkan di Beranda
+ */
+export async function switchActiveTournamentApi(
+  tournamentId: string
+): Promise<{ success: boolean; data?: LiveTournamentData; error?: string }> {
+  try {
+    const res = await fetch("/api/tournament/live", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ setActiveTournamentId: tournamentId }),
+    });
+    const json = await res.json();
+    if (res.ok && json.success) {
+      const normalized = normalizeTournamentData(json.data);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("cees_tournament_updated", { detail: normalized }));
+        localStorage.setItem("cees_tournament_updated_at", Date.now().toString());
+        localStorage.setItem("cees_live_tournament_cache", JSON.stringify(normalized));
+      }
+      return { success: true, data: normalized };
+    }
+    return { success: false, error: json?.error || "Gagal beralih turnamen aktif." };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Gagal menghubungi server." };
+  }
+}
+
+/**
+ * Simpan seluruh bundel daftar turnamen dan turnamen yang sedang diedit
+ */
+export async function saveTournamentsBundle(
+  allTournaments: LiveTournamentData[],
+  activeTournament: LiveTournamentData
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const normalizedActive = normalizeTournamentData(activeTournament);
+    const normalizedList = allTournaments.map((t) =>
+      t.id === normalizedActive.id ? normalizedActive : normalizeTournamentData(t)
+    );
+
+    const payload = {
+      ...normalizedActive,
+      allTournaments: normalizedList,
+    };
+
+    return await saveLiveTournament(payload);
+  } catch (err: any) {
+    return { success: false, error: err.message || "Gagal menyimpan bundel turnamen." };
   }
 }
 
@@ -210,7 +294,7 @@ export function subscribeToLiveTournament(
   // Local broadcast listener (same tab & cross-tab)
   const handleLocalUpdate = (e: any) => {
     if (e?.detail) {
-      onData(e.detail);
+      onData(normalizeTournamentData(e.detail));
     } else {
       fetchLiveTournamentFromApi().then((d) => {
         if (active) onData(d);
@@ -245,7 +329,7 @@ export function subscribeToLiveTournament(
         liveDocRef,
         (snap) => {
           if (snap.exists()) {
-            onData(snap.data() as LiveTournamentData);
+            onData(normalizeTournamentData(snap.data() as LiveTournamentData));
           } else {
             fetchLiveTournamentFromApi().then((d) => {
               if (active && d) onData(d);

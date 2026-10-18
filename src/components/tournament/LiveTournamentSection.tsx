@@ -23,8 +23,10 @@ import {
 import {
   LiveTournamentData,
   TournamentStanding,
+  TournamentSheet,
   ArchivedTournament,
   calculatePUBGMStandings,
+  normalizeTournamentData,
   PMWC_RANK_POINTS,
 } from "@/lib/tournament/pubgmCalculator";
 import {
@@ -39,8 +41,11 @@ import initialTournamentData from "@/data/tournamentData.json";
 
 export default function LiveTournamentSection() {
   const [tournament, setTournament] = useState<LiveTournamentData | null>(
-    (initialTournamentData?.liveTournament as unknown as LiveTournamentData) || null
+    initialTournamentData?.liveTournament
+      ? normalizeTournamentData(initialTournamentData.liveTournament)
+      : null
   );
+  const [selectedSheetId, setSelectedSheetId] = useState<string>("");
   const [activeTab, setActiveTab] = useState<"overall" | number>("overall");
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [copiedWA, setCopiedWA] = useState(false);
@@ -49,7 +54,7 @@ export default function LiveTournamentSection() {
     // 1. Subscribe realtime data turnamen (Firestore / API polling fallback)
     const unsubscribe = subscribeToLiveTournament((data) => {
       if (data) {
-        setTournament(data);
+        setTournament(normalizeTournamentData(data));
       }
     });
 
@@ -65,29 +70,42 @@ export default function LiveTournamentSection() {
     return null;
   }
 
+  // Filter hanya lembar yang berstatus isVisible === true
+  const visibleSheets: TournamentSheet[] = (tournament.sheets || []).filter((s) => s.isVisible);
+  if (visibleSheets.length === 0) {
+    // Jika semua lembar disembunyikan, beranda tidak menampilkan apapun
+    return null;
+  }
+
+  // Lembar aktif yang sedang dilihat
+  const activeSheet: TournamentSheet =
+    visibleSheets.find((s) => s.id === selectedSheetId) ||
+    visibleSheets.find((s) => s.id === tournament.activeSheetId) ||
+    visibleSheets[0];
+
   const standings: TournamentStanding[] = calculatePUBGMStandings(
-    tournament.teams,
-    tournament.matches
+    activeSheet.teams,
+    activeSheet.matches
   );
 
   const leader = standings[0];
   const topEliminator = [...standings].sort((a, b) => b.elimPoints - a.elimPoints)[0];
 
   const handleCopyWA = () => {
-    const text = generateWhatsAppShareText(tournament, standings);
+    const text = generateWhatsAppShareText(tournament, standings, activeSheet.name);
     navigator.clipboard.writeText(text);
     setCopiedWA(true);
     setTimeout(() => setCopiedWA(false), 2500);
   };
 
   const handleExcelExport = () => {
-    exportTournamentToExcel(tournament, standings);
+    exportTournamentToExcel(tournament, standings, activeSheet.name);
   };
 
   // Cek match spesifik jika user klik tab match tertentu
   const selectedMatch =
     typeof activeTab === "number"
-      ? tournament.matches.find((m) => m.matchNumber === activeTab)
+      ? activeSheet.matches.find((m) => m.matchNumber === activeTab)
       : null;
 
   return (
@@ -112,14 +130,18 @@ export default function LiveTournamentSection() {
                   <span className="h-2 w-2 rounded-full bg-white" />
                   <span>{tournament.status}</span>
                 </span>
+                <span className="inline-flex items-center space-x-1.5 border-2 border-slate-900 bg-brand-blue px-2.5 py-0.5 text-xs font-mono font-black text-white uppercase rounded-none shadow-[2px_2px_0px_0px_#000] dark:bg-brand-cyan dark:text-slate-950">
+                  <Zap className="h-3.5 w-3.5" />
+                  <span>{activeSheet.name}</span>
+                </span>
                 <span className="inline-flex items-center space-x-1.5 border-2 border-slate-900 bg-amber-400 px-2.5 py-0.5 text-xs font-mono font-black text-slate-950 uppercase rounded-none shadow-[2px_2px_0px_0px_#000]">
                   <Crosshair className="h-3.5 w-3.5" />
-                  <span>MATCH {tournament.currentMatch} OF {tournament.totalMatches}</span>
+                  <span>MATCH {activeSheet.currentMatch} OF {activeSheet.totalMatches}</span>
                 </span>
                 <span className="inline-flex items-center space-x-1 border-2 border-slate-900 bg-white px-2.5 py-0.5 text-xs font-mono font-bold text-slate-900 uppercase rounded-none shadow-[2px_2px_0px_0px_#000] dark:bg-dark-base dark:text-white dark:border-white">
                   <span>MAP:</span>
                   <span className="text-brand-blue font-black dark:text-brand-cyan">
-                    {tournament.currentMap}
+                    {activeSheet.currentMap}
                   </span>
                 </span>
                 <span className="hidden sm:inline-block font-mono text-[11px] font-bold text-slate-500 dark:text-steel-400 uppercase">
@@ -219,6 +241,61 @@ export default function LiveTournamentSection() {
           </div>
         </div>
 
+        {/* Phase & Sheet Switcher Bar (Grup A, Grup B, Grand Final) */}
+        {visibleSheets.length > 1 && (
+          <div className="mt-6 border-2 sm:border-4 border-slate-900 bg-white p-3 shadow-[4px_4px_0px_0px_#0030FF] dark:border-white dark:bg-dark-surface rounded-none">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5 border-b-2 border-slate-900 pb-2 dark:border-white">
+              <div className="flex items-center space-x-2">
+                <Swords className="h-4 w-4 text-brand-blue dark:text-brand-cyan" />
+                <span className="font-mono text-xs font-black uppercase text-slate-900 dark:text-white">
+                  PILIH LEMBAR / FASE PERTANDINGAN:
+                </span>
+              </div>
+              <span className="font-mono text-[11px] font-bold text-slate-500 dark:text-steel-400 uppercase">
+                // {visibleSheets.length} Lembar Aktif Ditampilkan
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {visibleSheets.map((sheet) => {
+                const isCurrent = sheet.id === activeSheet.id;
+                const phaseLabel =
+                  sheet.phase === "FINAL"
+                    ? "GRAND FINAL"
+                    : sheet.phase === "SEMI_FINAL"
+                    ? "SEMI FINAL"
+                    : "KUALIFIKASI";
+                const phaseColor =
+                  sheet.phase === "FINAL"
+                    ? "bg-amber-400 text-slate-950"
+                    : sheet.phase === "SEMI_FINAL"
+                    ? "bg-purple-600 text-white"
+                    : "bg-brand-blue text-white";
+
+                return (
+                  <button
+                    key={sheet.id}
+                    onClick={() => {
+                      setSelectedSheetId(sheet.id);
+                      setActiveTab("overall");
+                    }}
+                    className={`flex items-center space-x-2 border-2 border-slate-900 px-3.5 py-2 font-mono text-xs font-black uppercase transition-all rounded-none dark:border-white ${
+                      isCurrent
+                        ? "bg-slate-900 text-white shadow-[4px_4px_0px_0px_#0030FF] dark:bg-white dark:text-slate-950 scale-[1.02]"
+                        : "bg-slate-100 text-slate-800 hover:bg-slate-200 dark:bg-dark-base dark:text-steel-300"
+                    }`}
+                  >
+                    <span className={`px-1.5 py-0.5 text-[9px] font-black ${phaseColor}`}>
+                      {phaseLabel}
+                    </span>
+                    <span>{sheet.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* View Switcher Tabs (Overall vs Per-Match) - Swipeable on Mobile */}
         <div className="mt-6 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1.5 touch-pan-x">
           <button
@@ -229,10 +306,10 @@ export default function LiveTournamentSection() {
                 : "bg-white text-slate-800 hover:bg-slate-100 dark:bg-dark-surface dark:text-steel-300"
             }`}
           >
-            🏆 OVERALL STANDINGS
+            🏆 OVERALL ({activeSheet.name.toUpperCase()})
           </button>
 
-          {tournament.matches.map((m) => (
+          {activeSheet.matches.map((m) => (
             <button
               key={m.matchId}
               onClick={() => setActiveTab(m.matchNumber)}
@@ -380,7 +457,7 @@ export default function LiveTournamentSection() {
                     {selectedMatch.teamResults
                       .sort((a, b) => a.rank - b.rank)
                       .map((res) => {
-                        const team = tournament.teams.find((t) => t.id === res.teamId);
+                        const team = activeSheet.teams.find((t) => t.id === res.teamId);
                         const rankPts = PMWC_RANK_POINTS[res.rank] ?? 0;
                         const matchPts = rankPts + res.kills;
                         return (
@@ -452,6 +529,7 @@ export default function LiveTournamentSection() {
         onClose={() => setIsShareModalOpen(false)}
         tournament={tournament}
         standings={standings}
+        sheetName={activeSheet.name}
       />
     </section>
   );

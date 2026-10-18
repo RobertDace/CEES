@@ -1,284 +1,2707 @@
 {
   "liveTournament": {
-    "id": "cees-fast-scrim-s1",
-    "title": "CEES FAST SCRIM SEASON 1",
-    "subtitle": "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES",
-    "status": "LIVE",
-    "isVisible": true,
-    "totalMatches": 5,
-    "currentMatch": 2,
-    "currentMap": "Miramar",
-    "scoringSystem": "PMWC 10-Point Official",
-    "prizePool": "Rp 1.500.000 + Trophy",
     "date": "16 Oktober 2026",
+    "currentMap": "Erangel",
+    "matches": [
+      {
+        "matchId": "m-sheet-1792307156940-k98e-1",
+        "matchNumber": 1,
+        "mapName": "Erangel",
+        "isCompleted": false,
+        "teamResults": [
+          {
+            "teamId": "team-sheet-1792307156940-k98e-1",
+            "rank": 1,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-2",
+            "rank": 2,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-3",
+            "rank": 3,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-4",
+            "rank": 4,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-5",
+            "rank": 5,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-6",
+            "rank": 6,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-7",
+            "rank": 7,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-8",
+            "rank": 8,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-9",
+            "rank": 9,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-10",
+            "rank": 10,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-11",
+            "rank": 11,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-12",
+            "rank": 12,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-13",
+            "rank": 13,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-14",
+            "rank": 14,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-15",
+            "rank": 15,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-16",
+            "rank": 16,
+            "kills": 0
+          }
+        ]
+      },
+      {
+        "matchId": "m-sheet-1792307156940-k98e-2",
+        "matchNumber": 2,
+        "mapName": "Miramar",
+        "isCompleted": false,
+        "teamResults": [
+          {
+            "teamId": "team-sheet-1792307156940-k98e-1",
+            "rank": 1,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-2",
+            "rank": 2,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-3",
+            "rank": 3,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-4",
+            "rank": 4,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-5",
+            "rank": 5,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-6",
+            "rank": 6,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-7",
+            "rank": 7,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-8",
+            "rank": 8,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-9",
+            "rank": 9,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-10",
+            "rank": 10,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-11",
+            "rank": 11,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-12",
+            "rank": 12,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-13",
+            "rank": 13,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-14",
+            "rank": 14,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-15",
+            "rank": 15,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-16",
+            "rank": 16,
+            "kills": 0
+          }
+        ]
+      },
+      {
+        "matchId": "m-sheet-1792307156940-k98e-3",
+        "matchNumber": 3,
+        "mapName": "Sanhok",
+        "isCompleted": false,
+        "teamResults": [
+          {
+            "teamId": "team-sheet-1792307156940-k98e-1",
+            "rank": 1,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-2",
+            "rank": 2,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-3",
+            "rank": 3,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-4",
+            "rank": 4,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-5",
+            "rank": 5,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-6",
+            "rank": 6,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-7",
+            "rank": 7,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-8",
+            "rank": 8,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-9",
+            "rank": 9,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-10",
+            "rank": 10,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-11",
+            "rank": 11,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-12",
+            "rank": 12,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-13",
+            "rank": 13,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-14",
+            "rank": 14,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-15",
+            "rank": 15,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-16",
+            "rank": 16,
+            "kills": 0
+          }
+        ]
+      },
+      {
+        "matchId": "m-sheet-1792307156940-k98e-4",
+        "matchNumber": 4,
+        "mapName": "Erangel",
+        "isCompleted": false,
+        "teamResults": [
+          {
+            "teamId": "team-sheet-1792307156940-k98e-1",
+            "rank": 1,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-2",
+            "rank": 2,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-3",
+            "rank": 3,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-4",
+            "rank": 4,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-5",
+            "rank": 5,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-6",
+            "rank": 6,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-7",
+            "rank": 7,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-8",
+            "rank": 8,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-9",
+            "rank": 9,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-10",
+            "rank": 10,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-11",
+            "rank": 11,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-12",
+            "rank": 12,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-13",
+            "rank": 13,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-14",
+            "rank": 14,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-15",
+            "rank": 15,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-16",
+            "rank": 16,
+            "kills": 0
+          }
+        ]
+      },
+      {
+        "matchId": "m-sheet-1792307156940-k98e-5",
+        "matchNumber": 5,
+        "mapName": "Miramar",
+        "isCompleted": false,
+        "teamResults": [
+          {
+            "teamId": "team-sheet-1792307156940-k98e-1",
+            "rank": 1,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-2",
+            "rank": 2,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-3",
+            "rank": 3,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-4",
+            "rank": 4,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-5",
+            "rank": 5,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-6",
+            "rank": 6,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-7",
+            "rank": 7,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-8",
+            "rank": 8,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-9",
+            "rank": 9,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-10",
+            "rank": 10,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-11",
+            "rank": 11,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-12",
+            "rank": 12,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-13",
+            "rank": 13,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-14",
+            "rank": 14,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-15",
+            "rank": 15,
+            "kills": 0
+          },
+          {
+            "teamId": "team-sheet-1792307156940-k98e-16",
+            "rank": 16,
+            "kills": 0
+          }
+        ]
+      }
+    ],
+    "currentMatch": 1,
+    "updatedAt": "2026-10-18T07:05:58.486Z",
+    "status": "LIVE",
     "location": "Samarinda Gaming Hub & Online Room",
-    "updatedAt": "2026-10-16T02:51:11.251Z",
+    "prizePool": "Rp 1.500.000 + Trophy",
+    "id": "cees-fast-scrim-s1",
     "teams": [
       {
-        "id": "t1",
+        "id": "team-sheet-1792307156940-k98e-1",
         "code": "CEES",
         "name": "CEES GANK PRIME"
       },
       {
-        "id": "t2",
+        "id": "team-sheet-1792307156940-k98e-2",
         "code": "PAW",
         "name": "PAWPAW SAMARINDA"
       },
       {
-        "id": "t3",
+        "id": "team-sheet-1792307156940-k98e-3",
         "code": "BOR",
         "name": "BORNEO PREDATORS"
       },
       {
-        "id": "t4",
+        "id": "team-sheet-1792307156940-k98e-4",
         "code": "MHK",
         "name": "MAHAKAM WOLVES"
       },
       {
-        "id": "t5",
+        "id": "team-sheet-1792307156940-k98e-5",
         "code": "EVO",
         "name": "EVO SAMARINDA"
       },
       {
-        "id": "t6",
+        "id": "team-sheet-1792307156940-k98e-6",
         "code": "SMD",
         "name": "SAMARINDA ROAR"
       },
       {
-        "id": "t7",
+        "id": "team-sheet-1792307156940-k98e-7",
         "code": "KTI",
         "name": "KUTAI WARRIORS"
       },
       {
-        "id": "t8",
+        "id": "team-sheet-1792307156940-k98e-8",
         "code": "BPP",
         "name": "BALIKPAPAN ELITE"
       },
       {
-        "id": "t9",
+        "id": "team-sheet-1792307156940-k98e-9",
         "code": "TGR",
         "name": "TENGGARONG FORCE"
       },
       {
-        "id": "t10",
+        "id": "team-sheet-1792307156940-k98e-10",
         "code": "SGT",
         "name": "SANGATTA VIPERS"
       },
       {
-        "id": "t11",
+        "id": "team-sheet-1792307156940-k98e-11",
         "code": "BER",
         "name": "BERAU PHANTOM"
       },
       {
-        "id": "t12",
+        "id": "team-sheet-1792307156940-k98e-12",
         "code": "NVA",
         "name": "NOVA REBELS"
       },
       {
-        "id": "t13",
+        "id": "team-sheet-1792307156940-k98e-13",
         "code": "BTR",
         "name": "BONTANG TITANS"
       },
       {
-        "id": "t14",
+        "id": "team-sheet-1792307156940-k98e-14",
         "code": "APX",
         "name": "APEX HUNTERS"
       },
       {
-        "id": "t15",
+        "id": "team-sheet-1792307156940-k98e-15",
         "code": "DKS",
         "name": "DARK KNIGHTS"
       },
       {
-        "id": "team-1792116050320",
-        "name": "RRQ ACADEMY",
-        "code": "RRQ"
+        "id": "team-sheet-1792307156940-k98e-16",
+        "code": "RRQ",
+        "name": "RRQ ACADEMY"
       }
     ],
-    "matches": [
+    "scoringSystem": "PMWC 10-Point Official",
+    "title": "CEES FAST SCRIM SEASON 1",
+    "totalMatches": 5,
+    "isVisible": true,
+    "subtitle": "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES",
+    "sheets": [
       {
-        "matchId": "m1",
-        "matchNumber": 1,
-        "mapName": "Erangel",
-        "isCompleted": true,
-        "teamResults": [
+        "id": "sheet-qual-a",
+        "name": "Grup A (Kualifikasi)",
+        "phase": "QUALIFIER",
+        "isVisible": true,
+        "totalMatches": 5,
+        "currentMatch": 2,
+        "currentMap": "Miramar",
+        "teams": [
           {
-            "teamId": "t1",
-            "rank": 1,
-            "kills": 9
+            "id": "t1",
+            "name": "CEES GANK PRIME",
+            "code": "CEES"
           },
           {
-            "teamId": "t2",
-            "rank": 2,
-            "kills": 5
+            "name": "PAWPAW SAMARINDA",
+            "code": "PAW",
+            "id": "t2"
           },
           {
-            "teamId": "t3",
-            "rank": 3,
-            "kills": 6
+            "id": "t3",
+            "name": "BORNEO PREDATORS",
+            "code": "BOR"
           },
           {
-            "teamId": "t4",
-            "rank": 4,
-            "kills": 4
+            "code": "MHK",
+            "name": "MAHAKAM WOLVES",
+            "id": "t4"
           },
           {
-            "teamId": "t5",
-            "rank": 5,
-            "kills": 2
+            "code": "EVO",
+            "name": "EVO SAMARINDA",
+            "id": "t5"
           },
           {
-            "teamId": "t6",
-            "rank": 6,
-            "kills": 3
+            "code": "SMD",
+            "name": "SAMARINDA ROAR",
+            "id": "t6"
           },
           {
-            "teamId": "t7",
-            "rank": 7,
-            "kills": 1
+            "code": "KTI",
+            "name": "KUTAI WARRIORS",
+            "id": "t7"
           },
           {
-            "teamId": "t8",
-            "rank": 8,
-            "kills": 2
+            "id": "t8",
+            "name": "BALIKPAPAN ELITE",
+            "code": "BPP"
           },
           {
-            "teamId": "t9",
-            "rank": 9,
-            "kills": 1
+            "id": "t9",
+            "code": "TGR",
+            "name": "TENGGARONG FORCE"
           },
           {
-            "teamId": "t10",
-            "rank": 10,
-            "kills": 0
+            "code": "SGT",
+            "name": "SANGATTA VIPERS",
+            "id": "t10"
           },
           {
-            "teamId": "t11",
-            "rank": 11,
-            "kills": 2
+            "code": "BER",
+            "name": "BERAU PHANTOM",
+            "id": "t11"
           },
           {
-            "teamId": "t12",
-            "rank": 12,
-            "kills": 1
+            "id": "t12",
+            "name": "NOVA REBELS",
+            "code": "NVA"
           },
           {
-            "teamId": "t13",
-            "rank": 13,
-            "kills": 0
+            "code": "BTR",
+            "name": "BONTANG TITANS",
+            "id": "t13"
           },
           {
-            "teamId": "t14",
-            "rank": 14,
-            "kills": 1
+            "id": "t14",
+            "name": "APEX HUNTERS",
+            "code": "APX"
           },
           {
-            "teamId": "t15",
-            "rank": 15,
-            "kills": 0
+            "name": "DARK KNIGHTS",
+            "code": "DKS",
+            "id": "t15"
           },
           {
-            "teamId": "team-1792116050320",
-            "rank": 16,
-            "kills": 0
+            "id": "team-1792116050320",
+            "name": "RRQ ACADEMY",
+            "code": "RRQ"
+          }
+        ],
+        "matches": [
+          {
+            "mapName": "Erangel",
+            "teamResults": [
+              {
+                "teamId": "t1",
+                "rank": 1,
+                "kills": 9
+              },
+              {
+                "rank": 2,
+                "kills": 5,
+                "teamId": "t2"
+              },
+              {
+                "teamId": "t3",
+                "rank": 3,
+                "kills": 6
+              },
+              {
+                "rank": 4,
+                "teamId": "t4",
+                "kills": 4
+              },
+              {
+                "teamId": "t5",
+                "rank": 5,
+                "kills": 2
+              },
+              {
+                "kills": 3,
+                "rank": 6,
+                "teamId": "t6"
+              },
+              {
+                "kills": 1,
+                "teamId": "t7",
+                "rank": 7
+              },
+              {
+                "teamId": "t8",
+                "kills": 2,
+                "rank": 8
+              },
+              {
+                "teamId": "t9",
+                "rank": 9,
+                "kills": 1
+              },
+              {
+                "teamId": "t10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "kills": 2,
+                "rank": 11,
+                "teamId": "t11"
+              },
+              {
+                "kills": 1,
+                "rank": 12,
+                "teamId": "t12"
+              },
+              {
+                "rank": 13,
+                "kills": 0,
+                "teamId": "t13"
+              },
+              {
+                "kills": 1,
+                "teamId": "t14",
+                "rank": 14
+              },
+              {
+                "kills": 0,
+                "rank": 15,
+                "teamId": "t15"
+              },
+              {
+                "kills": 0,
+                "teamId": "team-1792116050320",
+                "rank": 16
+              }
+            ],
+            "matchId": "m1",
+            "matchNumber": 1,
+            "isCompleted": true
+          },
+          {
+            "matchId": "m2",
+            "mapName": "Miramar",
+            "teamResults": [
+              {
+                "kills": 7,
+                "teamId": "t1",
+                "rank": 2
+              },
+              {
+                "kills": 4,
+                "teamId": "t2",
+                "rank": 3
+              },
+              {
+                "rank": 5,
+                "kills": 3,
+                "teamId": "t3"
+              },
+              {
+                "kills": 11,
+                "teamId": "t4",
+                "rank": 1
+              },
+              {
+                "rank": 6,
+                "kills": 2,
+                "teamId": "t5"
+              },
+              {
+                "rank": 8,
+                "teamId": "t6",
+                "kills": 1
+              },
+              {
+                "kills": 5,
+                "teamId": "t7",
+                "rank": 4
+              },
+              {
+                "rank": 7,
+                "kills": 3,
+                "teamId": "t8"
+              },
+              {
+                "rank": 10,
+                "kills": 1,
+                "teamId": "t9"
+              },
+              {
+                "rank": 9,
+                "teamId": "t10",
+                "kills": 2
+              },
+              {
+                "kills": 1,
+                "teamId": "t11",
+                "rank": 12
+              },
+              {
+                "rank": 11,
+                "teamId": "t12",
+                "kills": 0
+              },
+              {
+                "teamId": "t13",
+                "rank": 14,
+                "kills": 1
+              },
+              {
+                "kills": 0,
+                "teamId": "t14",
+                "rank": 13
+              },
+              {
+                "kills": 0,
+                "teamId": "t15",
+                "rank": 15
+              },
+              {
+                "rank": 16,
+                "kills": 0,
+                "teamId": "team-1792116050320"
+              }
+            ],
+            "matchNumber": 2,
+            "isCompleted": true
+          },
+          {
+            "mapName": "Sanhok",
+            "isCompleted": false,
+            "matchId": "m3",
+            "time": "20:30 WITA",
+            "teamResults": [],
+            "matchNumber": 3
           }
         ]
       },
       {
-        "matchId": "m2",
-        "matchNumber": 2,
-        "mapName": "Miramar",
-        "isCompleted": true,
-        "teamResults": [
+        "id": "sheet-1792307156940-k98e",
+        "name": "GRUB B",
+        "phase": "QUALIFIER",
+        "isVisible": true,
+        "totalMatches": 5,
+        "currentMatch": 1,
+        "currentMap": "Erangel",
+        "teams": [
           {
-            "teamId": "t1",
-            "rank": 2,
-            "kills": 7
+            "id": "team-sheet-1792307156940-k98e-1",
+            "code": "CEES",
+            "name": "CEES GANK PRIME"
           },
           {
-            "teamId": "t2",
-            "rank": 3,
-            "kills": 4
+            "id": "team-sheet-1792307156940-k98e-2",
+            "code": "PAW",
+            "name": "PAWPAW SAMARINDA"
           },
           {
-            "teamId": "t3",
-            "rank": 5,
-            "kills": 3
+            "id": "team-sheet-1792307156940-k98e-3",
+            "code": "BOR",
+            "name": "BORNEO PREDATORS"
           },
           {
-            "teamId": "t4",
-            "rank": 1,
-            "kills": 11
+            "id": "team-sheet-1792307156940-k98e-4",
+            "code": "MHK",
+            "name": "MAHAKAM WOLVES"
           },
           {
-            "teamId": "t5",
-            "rank": 6,
-            "kills": 2
+            "id": "team-sheet-1792307156940-k98e-5",
+            "code": "EVO",
+            "name": "EVO SAMARINDA"
           },
           {
-            "teamId": "t6",
-            "rank": 8,
-            "kills": 1
+            "id": "team-sheet-1792307156940-k98e-6",
+            "code": "SMD",
+            "name": "SAMARINDA ROAR"
           },
           {
-            "teamId": "t7",
-            "rank": 4,
-            "kills": 5
+            "id": "team-sheet-1792307156940-k98e-7",
+            "code": "KTI",
+            "name": "KUTAI WARRIORS"
           },
           {
-            "teamId": "t8",
-            "rank": 7,
-            "kills": 3
+            "id": "team-sheet-1792307156940-k98e-8",
+            "code": "BPP",
+            "name": "BALIKPAPAN ELITE"
           },
           {
-            "teamId": "t9",
-            "rank": 10,
-            "kills": 1
+            "id": "team-sheet-1792307156940-k98e-9",
+            "code": "TGR",
+            "name": "TENGGARONG FORCE"
           },
           {
-            "teamId": "t10",
-            "rank": 9,
-            "kills": 2
+            "id": "team-sheet-1792307156940-k98e-10",
+            "code": "SGT",
+            "name": "SANGATTA VIPERS"
           },
           {
-            "teamId": "t11",
-            "rank": 12,
-            "kills": 1
+            "id": "team-sheet-1792307156940-k98e-11",
+            "code": "BER",
+            "name": "BERAU PHANTOM"
           },
           {
-            "teamId": "t12",
-            "rank": 11,
-            "kills": 0
+            "id": "team-sheet-1792307156940-k98e-12",
+            "code": "NVA",
+            "name": "NOVA REBELS"
           },
           {
-            "teamId": "t13",
-            "rank": 14,
-            "kills": 1
+            "id": "team-sheet-1792307156940-k98e-13",
+            "code": "BTR",
+            "name": "BONTANG TITANS"
           },
           {
-            "teamId": "t14",
-            "rank": 13,
-            "kills": 0
+            "id": "team-sheet-1792307156940-k98e-14",
+            "code": "APX",
+            "name": "APEX HUNTERS"
           },
           {
-            "teamId": "t15",
-            "rank": 15,
-            "kills": 0
+            "id": "team-sheet-1792307156940-k98e-15",
+            "code": "DKS",
+            "name": "DARK KNIGHTS"
           },
           {
-            "teamId": "team-1792116050320",
-            "rank": 16,
-            "kills": 0
+            "id": "team-sheet-1792307156940-k98e-16",
+            "code": "RRQ",
+            "name": "RRQ ACADEMY"
+          }
+        ],
+        "matches": [
+          {
+            "matchId": "m-sheet-1792307156940-k98e-1",
+            "matchNumber": 1,
+            "mapName": "Erangel",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-2",
+            "matchNumber": 2,
+            "mapName": "Miramar",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-3",
+            "matchNumber": 3,
+            "mapName": "Sanhok",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-4",
+            "matchNumber": 4,
+            "mapName": "Erangel",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-5",
+            "matchNumber": 5,
+            "mapName": "Miramar",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
           }
         ]
-      },
+      }
+    ],
+    "activeSheetId": "sheet-1792307156940-k98e",
+    "allTournaments": [
       {
-        "matchId": "m3",
-        "matchNumber": 3,
-        "mapName": "Sanhok",
-        "time": "20:30 WITA",
-        "isCompleted": false,
-        "teamResults": []
+        "date": "16 Oktober 2026",
+        "currentMap": "Erangel",
+        "matches": [
+          {
+            "matchId": "m-sheet-1792307156940-k98e-1",
+            "matchNumber": 1,
+            "mapName": "Erangel",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-2",
+            "matchNumber": 2,
+            "mapName": "Miramar",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-3",
+            "matchNumber": 3,
+            "mapName": "Sanhok",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-4",
+            "matchNumber": 4,
+            "mapName": "Erangel",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          },
+          {
+            "matchId": "m-sheet-1792307156940-k98e-5",
+            "matchNumber": 5,
+            "mapName": "Miramar",
+            "isCompleted": false,
+            "teamResults": [
+              {
+                "teamId": "team-sheet-1792307156940-k98e-1",
+                "rank": 1,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-2",
+                "rank": 2,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-3",
+                "rank": 3,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-4",
+                "rank": 4,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-5",
+                "rank": 5,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-6",
+                "rank": 6,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-7",
+                "rank": 7,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-8",
+                "rank": 8,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-9",
+                "rank": 9,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-10",
+                "rank": 10,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-11",
+                "rank": 11,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-12",
+                "rank": 12,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-13",
+                "rank": 13,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-14",
+                "rank": 14,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-15",
+                "rank": 15,
+                "kills": 0
+              },
+              {
+                "teamId": "team-sheet-1792307156940-k98e-16",
+                "rank": 16,
+                "kills": 0
+              }
+            ]
+          }
+        ],
+        "currentMatch": 1,
+        "updatedAt": "2026-10-16T02:54:18.495Z",
+        "status": "LIVE",
+        "location": "Samarinda Gaming Hub & Online Room",
+        "prizePool": "Rp 1.500.000 + Trophy",
+        "id": "cees-fast-scrim-s1",
+        "teams": [
+          {
+            "id": "team-sheet-1792307156940-k98e-1",
+            "code": "CEES",
+            "name": "CEES GANK PRIME"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-2",
+            "code": "PAW",
+            "name": "PAWPAW SAMARINDA"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-3",
+            "code": "BOR",
+            "name": "BORNEO PREDATORS"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-4",
+            "code": "MHK",
+            "name": "MAHAKAM WOLVES"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-5",
+            "code": "EVO",
+            "name": "EVO SAMARINDA"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-6",
+            "code": "SMD",
+            "name": "SAMARINDA ROAR"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-7",
+            "code": "KTI",
+            "name": "KUTAI WARRIORS"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-8",
+            "code": "BPP",
+            "name": "BALIKPAPAN ELITE"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-9",
+            "code": "TGR",
+            "name": "TENGGARONG FORCE"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-10",
+            "code": "SGT",
+            "name": "SANGATTA VIPERS"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-11",
+            "code": "BER",
+            "name": "BERAU PHANTOM"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-12",
+            "code": "NVA",
+            "name": "NOVA REBELS"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-13",
+            "code": "BTR",
+            "name": "BONTANG TITANS"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-14",
+            "code": "APX",
+            "name": "APEX HUNTERS"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-15",
+            "code": "DKS",
+            "name": "DARK KNIGHTS"
+          },
+          {
+            "id": "team-sheet-1792307156940-k98e-16",
+            "code": "RRQ",
+            "name": "RRQ ACADEMY"
+          }
+        ],
+        "scoringSystem": "PMWC 10-Point Official",
+        "title": "CEES FAST SCRIM SEASON 1",
+        "totalMatches": 5,
+        "isVisible": true,
+        "subtitle": "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES",
+        "sheets": [
+          {
+            "id": "sheet-qual-a",
+            "name": "Grup A (Kualifikasi)",
+            "phase": "QUALIFIER",
+            "isVisible": true,
+            "totalMatches": 5,
+            "currentMatch": 2,
+            "currentMap": "Miramar",
+            "teams": [
+              {
+                "id": "t1",
+                "name": "CEES GANK PRIME",
+                "code": "CEES"
+              },
+              {
+                "name": "PAWPAW SAMARINDA",
+                "code": "PAW",
+                "id": "t2"
+              },
+              {
+                "id": "t3",
+                "name": "BORNEO PREDATORS",
+                "code": "BOR"
+              },
+              {
+                "code": "MHK",
+                "name": "MAHAKAM WOLVES",
+                "id": "t4"
+              },
+              {
+                "code": "EVO",
+                "name": "EVO SAMARINDA",
+                "id": "t5"
+              },
+              {
+                "code": "SMD",
+                "name": "SAMARINDA ROAR",
+                "id": "t6"
+              },
+              {
+                "code": "KTI",
+                "name": "KUTAI WARRIORS",
+                "id": "t7"
+              },
+              {
+                "id": "t8",
+                "name": "BALIKPAPAN ELITE",
+                "code": "BPP"
+              },
+              {
+                "id": "t9",
+                "code": "TGR",
+                "name": "TENGGARONG FORCE"
+              },
+              {
+                "code": "SGT",
+                "name": "SANGATTA VIPERS",
+                "id": "t10"
+              },
+              {
+                "code": "BER",
+                "name": "BERAU PHANTOM",
+                "id": "t11"
+              },
+              {
+                "id": "t12",
+                "name": "NOVA REBELS",
+                "code": "NVA"
+              },
+              {
+                "code": "BTR",
+                "name": "BONTANG TITANS",
+                "id": "t13"
+              },
+              {
+                "id": "t14",
+                "name": "APEX HUNTERS",
+                "code": "APX"
+              },
+              {
+                "name": "DARK KNIGHTS",
+                "code": "DKS",
+                "id": "t15"
+              },
+              {
+                "id": "team-1792116050320",
+                "name": "RRQ ACADEMY",
+                "code": "RRQ"
+              }
+            ],
+            "matches": [
+              {
+                "mapName": "Erangel",
+                "teamResults": [
+                  {
+                    "teamId": "t1",
+                    "rank": 1,
+                    "kills": 9
+                  },
+                  {
+                    "rank": 2,
+                    "kills": 5,
+                    "teamId": "t2"
+                  },
+                  {
+                    "teamId": "t3",
+                    "rank": 3,
+                    "kills": 6
+                  },
+                  {
+                    "rank": 4,
+                    "teamId": "t4",
+                    "kills": 4
+                  },
+                  {
+                    "teamId": "t5",
+                    "rank": 5,
+                    "kills": 2
+                  },
+                  {
+                    "kills": 3,
+                    "rank": 6,
+                    "teamId": "t6"
+                  },
+                  {
+                    "kills": 1,
+                    "teamId": "t7",
+                    "rank": 7
+                  },
+                  {
+                    "teamId": "t8",
+                    "kills": 2,
+                    "rank": 8
+                  },
+                  {
+                    "teamId": "t9",
+                    "rank": 9,
+                    "kills": 1
+                  },
+                  {
+                    "teamId": "t10",
+                    "rank": 10,
+                    "kills": 0
+                  },
+                  {
+                    "kills": 2,
+                    "rank": 11,
+                    "teamId": "t11"
+                  },
+                  {
+                    "kills": 1,
+                    "rank": 12,
+                    "teamId": "t12"
+                  },
+                  {
+                    "rank": 13,
+                    "kills": 0,
+                    "teamId": "t13"
+                  },
+                  {
+                    "kills": 1,
+                    "teamId": "t14",
+                    "rank": 14
+                  },
+                  {
+                    "kills": 0,
+                    "rank": 15,
+                    "teamId": "t15"
+                  },
+                  {
+                    "kills": 0,
+                    "teamId": "team-1792116050320",
+                    "rank": 16
+                  }
+                ],
+                "matchId": "m1",
+                "matchNumber": 1,
+                "isCompleted": true
+              },
+              {
+                "matchId": "m2",
+                "mapName": "Miramar",
+                "teamResults": [
+                  {
+                    "kills": 7,
+                    "teamId": "t1",
+                    "rank": 2
+                  },
+                  {
+                    "kills": 4,
+                    "teamId": "t2",
+                    "rank": 3
+                  },
+                  {
+                    "rank": 5,
+                    "kills": 3,
+                    "teamId": "t3"
+                  },
+                  {
+                    "kills": 11,
+                    "teamId": "t4",
+                    "rank": 1
+                  },
+                  {
+                    "rank": 6,
+                    "kills": 2,
+                    "teamId": "t5"
+                  },
+                  {
+                    "rank": 8,
+                    "teamId": "t6",
+                    "kills": 1
+                  },
+                  {
+                    "kills": 5,
+                    "teamId": "t7",
+                    "rank": 4
+                  },
+                  {
+                    "rank": 7,
+                    "kills": 3,
+                    "teamId": "t8"
+                  },
+                  {
+                    "rank": 10,
+                    "kills": 1,
+                    "teamId": "t9"
+                  },
+                  {
+                    "rank": 9,
+                    "teamId": "t10",
+                    "kills": 2
+                  },
+                  {
+                    "kills": 1,
+                    "teamId": "t11",
+                    "rank": 12
+                  },
+                  {
+                    "rank": 11,
+                    "teamId": "t12",
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "t13",
+                    "rank": 14,
+                    "kills": 1
+                  },
+                  {
+                    "kills": 0,
+                    "teamId": "t14",
+                    "rank": 13
+                  },
+                  {
+                    "kills": 0,
+                    "teamId": "t15",
+                    "rank": 15
+                  },
+                  {
+                    "rank": 16,
+                    "kills": 0,
+                    "teamId": "team-1792116050320"
+                  }
+                ],
+                "matchNumber": 2,
+                "isCompleted": true
+              },
+              {
+                "mapName": "Sanhok",
+                "isCompleted": false,
+                "matchId": "m3",
+                "time": "20:30 WITA",
+                "teamResults": [],
+                "matchNumber": 3
+              }
+            ]
+          },
+          {
+            "id": "sheet-1792307156940-k98e",
+            "name": "GRUB B",
+            "phase": "QUALIFIER",
+            "isVisible": true,
+            "totalMatches": 5,
+            "currentMatch": 1,
+            "currentMap": "Erangel",
+            "teams": [
+              {
+                "id": "team-sheet-1792307156940-k98e-1",
+                "code": "CEES",
+                "name": "CEES GANK PRIME"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-2",
+                "code": "PAW",
+                "name": "PAWPAW SAMARINDA"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-3",
+                "code": "BOR",
+                "name": "BORNEO PREDATORS"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-4",
+                "code": "MHK",
+                "name": "MAHAKAM WOLVES"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-5",
+                "code": "EVO",
+                "name": "EVO SAMARINDA"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-6",
+                "code": "SMD",
+                "name": "SAMARINDA ROAR"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-7",
+                "code": "KTI",
+                "name": "KUTAI WARRIORS"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-8",
+                "code": "BPP",
+                "name": "BALIKPAPAN ELITE"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-9",
+                "code": "TGR",
+                "name": "TENGGARONG FORCE"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-10",
+                "code": "SGT",
+                "name": "SANGATTA VIPERS"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-11",
+                "code": "BER",
+                "name": "BERAU PHANTOM"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-12",
+                "code": "NVA",
+                "name": "NOVA REBELS"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-13",
+                "code": "BTR",
+                "name": "BONTANG TITANS"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-14",
+                "code": "APX",
+                "name": "APEX HUNTERS"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-15",
+                "code": "DKS",
+                "name": "DARK KNIGHTS"
+              },
+              {
+                "id": "team-sheet-1792307156940-k98e-16",
+                "code": "RRQ",
+                "name": "RRQ ACADEMY"
+              }
+            ],
+            "matches": [
+              {
+                "matchId": "m-sheet-1792307156940-k98e-1",
+                "matchNumber": 1,
+                "mapName": "Erangel",
+                "isCompleted": false,
+                "teamResults": [
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-1",
+                    "rank": 1,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-2",
+                    "rank": 2,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-3",
+                    "rank": 3,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-4",
+                    "rank": 4,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-5",
+                    "rank": 5,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-6",
+                    "rank": 6,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-7",
+                    "rank": 7,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-8",
+                    "rank": 8,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-9",
+                    "rank": 9,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-10",
+                    "rank": 10,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-11",
+                    "rank": 11,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-12",
+                    "rank": 12,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-13",
+                    "rank": 13,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-14",
+                    "rank": 14,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-15",
+                    "rank": 15,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-16",
+                    "rank": 16,
+                    "kills": 0
+                  }
+                ]
+              },
+              {
+                "matchId": "m-sheet-1792307156940-k98e-2",
+                "matchNumber": 2,
+                "mapName": "Miramar",
+                "isCompleted": false,
+                "teamResults": [
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-1",
+                    "rank": 1,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-2",
+                    "rank": 2,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-3",
+                    "rank": 3,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-4",
+                    "rank": 4,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-5",
+                    "rank": 5,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-6",
+                    "rank": 6,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-7",
+                    "rank": 7,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-8",
+                    "rank": 8,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-9",
+                    "rank": 9,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-10",
+                    "rank": 10,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-11",
+                    "rank": 11,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-12",
+                    "rank": 12,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-13",
+                    "rank": 13,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-14",
+                    "rank": 14,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-15",
+                    "rank": 15,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-16",
+                    "rank": 16,
+                    "kills": 0
+                  }
+                ]
+              },
+              {
+                "matchId": "m-sheet-1792307156940-k98e-3",
+                "matchNumber": 3,
+                "mapName": "Sanhok",
+                "isCompleted": false,
+                "teamResults": [
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-1",
+                    "rank": 1,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-2",
+                    "rank": 2,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-3",
+                    "rank": 3,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-4",
+                    "rank": 4,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-5",
+                    "rank": 5,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-6",
+                    "rank": 6,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-7",
+                    "rank": 7,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-8",
+                    "rank": 8,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-9",
+                    "rank": 9,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-10",
+                    "rank": 10,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-11",
+                    "rank": 11,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-12",
+                    "rank": 12,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-13",
+                    "rank": 13,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-14",
+                    "rank": 14,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-15",
+                    "rank": 15,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-16",
+                    "rank": 16,
+                    "kills": 0
+                  }
+                ]
+              },
+              {
+                "matchId": "m-sheet-1792307156940-k98e-4",
+                "matchNumber": 4,
+                "mapName": "Erangel",
+                "isCompleted": false,
+                "teamResults": [
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-1",
+                    "rank": 1,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-2",
+                    "rank": 2,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-3",
+                    "rank": 3,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-4",
+                    "rank": 4,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-5",
+                    "rank": 5,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-6",
+                    "rank": 6,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-7",
+                    "rank": 7,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-8",
+                    "rank": 8,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-9",
+                    "rank": 9,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-10",
+                    "rank": 10,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-11",
+                    "rank": 11,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-12",
+                    "rank": 12,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-13",
+                    "rank": 13,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-14",
+                    "rank": 14,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-15",
+                    "rank": 15,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-16",
+                    "rank": 16,
+                    "kills": 0
+                  }
+                ]
+              },
+              {
+                "matchId": "m-sheet-1792307156940-k98e-5",
+                "matchNumber": 5,
+                "mapName": "Miramar",
+                "isCompleted": false,
+                "teamResults": [
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-1",
+                    "rank": 1,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-2",
+                    "rank": 2,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-3",
+                    "rank": 3,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-4",
+                    "rank": 4,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-5",
+                    "rank": 5,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-6",
+                    "rank": 6,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-7",
+                    "rank": 7,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-8",
+                    "rank": 8,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-9",
+                    "rank": 9,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-10",
+                    "rank": 10,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-11",
+                    "rank": 11,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-12",
+                    "rank": 12,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-13",
+                    "rank": 13,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-14",
+                    "rank": 14,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-15",
+                    "rank": 15,
+                    "kills": 0
+                  },
+                  {
+                    "teamId": "team-sheet-1792307156940-k98e-16",
+                    "rank": 16,
+                    "kills": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "activeSheetId": "sheet-1792307156940-k98e"
       }
     ]
   },
@@ -328,6 +2751,2714 @@
         "rank": 3
       },
       "standings": []
+    }
+  ],
+  "tournaments": [
+    {
+      "date": "16 Oktober 2026",
+      "currentMap": "Erangel",
+      "matches": [
+        {
+          "matchId": "m-sheet-1792307156940-k98e-1",
+          "matchNumber": 1,
+          "mapName": "Erangel",
+          "isCompleted": false,
+          "teamResults": [
+            {
+              "teamId": "team-sheet-1792307156940-k98e-1",
+              "rank": 1,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-2",
+              "rank": 2,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-3",
+              "rank": 3,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-4",
+              "rank": 4,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-5",
+              "rank": 5,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-6",
+              "rank": 6,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-7",
+              "rank": 7,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-8",
+              "rank": 8,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-9",
+              "rank": 9,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-10",
+              "rank": 10,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-11",
+              "rank": 11,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-12",
+              "rank": 12,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-13",
+              "rank": 13,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-14",
+              "rank": 14,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-15",
+              "rank": 15,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-16",
+              "rank": 16,
+              "kills": 0
+            }
+          ]
+        },
+        {
+          "matchId": "m-sheet-1792307156940-k98e-2",
+          "matchNumber": 2,
+          "mapName": "Miramar",
+          "isCompleted": false,
+          "teamResults": [
+            {
+              "teamId": "team-sheet-1792307156940-k98e-1",
+              "rank": 1,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-2",
+              "rank": 2,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-3",
+              "rank": 3,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-4",
+              "rank": 4,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-5",
+              "rank": 5,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-6",
+              "rank": 6,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-7",
+              "rank": 7,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-8",
+              "rank": 8,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-9",
+              "rank": 9,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-10",
+              "rank": 10,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-11",
+              "rank": 11,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-12",
+              "rank": 12,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-13",
+              "rank": 13,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-14",
+              "rank": 14,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-15",
+              "rank": 15,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-16",
+              "rank": 16,
+              "kills": 0
+            }
+          ]
+        },
+        {
+          "matchId": "m-sheet-1792307156940-k98e-3",
+          "matchNumber": 3,
+          "mapName": "Sanhok",
+          "isCompleted": false,
+          "teamResults": [
+            {
+              "teamId": "team-sheet-1792307156940-k98e-1",
+              "rank": 1,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-2",
+              "rank": 2,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-3",
+              "rank": 3,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-4",
+              "rank": 4,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-5",
+              "rank": 5,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-6",
+              "rank": 6,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-7",
+              "rank": 7,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-8",
+              "rank": 8,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-9",
+              "rank": 9,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-10",
+              "rank": 10,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-11",
+              "rank": 11,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-12",
+              "rank": 12,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-13",
+              "rank": 13,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-14",
+              "rank": 14,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-15",
+              "rank": 15,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-16",
+              "rank": 16,
+              "kills": 0
+            }
+          ]
+        },
+        {
+          "matchId": "m-sheet-1792307156940-k98e-4",
+          "matchNumber": 4,
+          "mapName": "Erangel",
+          "isCompleted": false,
+          "teamResults": [
+            {
+              "teamId": "team-sheet-1792307156940-k98e-1",
+              "rank": 1,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-2",
+              "rank": 2,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-3",
+              "rank": 3,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-4",
+              "rank": 4,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-5",
+              "rank": 5,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-6",
+              "rank": 6,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-7",
+              "rank": 7,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-8",
+              "rank": 8,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-9",
+              "rank": 9,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-10",
+              "rank": 10,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-11",
+              "rank": 11,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-12",
+              "rank": 12,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-13",
+              "rank": 13,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-14",
+              "rank": 14,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-15",
+              "rank": 15,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-16",
+              "rank": 16,
+              "kills": 0
+            }
+          ]
+        },
+        {
+          "matchId": "m-sheet-1792307156940-k98e-5",
+          "matchNumber": 5,
+          "mapName": "Miramar",
+          "isCompleted": false,
+          "teamResults": [
+            {
+              "teamId": "team-sheet-1792307156940-k98e-1",
+              "rank": 1,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-2",
+              "rank": 2,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-3",
+              "rank": 3,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-4",
+              "rank": 4,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-5",
+              "rank": 5,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-6",
+              "rank": 6,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-7",
+              "rank": 7,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-8",
+              "rank": 8,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-9",
+              "rank": 9,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-10",
+              "rank": 10,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-11",
+              "rank": 11,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-12",
+              "rank": 12,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-13",
+              "rank": 13,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-14",
+              "rank": 14,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-15",
+              "rank": 15,
+              "kills": 0
+            },
+            {
+              "teamId": "team-sheet-1792307156940-k98e-16",
+              "rank": 16,
+              "kills": 0
+            }
+          ]
+        }
+      ],
+      "currentMatch": 1,
+      "updatedAt": "2026-10-18T07:05:58.486Z",
+      "status": "LIVE",
+      "location": "Samarinda Gaming Hub & Online Room",
+      "prizePool": "Rp 1.500.000 + Trophy",
+      "id": "cees-fast-scrim-s1",
+      "teams": [
+        {
+          "id": "team-sheet-1792307156940-k98e-1",
+          "code": "CEES",
+          "name": "CEES GANK PRIME"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-2",
+          "code": "PAW",
+          "name": "PAWPAW SAMARINDA"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-3",
+          "code": "BOR",
+          "name": "BORNEO PREDATORS"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-4",
+          "code": "MHK",
+          "name": "MAHAKAM WOLVES"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-5",
+          "code": "EVO",
+          "name": "EVO SAMARINDA"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-6",
+          "code": "SMD",
+          "name": "SAMARINDA ROAR"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-7",
+          "code": "KTI",
+          "name": "KUTAI WARRIORS"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-8",
+          "code": "BPP",
+          "name": "BALIKPAPAN ELITE"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-9",
+          "code": "TGR",
+          "name": "TENGGARONG FORCE"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-10",
+          "code": "SGT",
+          "name": "SANGATTA VIPERS"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-11",
+          "code": "BER",
+          "name": "BERAU PHANTOM"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-12",
+          "code": "NVA",
+          "name": "NOVA REBELS"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-13",
+          "code": "BTR",
+          "name": "BONTANG TITANS"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-14",
+          "code": "APX",
+          "name": "APEX HUNTERS"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-15",
+          "code": "DKS",
+          "name": "DARK KNIGHTS"
+        },
+        {
+          "id": "team-sheet-1792307156940-k98e-16",
+          "code": "RRQ",
+          "name": "RRQ ACADEMY"
+        }
+      ],
+      "scoringSystem": "PMWC 10-Point Official",
+      "title": "CEES FAST SCRIM SEASON 1",
+      "totalMatches": 5,
+      "isVisible": true,
+      "subtitle": "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES",
+      "sheets": [
+        {
+          "id": "sheet-qual-a",
+          "name": "Grup A (Kualifikasi)",
+          "phase": "QUALIFIER",
+          "isVisible": true,
+          "totalMatches": 5,
+          "currentMatch": 2,
+          "currentMap": "Miramar",
+          "teams": [
+            {
+              "id": "t1",
+              "name": "CEES GANK PRIME",
+              "code": "CEES"
+            },
+            {
+              "name": "PAWPAW SAMARINDA",
+              "code": "PAW",
+              "id": "t2"
+            },
+            {
+              "id": "t3",
+              "name": "BORNEO PREDATORS",
+              "code": "BOR"
+            },
+            {
+              "code": "MHK",
+              "name": "MAHAKAM WOLVES",
+              "id": "t4"
+            },
+            {
+              "code": "EVO",
+              "name": "EVO SAMARINDA",
+              "id": "t5"
+            },
+            {
+              "code": "SMD",
+              "name": "SAMARINDA ROAR",
+              "id": "t6"
+            },
+            {
+              "code": "KTI",
+              "name": "KUTAI WARRIORS",
+              "id": "t7"
+            },
+            {
+              "id": "t8",
+              "name": "BALIKPAPAN ELITE",
+              "code": "BPP"
+            },
+            {
+              "id": "t9",
+              "code": "TGR",
+              "name": "TENGGARONG FORCE"
+            },
+            {
+              "code": "SGT",
+              "name": "SANGATTA VIPERS",
+              "id": "t10"
+            },
+            {
+              "code": "BER",
+              "name": "BERAU PHANTOM",
+              "id": "t11"
+            },
+            {
+              "id": "t12",
+              "name": "NOVA REBELS",
+              "code": "NVA"
+            },
+            {
+              "code": "BTR",
+              "name": "BONTANG TITANS",
+              "id": "t13"
+            },
+            {
+              "id": "t14",
+              "name": "APEX HUNTERS",
+              "code": "APX"
+            },
+            {
+              "name": "DARK KNIGHTS",
+              "code": "DKS",
+              "id": "t15"
+            },
+            {
+              "id": "team-1792116050320",
+              "name": "RRQ ACADEMY",
+              "code": "RRQ"
+            }
+          ],
+          "matches": [
+            {
+              "mapName": "Erangel",
+              "teamResults": [
+                {
+                  "teamId": "t1",
+                  "rank": 1,
+                  "kills": 9
+                },
+                {
+                  "rank": 2,
+                  "kills": 5,
+                  "teamId": "t2"
+                },
+                {
+                  "teamId": "t3",
+                  "rank": 3,
+                  "kills": 6
+                },
+                {
+                  "rank": 4,
+                  "teamId": "t4",
+                  "kills": 4
+                },
+                {
+                  "teamId": "t5",
+                  "rank": 5,
+                  "kills": 2
+                },
+                {
+                  "kills": 3,
+                  "rank": 6,
+                  "teamId": "t6"
+                },
+                {
+                  "kills": 1,
+                  "teamId": "t7",
+                  "rank": 7
+                },
+                {
+                  "teamId": "t8",
+                  "kills": 2,
+                  "rank": 8
+                },
+                {
+                  "teamId": "t9",
+                  "rank": 9,
+                  "kills": 1
+                },
+                {
+                  "teamId": "t10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "kills": 2,
+                  "rank": 11,
+                  "teamId": "t11"
+                },
+                {
+                  "kills": 1,
+                  "rank": 12,
+                  "teamId": "t12"
+                },
+                {
+                  "rank": 13,
+                  "kills": 0,
+                  "teamId": "t13"
+                },
+                {
+                  "kills": 1,
+                  "teamId": "t14",
+                  "rank": 14
+                },
+                {
+                  "kills": 0,
+                  "rank": 15,
+                  "teamId": "t15"
+                },
+                {
+                  "kills": 0,
+                  "teamId": "team-1792116050320",
+                  "rank": 16
+                }
+              ],
+              "matchId": "m1",
+              "matchNumber": 1,
+              "isCompleted": true
+            },
+            {
+              "matchId": "m2",
+              "mapName": "Miramar",
+              "teamResults": [
+                {
+                  "kills": 7,
+                  "teamId": "t1",
+                  "rank": 2
+                },
+                {
+                  "kills": 4,
+                  "teamId": "t2",
+                  "rank": 3
+                },
+                {
+                  "rank": 5,
+                  "kills": 3,
+                  "teamId": "t3"
+                },
+                {
+                  "kills": 11,
+                  "teamId": "t4",
+                  "rank": 1
+                },
+                {
+                  "rank": 6,
+                  "kills": 2,
+                  "teamId": "t5"
+                },
+                {
+                  "rank": 8,
+                  "teamId": "t6",
+                  "kills": 1
+                },
+                {
+                  "kills": 5,
+                  "teamId": "t7",
+                  "rank": 4
+                },
+                {
+                  "rank": 7,
+                  "kills": 3,
+                  "teamId": "t8"
+                },
+                {
+                  "rank": 10,
+                  "kills": 1,
+                  "teamId": "t9"
+                },
+                {
+                  "rank": 9,
+                  "teamId": "t10",
+                  "kills": 2
+                },
+                {
+                  "kills": 1,
+                  "teamId": "t11",
+                  "rank": 12
+                },
+                {
+                  "rank": 11,
+                  "teamId": "t12",
+                  "kills": 0
+                },
+                {
+                  "teamId": "t13",
+                  "rank": 14,
+                  "kills": 1
+                },
+                {
+                  "kills": 0,
+                  "teamId": "t14",
+                  "rank": 13
+                },
+                {
+                  "kills": 0,
+                  "teamId": "t15",
+                  "rank": 15
+                },
+                {
+                  "rank": 16,
+                  "kills": 0,
+                  "teamId": "team-1792116050320"
+                }
+              ],
+              "matchNumber": 2,
+              "isCompleted": true
+            },
+            {
+              "mapName": "Sanhok",
+              "isCompleted": false,
+              "matchId": "m3",
+              "time": "20:30 WITA",
+              "teamResults": [],
+              "matchNumber": 3
+            }
+          ]
+        },
+        {
+          "id": "sheet-1792307156940-k98e",
+          "name": "GRUB B",
+          "phase": "QUALIFIER",
+          "isVisible": true,
+          "totalMatches": 5,
+          "currentMatch": 1,
+          "currentMap": "Erangel",
+          "teams": [
+            {
+              "id": "team-sheet-1792307156940-k98e-1",
+              "code": "CEES",
+              "name": "CEES GANK PRIME"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-2",
+              "code": "PAW",
+              "name": "PAWPAW SAMARINDA"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-3",
+              "code": "BOR",
+              "name": "BORNEO PREDATORS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-4",
+              "code": "MHK",
+              "name": "MAHAKAM WOLVES"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-5",
+              "code": "EVO",
+              "name": "EVO SAMARINDA"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-6",
+              "code": "SMD",
+              "name": "SAMARINDA ROAR"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-7",
+              "code": "KTI",
+              "name": "KUTAI WARRIORS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-8",
+              "code": "BPP",
+              "name": "BALIKPAPAN ELITE"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-9",
+              "code": "TGR",
+              "name": "TENGGARONG FORCE"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-10",
+              "code": "SGT",
+              "name": "SANGATTA VIPERS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-11",
+              "code": "BER",
+              "name": "BERAU PHANTOM"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-12",
+              "code": "NVA",
+              "name": "NOVA REBELS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-13",
+              "code": "BTR",
+              "name": "BONTANG TITANS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-14",
+              "code": "APX",
+              "name": "APEX HUNTERS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-15",
+              "code": "DKS",
+              "name": "DARK KNIGHTS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-16",
+              "code": "RRQ",
+              "name": "RRQ ACADEMY"
+            }
+          ],
+          "matches": [
+            {
+              "matchId": "m-sheet-1792307156940-k98e-1",
+              "matchNumber": 1,
+              "mapName": "Erangel",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-2",
+              "matchNumber": 2,
+              "mapName": "Miramar",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-3",
+              "matchNumber": 3,
+              "mapName": "Sanhok",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-4",
+              "matchNumber": 4,
+              "mapName": "Erangel",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-5",
+              "matchNumber": 5,
+              "mapName": "Miramar",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "activeSheetId": "sheet-1792307156940-k98e",
+      "allTournaments": [
+        {
+          "date": "16 Oktober 2026",
+          "currentMap": "Erangel",
+          "matches": [
+            {
+              "matchId": "m-sheet-1792307156940-k98e-1",
+              "matchNumber": 1,
+              "mapName": "Erangel",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-2",
+              "matchNumber": 2,
+              "mapName": "Miramar",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-3",
+              "matchNumber": 3,
+              "mapName": "Sanhok",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-4",
+              "matchNumber": 4,
+              "mapName": "Erangel",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            },
+            {
+              "matchId": "m-sheet-1792307156940-k98e-5",
+              "matchNumber": 5,
+              "mapName": "Miramar",
+              "isCompleted": false,
+              "teamResults": [
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-1",
+                  "rank": 1,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-2",
+                  "rank": 2,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-3",
+                  "rank": 3,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-4",
+                  "rank": 4,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-5",
+                  "rank": 5,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-6",
+                  "rank": 6,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-7",
+                  "rank": 7,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-8",
+                  "rank": 8,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-9",
+                  "rank": 9,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-10",
+                  "rank": 10,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-11",
+                  "rank": 11,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-12",
+                  "rank": 12,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-13",
+                  "rank": 13,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-14",
+                  "rank": 14,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-15",
+                  "rank": 15,
+                  "kills": 0
+                },
+                {
+                  "teamId": "team-sheet-1792307156940-k98e-16",
+                  "rank": 16,
+                  "kills": 0
+                }
+              ]
+            }
+          ],
+          "currentMatch": 1,
+          "updatedAt": "2026-10-16T02:54:18.495Z",
+          "status": "LIVE",
+          "location": "Samarinda Gaming Hub & Online Room",
+          "prizePool": "Rp 1.500.000 + Trophy",
+          "id": "cees-fast-scrim-s1",
+          "teams": [
+            {
+              "id": "team-sheet-1792307156940-k98e-1",
+              "code": "CEES",
+              "name": "CEES GANK PRIME"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-2",
+              "code": "PAW",
+              "name": "PAWPAW SAMARINDA"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-3",
+              "code": "BOR",
+              "name": "BORNEO PREDATORS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-4",
+              "code": "MHK",
+              "name": "MAHAKAM WOLVES"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-5",
+              "code": "EVO",
+              "name": "EVO SAMARINDA"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-6",
+              "code": "SMD",
+              "name": "SAMARINDA ROAR"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-7",
+              "code": "KTI",
+              "name": "KUTAI WARRIORS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-8",
+              "code": "BPP",
+              "name": "BALIKPAPAN ELITE"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-9",
+              "code": "TGR",
+              "name": "TENGGARONG FORCE"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-10",
+              "code": "SGT",
+              "name": "SANGATTA VIPERS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-11",
+              "code": "BER",
+              "name": "BERAU PHANTOM"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-12",
+              "code": "NVA",
+              "name": "NOVA REBELS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-13",
+              "code": "BTR",
+              "name": "BONTANG TITANS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-14",
+              "code": "APX",
+              "name": "APEX HUNTERS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-15",
+              "code": "DKS",
+              "name": "DARK KNIGHTS"
+            },
+            {
+              "id": "team-sheet-1792307156940-k98e-16",
+              "code": "RRQ",
+              "name": "RRQ ACADEMY"
+            }
+          ],
+          "scoringSystem": "PMWC 10-Point Official",
+          "title": "CEES FAST SCRIM SEASON 1",
+          "totalMatches": 5,
+          "isVisible": true,
+          "subtitle": "SAMARINDA BATTLE ROYALE SHOWDOWN // PMWC RULES",
+          "sheets": [
+            {
+              "id": "sheet-qual-a",
+              "name": "Grup A (Kualifikasi)",
+              "phase": "QUALIFIER",
+              "isVisible": true,
+              "totalMatches": 5,
+              "currentMatch": 2,
+              "currentMap": "Miramar",
+              "teams": [
+                {
+                  "id": "t1",
+                  "name": "CEES GANK PRIME",
+                  "code": "CEES"
+                },
+                {
+                  "name": "PAWPAW SAMARINDA",
+                  "code": "PAW",
+                  "id": "t2"
+                },
+                {
+                  "id": "t3",
+                  "name": "BORNEO PREDATORS",
+                  "code": "BOR"
+                },
+                {
+                  "code": "MHK",
+                  "name": "MAHAKAM WOLVES",
+                  "id": "t4"
+                },
+                {
+                  "code": "EVO",
+                  "name": "EVO SAMARINDA",
+                  "id": "t5"
+                },
+                {
+                  "code": "SMD",
+                  "name": "SAMARINDA ROAR",
+                  "id": "t6"
+                },
+                {
+                  "code": "KTI",
+                  "name": "KUTAI WARRIORS",
+                  "id": "t7"
+                },
+                {
+                  "id": "t8",
+                  "name": "BALIKPAPAN ELITE",
+                  "code": "BPP"
+                },
+                {
+                  "id": "t9",
+                  "code": "TGR",
+                  "name": "TENGGARONG FORCE"
+                },
+                {
+                  "code": "SGT",
+                  "name": "SANGATTA VIPERS",
+                  "id": "t10"
+                },
+                {
+                  "code": "BER",
+                  "name": "BERAU PHANTOM",
+                  "id": "t11"
+                },
+                {
+                  "id": "t12",
+                  "name": "NOVA REBELS",
+                  "code": "NVA"
+                },
+                {
+                  "code": "BTR",
+                  "name": "BONTANG TITANS",
+                  "id": "t13"
+                },
+                {
+                  "id": "t14",
+                  "name": "APEX HUNTERS",
+                  "code": "APX"
+                },
+                {
+                  "name": "DARK KNIGHTS",
+                  "code": "DKS",
+                  "id": "t15"
+                },
+                {
+                  "id": "team-1792116050320",
+                  "name": "RRQ ACADEMY",
+                  "code": "RRQ"
+                }
+              ],
+              "matches": [
+                {
+                  "mapName": "Erangel",
+                  "teamResults": [
+                    {
+                      "teamId": "t1",
+                      "rank": 1,
+                      "kills": 9
+                    },
+                    {
+                      "rank": 2,
+                      "kills": 5,
+                      "teamId": "t2"
+                    },
+                    {
+                      "teamId": "t3",
+                      "rank": 3,
+                      "kills": 6
+                    },
+                    {
+                      "rank": 4,
+                      "teamId": "t4",
+                      "kills": 4
+                    },
+                    {
+                      "teamId": "t5",
+                      "rank": 5,
+                      "kills": 2
+                    },
+                    {
+                      "kills": 3,
+                      "rank": 6,
+                      "teamId": "t6"
+                    },
+                    {
+                      "kills": 1,
+                      "teamId": "t7",
+                      "rank": 7
+                    },
+                    {
+                      "teamId": "t8",
+                      "kills": 2,
+                      "rank": 8
+                    },
+                    {
+                      "teamId": "t9",
+                      "rank": 9,
+                      "kills": 1
+                    },
+                    {
+                      "teamId": "t10",
+                      "rank": 10,
+                      "kills": 0
+                    },
+                    {
+                      "kills": 2,
+                      "rank": 11,
+                      "teamId": "t11"
+                    },
+                    {
+                      "kills": 1,
+                      "rank": 12,
+                      "teamId": "t12"
+                    },
+                    {
+                      "rank": 13,
+                      "kills": 0,
+                      "teamId": "t13"
+                    },
+                    {
+                      "kills": 1,
+                      "teamId": "t14",
+                      "rank": 14
+                    },
+                    {
+                      "kills": 0,
+                      "rank": 15,
+                      "teamId": "t15"
+                    },
+                    {
+                      "kills": 0,
+                      "teamId": "team-1792116050320",
+                      "rank": 16
+                    }
+                  ],
+                  "matchId": "m1",
+                  "matchNumber": 1,
+                  "isCompleted": true
+                },
+                {
+                  "matchId": "m2",
+                  "mapName": "Miramar",
+                  "teamResults": [
+                    {
+                      "kills": 7,
+                      "teamId": "t1",
+                      "rank": 2
+                    },
+                    {
+                      "kills": 4,
+                      "teamId": "t2",
+                      "rank": 3
+                    },
+                    {
+                      "rank": 5,
+                      "kills": 3,
+                      "teamId": "t3"
+                    },
+                    {
+                      "kills": 11,
+                      "teamId": "t4",
+                      "rank": 1
+                    },
+                    {
+                      "rank": 6,
+                      "kills": 2,
+                      "teamId": "t5"
+                    },
+                    {
+                      "rank": 8,
+                      "teamId": "t6",
+                      "kills": 1
+                    },
+                    {
+                      "kills": 5,
+                      "teamId": "t7",
+                      "rank": 4
+                    },
+                    {
+                      "rank": 7,
+                      "kills": 3,
+                      "teamId": "t8"
+                    },
+                    {
+                      "rank": 10,
+                      "kills": 1,
+                      "teamId": "t9"
+                    },
+                    {
+                      "rank": 9,
+                      "teamId": "t10",
+                      "kills": 2
+                    },
+                    {
+                      "kills": 1,
+                      "teamId": "t11",
+                      "rank": 12
+                    },
+                    {
+                      "rank": 11,
+                      "teamId": "t12",
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "t13",
+                      "rank": 14,
+                      "kills": 1
+                    },
+                    {
+                      "kills": 0,
+                      "teamId": "t14",
+                      "rank": 13
+                    },
+                    {
+                      "kills": 0,
+                      "teamId": "t15",
+                      "rank": 15
+                    },
+                    {
+                      "rank": 16,
+                      "kills": 0,
+                      "teamId": "team-1792116050320"
+                    }
+                  ],
+                  "matchNumber": 2,
+                  "isCompleted": true
+                },
+                {
+                  "mapName": "Sanhok",
+                  "isCompleted": false,
+                  "matchId": "m3",
+                  "time": "20:30 WITA",
+                  "teamResults": [],
+                  "matchNumber": 3
+                }
+              ]
+            },
+            {
+              "id": "sheet-1792307156940-k98e",
+              "name": "GRUB B",
+              "phase": "QUALIFIER",
+              "isVisible": true,
+              "totalMatches": 5,
+              "currentMatch": 1,
+              "currentMap": "Erangel",
+              "teams": [
+                {
+                  "id": "team-sheet-1792307156940-k98e-1",
+                  "code": "CEES",
+                  "name": "CEES GANK PRIME"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-2",
+                  "code": "PAW",
+                  "name": "PAWPAW SAMARINDA"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-3",
+                  "code": "BOR",
+                  "name": "BORNEO PREDATORS"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-4",
+                  "code": "MHK",
+                  "name": "MAHAKAM WOLVES"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-5",
+                  "code": "EVO",
+                  "name": "EVO SAMARINDA"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-6",
+                  "code": "SMD",
+                  "name": "SAMARINDA ROAR"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-7",
+                  "code": "KTI",
+                  "name": "KUTAI WARRIORS"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-8",
+                  "code": "BPP",
+                  "name": "BALIKPAPAN ELITE"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-9",
+                  "code": "TGR",
+                  "name": "TENGGARONG FORCE"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-10",
+                  "code": "SGT",
+                  "name": "SANGATTA VIPERS"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-11",
+                  "code": "BER",
+                  "name": "BERAU PHANTOM"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-12",
+                  "code": "NVA",
+                  "name": "NOVA REBELS"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-13",
+                  "code": "BTR",
+                  "name": "BONTANG TITANS"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-14",
+                  "code": "APX",
+                  "name": "APEX HUNTERS"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-15",
+                  "code": "DKS",
+                  "name": "DARK KNIGHTS"
+                },
+                {
+                  "id": "team-sheet-1792307156940-k98e-16",
+                  "code": "RRQ",
+                  "name": "RRQ ACADEMY"
+                }
+              ],
+              "matches": [
+                {
+                  "matchId": "m-sheet-1792307156940-k98e-1",
+                  "matchNumber": 1,
+                  "mapName": "Erangel",
+                  "isCompleted": false,
+                  "teamResults": [
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-1",
+                      "rank": 1,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-2",
+                      "rank": 2,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-3",
+                      "rank": 3,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-4",
+                      "rank": 4,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-5",
+                      "rank": 5,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-6",
+                      "rank": 6,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-7",
+                      "rank": 7,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-8",
+                      "rank": 8,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-9",
+                      "rank": 9,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-10",
+                      "rank": 10,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-11",
+                      "rank": 11,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-12",
+                      "rank": 12,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-13",
+                      "rank": 13,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-14",
+                      "rank": 14,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-15",
+                      "rank": 15,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-16",
+                      "rank": 16,
+                      "kills": 0
+                    }
+                  ]
+                },
+                {
+                  "matchId": "m-sheet-1792307156940-k98e-2",
+                  "matchNumber": 2,
+                  "mapName": "Miramar",
+                  "isCompleted": false,
+                  "teamResults": [
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-1",
+                      "rank": 1,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-2",
+                      "rank": 2,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-3",
+                      "rank": 3,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-4",
+                      "rank": 4,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-5",
+                      "rank": 5,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-6",
+                      "rank": 6,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-7",
+                      "rank": 7,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-8",
+                      "rank": 8,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-9",
+                      "rank": 9,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-10",
+                      "rank": 10,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-11",
+                      "rank": 11,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-12",
+                      "rank": 12,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-13",
+                      "rank": 13,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-14",
+                      "rank": 14,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-15",
+                      "rank": 15,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-16",
+                      "rank": 16,
+                      "kills": 0
+                    }
+                  ]
+                },
+                {
+                  "matchId": "m-sheet-1792307156940-k98e-3",
+                  "matchNumber": 3,
+                  "mapName": "Sanhok",
+                  "isCompleted": false,
+                  "teamResults": [
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-1",
+                      "rank": 1,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-2",
+                      "rank": 2,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-3",
+                      "rank": 3,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-4",
+                      "rank": 4,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-5",
+                      "rank": 5,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-6",
+                      "rank": 6,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-7",
+                      "rank": 7,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-8",
+                      "rank": 8,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-9",
+                      "rank": 9,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-10",
+                      "rank": 10,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-11",
+                      "rank": 11,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-12",
+                      "rank": 12,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-13",
+                      "rank": 13,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-14",
+                      "rank": 14,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-15",
+                      "rank": 15,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-16",
+                      "rank": 16,
+                      "kills": 0
+                    }
+                  ]
+                },
+                {
+                  "matchId": "m-sheet-1792307156940-k98e-4",
+                  "matchNumber": 4,
+                  "mapName": "Erangel",
+                  "isCompleted": false,
+                  "teamResults": [
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-1",
+                      "rank": 1,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-2",
+                      "rank": 2,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-3",
+                      "rank": 3,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-4",
+                      "rank": 4,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-5",
+                      "rank": 5,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-6",
+                      "rank": 6,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-7",
+                      "rank": 7,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-8",
+                      "rank": 8,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-9",
+                      "rank": 9,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-10",
+                      "rank": 10,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-11",
+                      "rank": 11,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-12",
+                      "rank": 12,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-13",
+                      "rank": 13,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-14",
+                      "rank": 14,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-15",
+                      "rank": 15,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-16",
+                      "rank": 16,
+                      "kills": 0
+                    }
+                  ]
+                },
+                {
+                  "matchId": "m-sheet-1792307156940-k98e-5",
+                  "matchNumber": 5,
+                  "mapName": "Miramar",
+                  "isCompleted": false,
+                  "teamResults": [
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-1",
+                      "rank": 1,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-2",
+                      "rank": 2,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-3",
+                      "rank": 3,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-4",
+                      "rank": 4,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-5",
+                      "rank": 5,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-6",
+                      "rank": 6,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-7",
+                      "rank": 7,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-8",
+                      "rank": 8,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-9",
+                      "rank": 9,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-10",
+                      "rank": 10,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-11",
+                      "rank": 11,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-12",
+                      "rank": 12,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-13",
+                      "rank": 13,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-14",
+                      "rank": 14,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-15",
+                      "rank": 15,
+                      "kills": 0
+                    },
+                    {
+                      "teamId": "team-sheet-1792307156940-k98e-16",
+                      "rank": 16,
+                      "kills": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "activeSheetId": "sheet-1792307156940-k98e"
+        }
+      ]
     }
   ]
 }
