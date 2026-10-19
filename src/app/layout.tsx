@@ -29,7 +29,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cees-area.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ceesarea.online"),
   title: "CEES AREA | Official E-Sport Community Samarinda - INVICTUS MANEO",
   description:
     "Website resmi CEES AREA (CEES GANK), wadah komunitas dan tim esports terdepan di Samarinda, Kalimantan Timur. Divisi PUBG Mobile, Mobile Legends, dan Roblox. Invictus Maneo!",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CEES AREA | Komunitas E-Sport Resmi Samarinda",
     description: "Invictus Maneo - Wadah Pemersatu & Pembinaan Talenta Esports Samarinda",
-    url: "https://cees-area.vercel.app",
+    url: "https://ceesarea.online",
     siteName: "CEES AREA",
     images: [
       {

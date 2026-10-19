@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cees-area.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ceesarea.online';
   const currentDate = new Date();
 
   const routes: MetadataRoute.Sitemap = [
