@@ -36,6 +36,64 @@
     "solidaritasTitle": "LEBIH DARI SEKADAR MABAR",
     "solidaritasText": "Tidak hanya bertanding di turnamen dan scrim, kami rutin mengadakan agenda silaturahmi buka bersama, gathering pantai, dan turnamen offline untuk memajukan komunitas lokal."
   },
+  "sectionsConfig": [
+    {
+      "id": "hero",
+      "label": "Hero Section & Slogan Utama",
+      "subtitle": "Banner utama, 3D emblem, teks pengenalan & motto Invictus Maneo",
+      "badge": "HEADER // 01",
+      "enabled": true
+    },
+    {
+      "id": "motto",
+      "label": "Tiga Pilar Nilai Komunitas",
+      "subtitle": "Kartu 3 pilar: Filosofi Invictus, Akar Regional Kaltim, Solidaritas",
+      "badge": "PILAR // 03",
+      "enabled": true
+    },
+    {
+      "id": "divisions",
+      "label": "Divisi Game Resmi",
+      "subtitle": "Panggung tempur: PUBG Mobile, Mobile Legends, dan Roblox",
+      "badge": "DIVISI // 04",
+      "enabled": true
+    },
+    {
+      "id": "founder",
+      "label": "Founder Feature Spotlight",
+      "subtitle": "Profil pendiri Zidan Nata Almadani, rekam jejak, & visi Samarinda",
+      "badge": "FOUNDER // 05",
+      "enabled": true
+    },
+    {
+      "id": "activities",
+      "label": "Rekam Jejak & Kegiatan",
+      "subtitle": "Dokumentasi agenda buka bersama, gathering pantai, turnamen offline",
+      "badge": "AGENDA // 06",
+      "enabled": true
+    },
+    {
+      "id": "roster",
+      "label": "Live Registered Member Roster",
+      "subtitle": "Roster live anggota resmi CEES GANK terverifikasi & kartu digital",
+      "badge": "MEMBER // 07",
+      "enabled": true
+    },
+    {
+      "id": "tournament",
+      "label": "Live Event & Standings Turnamen",
+      "subtitle": "Klasemen turnamen PUBGM realtime, match sheet & perolehan poin",
+      "badge": "E-SPORTS // 02",
+      "enabled": true
+    },
+    {
+      "id": "cta",
+      "label": "Call to Action (Pendaftaran Member)",
+      "subtitle": "Banner ajakan bergabung dan tombol kontak WhatsApp pengurus",
+      "badge": "JOIN // 08",
+      "enabled": true
+    }
+  ],
   "quotes": {
     "founderQuote": "Saya mantan atlet PUBGM lokal yang pengin e-sport Samarinda punya wadah sendiri. Awalnya cuma grup kecil yang sering main bareng. Sekarang kami berdiri bareng.",
     "founderHighlight": "berdiri bareng",
@@ -203,9 +261,39 @@
     ]
   },
   "operatorName": "2OB1T",
-  "lastUpdated": "2026-10-16T02:14:54.327Z",
+  "lastUpdated": "2026-10-19T07:31:10.790Z",
   "lastUpdatedBy": "2OB1T",
   "auditLog": [
+    {
+      "id": "audit_1792395070790",
+      "operator": "2OB1T",
+      "action": "UPDATE_CMS_CONTENT",
+      "fields": [
+        "community",
+        "home",
+        "quotes",
+        "staff",
+        "activities",
+        "market",
+        "sectionsConfig"
+      ],
+      "timestamp": "2026-10-19T07:31:10.790Z"
+    },
+    {
+      "id": "audit_1792395044723",
+      "operator": "2OB1T",
+      "action": "UPDATE_CMS_CONTENT",
+      "fields": [
+        "community",
+        "home",
+        "quotes",
+        "staff",
+        "activities",
+        "market",
+        "sectionsConfig"
+      ],
+      "timestamp": "2026-10-19T07:30:44.723Z"
+    },
     {
       "id": "audit_1792116894327",
       "operator": "2OB1T",

@@ -70,6 +70,7 @@ export interface MarketContent {
 }
 
 import rawSiteContent from "./siteContent.json";
+import { normalizeHomeSections, HomeSectionItem } from "@/lib/homeSections";
 
 const siteContent: any = rawSiteContent || {};
 const overrideCommunity: any = siteContent.community || {};
@@ -78,6 +79,9 @@ const overrideStaff: any[] = siteContent.staff || [];
 const overrideActivities: any[] = siteContent.activities || [];
 const overrideQuotes: any = siteContent.quotes || {};
 const overrideMarket: any = siteContent.market || {};
+const overrideSectionsConfig: any[] = siteContent.sectionsConfig || [];
+
+export const HOME_SECTIONS_CONFIG: HomeSectionItem[] = normalizeHomeSections(overrideSectionsConfig);
 
 export const QUOTES_DATA = {
   founderQuote:

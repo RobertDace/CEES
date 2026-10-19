@@ -36,7 +36,16 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import TournamentAdminPanel from "@/components/admin/TournamentAdminPanel";
+import HomeSectionReorderPanel from "@/components/admin/HomeSectionReorderPanel";
 import { ceesAlert } from "@/lib/ceesAlert";
+import {
+  HomeSectionItem,
+  DEFAULT_HOME_SECTIONS,
+  normalizeHomeSections,
+  HomeSectionsContent,
+  DEFAULT_HOME_CONTENT,
+  normalizeHomeContent,
+} from "@/lib/homeSections";
 
 type TabType = "home" | "quotes" | "staff" | "activities" | "members" | "market" | "tournament";
 
@@ -73,17 +82,9 @@ export default function AdminToolsPage() {
     },
   });
 
-  const [homeSections, setHomeSections] = useState<any>({
-    filosofiTitle: '"INVICTUS MANEO"',
-    filosofiText:
-      'Diambil dari bahasa Latin yang bermakna "Tetap Tak Terkalahkan". Sebuah ikrar mentalitas bahwa apapun hasil di dalam game, semangat persaudaraan dan daya juang CEES GANK tidak akan pernah padam.',
-    regionalTitle: "SAMARINDA & KALTIM",
-    regionalText:
-      "Berpusat di ibukota Kalimantan Timur dengan anggota aktif tersebar di Kutai Kartanegara, Kutai Timur, Sangatta, Berau, hingga perwakilan di pulau Jawa.",
-    solidaritasTitle: "LEBIH DARI SEKADAR MABAR",
-    solidaritasText:
-      "Tidak hanya bertanding di turnamen dan scrim, kami rutin mengadakan agenda silaturahmi buka bersama, gathering pantai, dan turnamen offline untuk memajukan komunitas lokal.",
-  });
+  const [homeSections, setHomeSections] = useState<HomeSectionsContent>(DEFAULT_HOME_CONTENT);
+
+  const [sectionsConfig, setSectionsConfig] = useState<HomeSectionItem[]>(DEFAULT_HOME_SECTIONS);
 
   const [quotes, setQuotes] = useState<any>({
     founderQuote:
@@ -159,11 +160,14 @@ export default function AdminToolsPage() {
         const json = await res.json();
         if (json.success && json.data) {
           if (json.data.community) setCommunity(json.data.community);
-          if (json.data.home) setHomeSections(json.data.home);
+          if (json.data.home) setHomeSections(normalizeHomeContent(json.data.home));
           if (json.data.quotes) setQuotes(json.data.quotes);
           if (json.data.staff) setStaffList(json.data.staff);
           if (json.data.activities) setActivitiesList(json.data.activities);
           if (json.data.market) setMarket(json.data.market);
+          if (json.data.sectionsConfig) {
+            setSectionsConfig(normalizeHomeSections(json.data.sectionsConfig));
+          }
 
           if (json.data.lastUpdated || json.data.lastUpdatedBy) {
             setAuditMeta({
@@ -219,6 +223,7 @@ export default function AdminToolsPage() {
         staff: staffList,
         activities: activitiesList,
         market,
+        sectionsConfig,
         operatorName: user?.displayName || "Admin Operator",
       };
 
@@ -801,6 +806,14 @@ export default function AdminToolsPage() {
         {/* ============================================================== */}
         {activeTab === "home" && (
           <div className="mt-6 space-y-6">
+            {/* Visual Drag & Drop Reorder Panel with Inline Copy Editor */}
+            <HomeSectionReorderPanel
+              sections={sectionsConfig}
+              onChange={setSectionsConfig}
+              homeContent={homeSections}
+              onHomeContentChange={setHomeSections}
+            />
+
             <div className="border-2 border-slate-900 bg-white p-6 shadow-[6px_6px_0px_0px_#0030FF] dark:border-white dark:bg-dark-base">
               <h3 className="font-display text-xl font-bold uppercase text-slate-900 dark:text-white">
                 Identitas Utama & Slogan Komunitas

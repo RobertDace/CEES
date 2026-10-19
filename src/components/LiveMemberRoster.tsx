@@ -30,7 +30,17 @@ interface Member {
   avatarUrl?: string;
 }
 
-export default function LiveMemberRoster() {
+export interface LiveMemberRosterProps {
+  badge?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export default function LiveMemberRoster({
+  badge = "LIVE DATABASE FEED • REALTIME",
+  title = "DATA MEMBER BERGABUNG LIVE",
+  subtitle = "Daftar seluruh anggota komunitas CEES AREA, baik pendaftar baru maupun anggota terverifikasi (Realtime Live Feed).",
+}: LiveMemberRosterProps) {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -179,13 +189,13 @@ export default function LiveMemberRoster() {
         <div>
           <div className="inline-flex items-center space-x-2 border-2 border-slate-900 bg-emerald-50 px-3 py-1 font-mono text-xs font-bold text-emerald-700 shadow-[2px_2px_0px_0px_#10B981] dark:border-white dark:bg-emerald-950/60 dark:text-emerald-400">
             <span className="h-2.5 w-2.5 animate-pulse bg-emerald-500 rounded-none" />
-            <span className="tracking-wider uppercase">LIVE DATABASE FEED • REALTIME</span>
+            <span className="tracking-wider uppercase">{badge}</span>
           </div>
           <h2 className="mt-3 font-display text-2xl font-black uppercase tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-            DATA MEMBER BERGABUNG LIVE
+            {title}
           </h2>
           <p className="mt-1 font-mono text-xs text-slate-600 dark:text-steel-400">
-            Daftar seluruh anggota komunitas CEES AREA, baik pendaftar baru maupun anggota terverifikasi (Realtime Live Feed).
+            {subtitle}
           </p>
         </div>
 

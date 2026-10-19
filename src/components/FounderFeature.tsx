@@ -4,19 +4,35 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { FOUNDER_DATA, QUOTES_DATA } from "@/data/community";
 
-export default function FounderFeature() {
+export interface FounderFeatureProps {
+  badge?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export default function FounderFeature({
+  badge = "[03] Founder",
+  title = "Dari mabar jadi rumah.",
+  subtitle = "Cerita singkat orang di balik berdirinya CEES AREA pada 4 Oktober 2024.",
+}: FounderFeatureProps) {
   return (
     <section className="relative border-b-2 border-slate-900 bg-white py-20 dark:border-white dark:bg-dark-void lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6 border-b-2 border-slate-900 pb-6 dark:border-white">
           <div>
-            <span className="index-label">[03] Founder</span>
+            <span className="index-label">{badge}</span>
             <h2 className="display-xl mt-4 text-5xl text-slate-900 sm:text-7xl dark:text-white">
-              Dari mabar <span className="text-outline">jadi</span> rumah.
+              {title.includes("jadi") ? (
+                <>
+                  Dari mabar <span className="text-outline">jadi</span> rumah.
+                </>
+              ) : (
+                title
+              )}
             </h2>
           </div>
           <p className="max-w-xs font-mono text-xs leading-relaxed text-slate-500 dark:text-steel-400">
-            Cerita singkat orang di balik berdirinya CEES AREA pada 4 Oktober 2024.
+            {subtitle}
           </p>
         </div>
 

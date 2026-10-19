@@ -20,7 +20,25 @@ const TAPE_ITEMS = [
   "CEES GANK",
 ];
 
-export default function HeroSection() {
+export interface HeroSectionProps {
+  sticker?: string;
+  titleLine1?: string;
+  titleLine2?: string;
+  titleLine3?: string;
+  description?: string;
+  primaryBtnText?: string;
+  secondaryBtnText?: string;
+}
+
+export default function HeroSection({
+  sticker = "Komunitas E-Sport · Samarinda, Kaltim",
+  titleLine1 = "Welcome",
+  titleLine2 = "to our",
+  titleLine3 = "Area.",
+  description = "Komunitas e-sport asal Samarinda yang dibangun dari tongkrongan mabar. Sekarang jadi rumah buat pemain PUBG Mobile, Mobile Legends, dan Roblox se-Kalimantan Timur.",
+  primaryBtnText = "Daftar member baru",
+  secondaryBtnText = "Kenalan dulu",
+}: HeroSectionProps) {
   return (
     <>
       <section className="relative overflow-hidden border-b-2 border-slate-900 bg-white dark:border-white dark:bg-dark-base">
@@ -28,23 +46,26 @@ export default function HeroSection() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
             {/* Left: statement */}
             <div className="lg:col-span-7">
-              <span className="sticker -rotate-2">Komunitas E-Sport · Samarinda, Kaltim</span>
+              <span className="sticker -rotate-2">{sticker}</span>
 
               <h1 className="display-xl mt-8 text-[clamp(3.4rem,10vw,8.5rem)] text-slate-900 dark:text-white">
-                <span className="block">Welcome</span>
+                <span className="block">{titleLine1}</span>
                 <span className="block">
-                  to <span className="text-outline">our</span>
+                  {titleLine2.includes("our") ? (
+                    <>
+                      to <span className="text-outline">our</span>
+                    </>
+                  ) : (
+                    titleLine2
+                  )}
                 </span>
                 <span className="block">
-                  <span className="mark-block">Area.</span>
+                  <span className="mark-block">{titleLine3}</span>
                 </span>
               </h1>
 
               <p className="mt-8 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg dark:text-steel-200">
-                Komunitas e-sport asal Samarinda yang dibangun dari tongkrongan mabar. Sekarang
-                jadi rumah buat pemain <strong className="font-semibold text-slate-900 dark:text-white">PUBG Mobile</strong>,{" "}
-                <strong className="font-semibold text-slate-900 dark:text-white">Mobile Legends</strong>, dan{" "}
-                <strong className="font-semibold text-slate-900 dark:text-white">Roblox</strong> se-Kalimantan Timur.
+                {description}
               </p>
 
               <p className="mt-4 font-mono text-xs font-bold uppercase tracking-[0.14em] text-brand-blue dark:text-brand-cyan">
@@ -53,11 +74,11 @@ export default function HeroSection() {
 
               <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-5">
                 <Link href="/join" className="brutal-btn px-7 py-4 text-sm">
-                  <span>Daftar member baru</span>
+                  <span>{primaryBtnText}</span>
                   <ArrowUpRight className="h-5 w-5" />
                 </Link>
                 <Link href="/about" className="link-arrow text-slate-900 dark:text-white">
-                  <span>Kenalan dulu</span>
+                  <span>{secondaryBtnText}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
